@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:stockmon/models/app_user_model.dart';
+import 'package:hecxd/models/app_user_model.dart';
 
 class AppAccessLevelProvider extends ChangeNotifier {
   final dbReference = Firestore.instance;

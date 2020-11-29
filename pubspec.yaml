@@ -1,4 +1,4 @@
-name: stockmon
+name: hecxd
 description: A new Flutter application.
 
 # The following defines the version and build number for your application.
@@ -36,6 +36,7 @@ dependencies:
   permission_handler: ^5.0.1+1
   firebase_messaging: ^6.0.13
   uuid: ^2.2.2
+  adobe_xd: ^1.0.0+1
   
 dev_dependencies:
   flutter_test:

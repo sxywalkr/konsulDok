@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:stockmon/app_localizations.dart';
-import 'package:stockmon/services/firestore_database.dart';
+import 'package:hecxd/app_localizations.dart';
+import 'package:hecxd/services/firestore_database.dart';
 import 'package:provider/provider.dart';
 
 enum TodosActions { toggleAllComplete, clearCompleted }

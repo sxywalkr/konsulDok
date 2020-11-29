@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:stockmon/app_localizations.dart';
-import 'package:stockmon/routes.dart';
+import 'package:hecxd/app_localizations.dart';
+import 'package:hecxd/routes.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -25,7 +25,7 @@ class _SplashScreenState extends State<SplashScreen> {
       children: <Widget>[
         Center(
           child: Text(
-            'StockMon',
+            'HEC',
             style: Theme.of(context).textTheme.headline3,
           ),
         ),
@@ -48,6 +48,6 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   redirect() async {
-    Navigator.of(context).pushReplacementNamed(Routes.home2);
+    Navigator.of(context).pushReplacementNamed(Routes.home21);
   }
 }

@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:stockmon/ui/auth/register_screen.dart';
-import 'package:stockmon/ui/auth/sign_in_screen.dart';
-import 'package:stockmon/ui/setting/setting_screen.dart';
-import 'package:stockmon/ui/splash/splash_screen.dart';
-import 'package:stockmon/ui/todo/create_edit_todo_screen.dart';
-import 'package:stockmon/ui/todo/todos_screen.dart';
+import 'package:hecxd/ui/auth/register_screen.dart';
+import 'package:hecxd/ui/auth/sign_in_screen.dart';
+import 'package:hecxd/ui/setting/setting_screen.dart';
+import 'package:hecxd/ui/splash/splash_screen.dart';
+import 'package:hecxd/ui/todo/create_edit_todo_screen.dart';
+import 'package:hecxd/ui/todo/todos_screen.dart';
 
-import 'package:stockmon/ui/home2/home2_screen.dart';
-import 'package:stockmon/ui/stokBarangMasuk/stokBarangMasuks_screen.dart';
-import 'package:stockmon/ui/stokBarangMasuk/create_edit_stokBarangMasuk_screen.dart';
-import 'package:stockmon/ui/stokBarangAktif/stokBarangAktifs_screen.dart';
-import 'package:stockmon/ui/stokBarangAktif/create_edit_stokBarangAktif_screen.dart';
-import 'package:stockmon/ui/stokBarangKeluar/stokBarangKeluars_screen.dart';
-import 'package:stockmon/ui/stokBarangKeluar/create_edit_stokBarangKeluar_screen.dart';
-import 'package:stockmon/ui/appUser/appUsers_screen.dart';
-import 'package:stockmon/ui/appUser/create_edit_appUser_screen.dart';
+import 'package:hecxd/ui/home2/home2_screen.dart';
+import 'package:hecxd/ui/stokBarangMasuk/stokBarangMasuks_screen.dart';
+import 'package:hecxd/ui/stokBarangMasuk/create_edit_stokBarangMasuk_screen.dart';
+import 'package:hecxd/ui/stokBarangAktif/stokBarangAktifs_screen.dart';
+import 'package:hecxd/ui/stokBarangAktif/create_edit_stokBarangAktif_screen.dart';
+import 'package:hecxd/ui/stokBarangKeluar/stokBarangKeluars_screen.dart';
+import 'package:hecxd/ui/stokBarangKeluar/create_edit_stokBarangKeluar_screen.dart';
+import 'package:hecxd/ui/appUser/appUsers_screen.dart';
+import 'package:hecxd/ui/appUser/create_edit_appUser_screen.dart';
+import 'package:hecxd/ui/home2/home21_screen.dart';
 
 class Routes {
   Routes._(); //this is to prevent anyone from instantiate this object
@@ -39,6 +40,7 @@ class Routes {
       '/create_edit_stokBarangKeluar';
   static const String appUser = '/appUser';
   static const String create_edit_appUser = '/create_edit_appUser';
+  static const String home21 = '/home21';
 
   static final routes = <String, WidgetBuilder>{
     splash: (BuildContext context) => SplashScreen(),
@@ -59,5 +61,6 @@ class Routes {
         CreateEditStokBarangKeluarScreen(),
     appUser: (BuildContext context) => AppUsersScreen(),
     create_edit_appUser: (BuildContext context) => CreateEditAppUserScreen(),
+    home21: (BuildContext context) => Home21Screen(),
   };
 }

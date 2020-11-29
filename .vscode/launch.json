@@ -6,7 +6,7 @@
     "configurations": [
         
         {
-            "name": "stockmon",
+            "name": "hecxd",
             "request": "launch",
             "type": "dart"
         }

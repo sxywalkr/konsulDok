@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:stockmon/caches/sharedpref/shared_preference_helper.dart';
+import 'package:hecxd/caches/sharedpref/shared_preference_helper.dart';
 
 class LanguageProvider extends ChangeNotifier {
   // shared pref object
