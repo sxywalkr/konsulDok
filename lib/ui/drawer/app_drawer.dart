@@ -21,7 +21,7 @@ class AppDrawer extends StatelessWidget {
               leading: Icon(Icons.home),
               title: Text('Dashboard'),
               onTap: () {
-                Navigator.of(context).pushReplacementNamed(Routes.home2);
+                Navigator.of(context).pushReplacementNamed(Routes.home21);
               },
             ),
             if (appAccessLevelProvider.appxUserRole == 'App Gudang' ||

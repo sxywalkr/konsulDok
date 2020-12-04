@@ -16,6 +16,9 @@ import 'package:hecxd/ui/stokBarangKeluar/create_edit_stokBarangKeluar_screen.da
 import 'package:hecxd/ui/appUser/appUsers_screen.dart';
 import 'package:hecxd/ui/appUser/create_edit_appUser_screen.dart';
 import 'package:hecxd/ui/home2/home21_screen.dart';
+import 'package:hecxd/ui/home2/xdhome22_screen.dart';
+import 'package:hecxd/ui/user/user_screen.dart';
+import 'package:hecxd/ui/user/create_edit_user_screen.dart';
 
 class Routes {
   Routes._(); //this is to prevent anyone from instantiate this object
@@ -41,6 +44,9 @@ class Routes {
   static const String appUser = '/appUser';
   static const String create_edit_appUser = '/create_edit_appUser';
   static const String home21 = '/home21';
+  static const String xdhome22 = '/xdhome22';
+  static const String user = '/user';
+  static const String create_edit_user = '/create_edit_user';
 
   static final routes = <String, WidgetBuilder>{
     splash: (BuildContext context) => SplashScreen(),
@@ -62,5 +68,8 @@ class Routes {
     appUser: (BuildContext context) => AppUsersScreen(),
     create_edit_appUser: (BuildContext context) => CreateEditAppUserScreen(),
     home21: (BuildContext context) => Home21Screen(),
+    xdhome22: (BuildContext context) => XdHome22Screen(),
+    user: (BuildContext context) => UserScreen(),
+    create_edit_user: (BuildContext context) => CreateEditUserScreen(),
   };
 }

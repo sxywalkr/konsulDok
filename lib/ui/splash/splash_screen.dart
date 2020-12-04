@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:hecxd/app_localizations.dart';
+// import 'package:hecxd/app_localizations.dart';
 import 'package:hecxd/routes.dart';
 
 class SplashScreen extends StatefulWidget {

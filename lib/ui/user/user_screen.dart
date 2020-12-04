@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:hecxd/ui/drawer/app_drawer.dart';
-import 'package:hecxd/ui/widget/user_hero2_widget.dart';
+import 'package:hecxd/ui/widget/user_hero_widget.dart';
 
-class Home21Screen extends StatelessWidget {
-  Home21Screen({
+class UserScreen extends StatelessWidget {
+  UserScreen({
     Key key,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('HEC'),
+        title: Text('Profile'),
       ),
       drawer: AppDrawer(),
       body: Container(
@@ -18,7 +18,7 @@ class Home21Screen extends StatelessWidget {
           children: <Widget>[
             Stack(
               children: <Widget>[
-                UserHero2Widget(),
+                UserHeroWidget(),
               ],
             ),
 

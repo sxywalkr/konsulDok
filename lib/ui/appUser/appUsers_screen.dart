@@ -94,8 +94,8 @@ class AppUsersScreen extends StatelessWidget {
                     // },
                     child: ListTile(
                       title: Text(appUsers[index].appUserEmail),
-                      subtitle: Text('${appUsers[index].appRole}'),
-                      trailing: appUsers[index].appRole == 'App Debug'
+                      subtitle: Text('${appUsers[index].appUserRole}'),
+                      trailing: appUsers[index].appUserRole == 'App Debug'
                           ? null
                           : _setUserRole(context, appUsers[index]),
                       onTap: () {
@@ -134,22 +134,22 @@ class AppUsersScreen extends StatelessWidget {
         if (selectedValue == UserRole.UserAdmin) {
           firestoreDatabase.setAppUser(AppUserModel(
             appUserUid: aa.appUserUid,
-            appRole: 'App Admin',
-            appFcmId: aa.appFcmId,
+            appUserRole: 'App Admin',
+            appUserFcmId: aa.appUserFcmId,
             appUserEmail: aa.appUserEmail,
           ));
         } else if (selectedValue == UserRole.UserGudang) {
           firestoreDatabase.setAppUser(AppUserModel(
             appUserUid: aa.appUserUid,
-            appRole: 'App Gudang',
-            appFcmId: aa.appFcmId,
+            appUserRole: 'App Gudang',
+            appUserFcmId: aa.appUserFcmId,
             appUserEmail: aa.appUserEmail,
           ));
         } else if (selectedValue == UserRole.UserPegawai) {
           firestoreDatabase.setAppUser(AppUserModel(
             appUserUid: aa.appUserUid,
-            appRole: 'App Pegawai',
-            appFcmId: aa.appFcmId,
+            appUserRole: 'App Pegawai',
+            appUserFcmId: aa.appUserFcmId,
             appUserEmail: aa.appUserEmail,
           ));
         }
