@@ -20,6 +20,10 @@ class AppAccessLevelProvider extends ChangeNotifier {
   //       .toList());
   // }
 
+  AppUserModel get appxUser {
+    return _appUser;
+  }
+
   String get appxUserUid {
     return _appUserUid;
   }
@@ -37,35 +41,10 @@ class AppAccessLevelProvider extends ChangeNotifier {
     for (DocumentSnapshot ds in qSnap1.documents) {
       data1 = ds.data;
     }
-    print('login role >> $_appUserUid ${data1['appRole']}');
-    _appUserRole = data1['appRole'];
+    // print('login role >> $_appUserUid ${data1['appRole']}');
+    _appUserRole = data1['appUserRole'];
     AppUserModel data = AppUserModel.fromMap(data1, null);
     _appUser = data;
     notifyListeners();
-  }
-
-  AppUserModel _userFromDb(AppUserModel user) {
-    if (user == null) {
-      return null;
-    }
-
-    return AppUserModel(
-      appUserUid: user.appUserUid,
-      appUserEmail: user.appUserEmail,
-      appUserRole: user.appUserRole,
-      appUserFcmId: user.appUserFcmId,
-      appUserDisplayName: user.appUserDisplayName,
-      appUserNoRmHec: user.appUserNoRmHec,
-      appUserNoKtp: user.appUserNoKtp,
-      appUserNoBpjs: user.appUserNoBpjs,
-      appUserNoHape: user.appUserNoHape,
-      appUserGender: user.appUserGender,
-      appUserAlamat: user.appUserAlamat,
-      appUserTglLahir: user.appUserTglLahir,
-      appUserStatusRm: user.appUserStatusRm,
-      appUserFlagActivity: user.appUserFlagActivity,
-      appUserTglAntri: user.appUserTglAntri,
-      appUserNoAntri: user.appUserNoAntri,
-    );
   }
 }

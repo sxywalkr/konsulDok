@@ -17,10 +17,12 @@ class UserHero2Widget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // final authProvider = Provider.of<AuthProvider>(context).userUid;
-    final appUserProvider = Provider.of<AppAccessLevelProvider>(context);
+    final appUserProvider =
+        Provider.of<AppAccessLevelProvider>(context, listen: false);
     return Container(
       height: 150,
       width: double.infinity,
+      // alignment: Alignment.center,
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.secondary,
       ),
@@ -46,6 +48,7 @@ class UserHero2Widget extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(
                             left: 20,
+                            top: 30,
                           ),
                           child: InkWell(
                             onTap: () {
@@ -64,7 +67,7 @@ class UserHero2Widget extends StatelessWidget {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(right: 20),
+                          padding: const EdgeInsets.only(right: 20, top: 30),
                           child: Text(
                               '${document['appUserDisplayName'] == null ? document['appUserEmail'] : document['appUserDisplayName']}'),
                         ),

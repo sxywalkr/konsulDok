@@ -13,7 +13,7 @@ class AppDrawer extends StatelessWidget {
         child: Column(
           children: <Widget>[
             AppBar(
-              title: Text('StockMon'),
+              title: Text('HEC - ${appAccessLevelProvider.appxUserRole}'),
               automaticallyImplyLeading: false,
             ),
             Divider(),
@@ -24,55 +24,14 @@ class AppDrawer extends StatelessWidget {
                 Navigator.of(context).pushReplacementNamed(Routes.home21);
               },
             ),
-            if (appAccessLevelProvider.appxUserRole == 'App Gudang' ||
-                appAccessLevelProvider.appxUserRole == 'App Debug')
+            if (appAccessLevelProvider.appxUserRole == 'Admin' ||
+                appAccessLevelProvider.appxUserRole == 'Debug')
               Divider(),
-            if (appAccessLevelProvider.appxUserRole == 'App Gudang' ||
-                appAccessLevelProvider.appxUserRole == 'App Debug')
+            if (appAccessLevelProvider.appxUserRole == 'Admin' ||
+                appAccessLevelProvider.appxUserRole == 'Debug')
               ListTile(
                 leading: Icon(Icons.home),
-                title: Text('Barang Masuk'),
-                onTap: () {
-                  Navigator.of(context)
-                      .pushReplacementNamed(Routes.stokBarangMasuk);
-                },
-              ),
-            if (appAccessLevelProvider.appxUserRole == 'App Gudang' ||
-                appAccessLevelProvider.appxUserRole == 'App Debug')
-              Divider(),
-            if (appAccessLevelProvider.appxUserRole == 'App Gudang' ||
-                appAccessLevelProvider.appxUserRole == 'App Debug')
-              ListTile(
-                leading: Icon(Icons.home),
-                title: Text('Stok Barang'),
-                onTap: () {
-                  Navigator.of(context)
-                      .pushReplacementNamed(Routes.stokBarangAktif);
-                },
-              ),
-            if (appAccessLevelProvider.appxUserRole == 'App Pegawai' ||
-                appAccessLevelProvider.appxUserRole == 'App Gudang' ||
-                appAccessLevelProvider.appxUserRole == 'App Debug')
-              Divider(),
-            if (appAccessLevelProvider.appxUserRole == 'App Pegawai' ||
-                appAccessLevelProvider.appxUserRole == 'App Gudang' ||
-                appAccessLevelProvider.appxUserRole == 'App Debug')
-              ListTile(
-                leading: Icon(Icons.home),
-                title: Text('Barang Keluar'),
-                onTap: () {
-                  Navigator.of(context)
-                      .pushReplacementNamed(Routes.stokBarangKeluar);
-                },
-              ),
-            if (appAccessLevelProvider.appxUserRole == 'App Admin' ||
-                appAccessLevelProvider.appxUserRole == 'App Debug')
-              Divider(),
-            if (appAccessLevelProvider.appxUserRole == 'App Admin' ||
-                appAccessLevelProvider.appxUserRole == 'App Debug')
-              ListTile(
-                leading: Icon(Icons.home),
-                title: Text('Manage App User'),
+                title: Text('Manage User'),
                 onTap: () {
                   Navigator.of(context).pushReplacementNamed(Routes.appUser);
                 },

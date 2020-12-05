@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hecxd/models/user_model.dart';
 import 'package:hecxd/providers/auth_provider.dart';
-import 'package:hecxd/routes.dart';
+// import 'package:hecxd/routes.dart';
 import 'package:hecxd/services/firestore_database.dart';
 import 'package:hecxd/ui/drawer/app_drawer.dart';
 import 'package:provider/provider.dart';
@@ -10,9 +10,12 @@ import 'package:hecxd/models/app_user_model.dart';
 import 'package:hecxd/ui/appUser/empty_content.dart';
 
 enum UserRole {
-  UserAdmin,
-  UserGudang,
-  UserPegawai,
+  User,
+  Resepsionis,
+  Dokter,
+  Oka,
+  Apotek,
+  Billing,
 }
 
 class AppUsersScreen extends StatelessWidget {
@@ -21,8 +24,8 @@ class AppUsersScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context);
-    final firestoreDatabase =
-        Provider.of<FirestoreDatabase>(context, listen: false);
+    // final firestoreDatabase =
+    //     Provider.of<FirestoreDatabase>(context, listen: false);
 
     return Scaffold(
       key: _scaffoldKey,
@@ -30,7 +33,7 @@ class AppUsersScreen extends StatelessWidget {
         title: StreamBuilder(
             stream: authProvider.user,
             builder: (context, snapshot) {
-              final UserModel user = snapshot.data;
+              // final UserModel user = snapshot.data;
               return Text('List App User');
             }),
         actions: <Widget>[],
@@ -95,7 +98,8 @@ class AppUsersScreen extends StatelessWidget {
                     child: ListTile(
                       title: Text(appUsers[index].appUserEmail),
                       subtitle: Text('${appUsers[index].appUserRole}'),
-                      trailing: appUsers[index].appUserRole == 'App Debug'
+                      trailing: appUsers[index].appUserRole == 'Debugger' ||
+                              appUsers[index].appUserRole == 'Admin'
                           ? null
                           : _setUserRole(context, appUsers[index]),
                       onTap: () {
@@ -131,24 +135,45 @@ class AppUsersScreen extends StatelessWidget {
         Provider.of<FirestoreDatabase>(context, listen: false);
     return PopupMenuButton(
       onSelected: (UserRole selectedValue) {
-        if (selectedValue == UserRole.UserAdmin) {
+        if (selectedValue == UserRole.User) {
           firestoreDatabase.setAppUser(AppUserModel(
             appUserUid: aa.appUserUid,
-            appUserRole: 'App Admin',
+            appUserRole: 'User',
             appUserFcmId: aa.appUserFcmId,
             appUserEmail: aa.appUserEmail,
           ));
-        } else if (selectedValue == UserRole.UserGudang) {
+        } else if (selectedValue == UserRole.Resepsionis) {
           firestoreDatabase.setAppUser(AppUserModel(
             appUserUid: aa.appUserUid,
-            appUserRole: 'App Gudang',
+            appUserRole: 'Resepsionis',
             appUserFcmId: aa.appUserFcmId,
             appUserEmail: aa.appUserEmail,
           ));
-        } else if (selectedValue == UserRole.UserPegawai) {
+        } else if (selectedValue == UserRole.Dokter) {
           firestoreDatabase.setAppUser(AppUserModel(
             appUserUid: aa.appUserUid,
-            appUserRole: 'App Pegawai',
+            appUserRole: 'Dokter',
+            appUserFcmId: aa.appUserFcmId,
+            appUserEmail: aa.appUserEmail,
+          ));
+        } else if (selectedValue == UserRole.Oka) {
+          firestoreDatabase.setAppUser(AppUserModel(
+            appUserUid: aa.appUserUid,
+            appUserRole: 'Oka',
+            appUserFcmId: aa.appUserFcmId,
+            appUserEmail: aa.appUserEmail,
+          ));
+        } else if (selectedValue == UserRole.Apotek) {
+          firestoreDatabase.setAppUser(AppUserModel(
+            appUserUid: aa.appUserUid,
+            appUserRole: 'Apotek',
+            appUserFcmId: aa.appUserFcmId,
+            appUserEmail: aa.appUserEmail,
+          ));
+        } else if (selectedValue == UserRole.Billing) {
+          firestoreDatabase.setAppUser(AppUserModel(
+            appUserUid: aa.appUserUid,
+            appUserRole: 'Billing',
             appUserFcmId: aa.appUserFcmId,
             appUserEmail: aa.appUserEmail,
           ));
@@ -156,16 +181,28 @@ class AppUsersScreen extends StatelessWidget {
       },
       itemBuilder: (_) => [
         PopupMenuItem(
-          child: Text('User Admin'),
-          value: UserRole.UserAdmin,
+          child: Text('User'),
+          value: UserRole.User,
         ),
         PopupMenuItem(
-          child: Text('User Gudang'),
-          value: UserRole.UserGudang,
+          child: Text('Resepsionis'),
+          value: UserRole.Resepsionis,
         ),
         PopupMenuItem(
-          child: Text('User Pegawai'),
-          value: UserRole.UserPegawai,
+          child: Text('Dokter'),
+          value: UserRole.Dokter,
+        ),
+        PopupMenuItem(
+          child: Text('Oka'),
+          value: UserRole.Oka,
+        ),
+        PopupMenuItem(
+          child: Text('Apotek'),
+          value: UserRole.Apotek,
+        ),
+        PopupMenuItem(
+          child: Text('Billing'),
+          value: UserRole.Billing,
         ),
       ],
       icon: Icon(Icons.more_vert),

@@ -10,6 +10,7 @@ import 'package:hecxd/models/app_user_model.dart';
 import 'package:hecxd/models/stok_brg_masuk_model.dart';
 import 'package:hecxd/models/stok_brg_aktif_model.dart';
 import 'package:hecxd/models/stok_brg_keluar_model.dart';
+import 'package:hecxd/models/hec_antrian_model.dart';
 
 String documentIdFromCurrentDate() => DateTime.now().toIso8601String();
 String generateUid() => Uuid().v4();
@@ -271,5 +272,54 @@ class FirestoreDatabase {
             : null,
         builder: (data, documentId) =>
             StokBarangKeluarModel.fromMap(data, documentId),
+      );
+
+  // hecAntrians
+  //Method to create/update all HecAntrianModel
+  Future<void> setHecAntrian(HecAntrianModel hecAntrian) async =>
+      await _firestoreService.setData(
+        path: FirestorePath.hecAntrian(hecAntrian.hecAntrianId),
+        data: hecAntrian.toMap(),
+      );
+
+  //Method to update partial HecAntrianModel
+  Future<void> updateHecAntrian(HecAntrianModel hecAntrian) async =>
+      await _firestoreService.updateData(
+        path: FirestorePath.hecAntrian(hecAntrian.hecAntrianId),
+        data: hecAntrian.toMap(),
+      );
+
+  //Method to delete HecAntrianModel entry
+  Future<void> deleteHecAntrian(HecAntrianModel hecAntrian) async {
+    await _firestoreService.deleteData(
+        path: FirestorePath.hecAntrian(hecAntrian.hecAntrianId));
+  }
+
+  //Method to retrieve HecAntrianModel object based on the given HecAntrianId
+  Stream<HecAntrianModel> hecAntrianStream({@required String hecAntrianId}) =>
+      _firestoreService.documentStream(
+        path: FirestorePath.hecAntrian(hecAntrianId),
+        builder: (data, documentId) =>
+            HecAntrianModel.fromMap(data, documentId),
+      );
+
+  //Method to retrieve all HecAntrians item from the same user based on uid
+  Stream<List<HecAntrianModel>> hecAntriansStream() =>
+      _firestoreService.collectionStream(
+        path: FirestorePath.hecAntrians(),
+        builder: (data, documentId) =>
+            HecAntrianModel.fromMap(data, documentId),
+      );
+
+  //Method to retrieve todoModel object based on the given todoId
+  Stream<List<HecAntrianModel>> hecAntrianModelQbyUserIdStream(
+          {@required String query1}) =>
+      _firestoreService.collectionStream(
+        path: FirestorePath.hecAntrians(),
+        queryBuilder: query1 != null
+            ? (query) => query.where('orderByUser', isEqualTo: query1)
+            : null,
+        builder: (data, documentId) =>
+            HecAntrianModel.fromMap(data, documentId),
       );
 }
