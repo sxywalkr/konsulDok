@@ -2,6 +2,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 // import 'package:hecxd/app_localizations.dart';
 import 'package:hecxd/routes.dart';
+import 'package:provider/provider.dart';
+import 'package:hecxd/providers/app_access_level_provider.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -48,6 +50,14 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   redirect() async {
-    Navigator.of(context).pushReplacementNamed(Routes.home21);
+    final appUserRole =
+        Provider.of<AppAccessLevelProvider>(context, listen: false)
+            .appxUserRole;
+
+    if (appUserRole == 'User') {
+      Navigator.of(context).pushReplacementNamed(Routes.home21);
+    } else if (appUserRole == 'Resepsionis') {
+      Navigator.of(context).pushReplacementNamed(Routes.home_resepsionis);
+    }
   }
 }

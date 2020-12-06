@@ -6,14 +6,15 @@ import 'package:hecxd/providers/app_access_level_provider.dart';
 class AppDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final appAccessLevelProvider =
-        Provider.of<AppAccessLevelProvider>(context, listen: false);
+    final appUserRole =
+        Provider.of<AppAccessLevelProvider>(context, listen: false)
+            .appxUserRole;
     return Drawer(
       child: SingleChildScrollView(
         child: Column(
           children: <Widget>[
             AppBar(
-              title: Text('HEC - ${appAccessLevelProvider.appxUserRole}'),
+              title: Text('HEC - $appUserRole'),
               automaticallyImplyLeading: false,
             ),
             Divider(),
@@ -21,14 +22,16 @@ class AppDrawer extends StatelessWidget {
               leading: Icon(Icons.home),
               title: Text('Dashboard'),
               onTap: () {
-                Navigator.of(context).pushReplacementNamed(Routes.home21);
+                if (appUserRole == 'User') {
+                  Navigator.of(context).pushReplacementNamed(Routes.home21);
+                } else if (appUserRole == 'Resepsionis') {
+                  Navigator.of(context)
+                      .pushReplacementNamed(Routes.home_resepsionis);
+                }
               },
             ),
-            if (appAccessLevelProvider.appxUserRole == 'Admin' ||
-                appAccessLevelProvider.appxUserRole == 'Debug')
-              Divider(),
-            if (appAccessLevelProvider.appxUserRole == 'Admin' ||
-                appAccessLevelProvider.appxUserRole == 'Debug')
+            if (appUserRole == 'Admin' || appUserRole == 'Debug') Divider(),
+            if (appUserRole == 'Admin' || appUserRole == 'Debug')
               ListTile(
                 leading: Icon(Icons.home),
                 title: Text('Manage User'),

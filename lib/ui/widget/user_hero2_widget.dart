@@ -59,7 +59,11 @@ class UserHero2Widget extends StatelessWidget {
                             },
                             child: CircleAvatar(
                               child: Text(
-                                  '${document['appUserEmail'].substring(0, 1)}'),
+                                '${document['appUserEmail'].substring(0, 1).toString().toUpperCase()}',
+                                style: DefaultTextStyle.of(context)
+                                    .style
+                                    .apply(fontSizeFactor: 3.0),
+                              ),
                               radius: 40,
                               backgroundColor:
                                   Theme.of(context).colorScheme.primaryVariant,
