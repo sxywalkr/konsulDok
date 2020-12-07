@@ -20,8 +20,24 @@ enum UserRole {
   Billing,
 }
 
-class AntriansScreen extends StatelessWidget {
+class AntriansScreen extends StatefulWidget {
+  @override
+  _AntriansScreenState createState() => _AntriansScreenState();
+}
+
+class _AntriansScreenState extends State<AntriansScreen> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
+  String _qryDate;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final String _dateNow = ModalRoute.of(context).settings.arguments;
+    // print(_dateNow);
+    if (_dateNow != null) {
+      _qryDate = _dateNow;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +48,8 @@ class AntriansScreen extends StatelessWidget {
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
-        title: Text('List Antrian'),
+        title: Text(
+            'List Antrian ${DateFormat('EEEE, d MMMM yyyy', 'id_ID').format(DateTime.parse(_qryDate))}'),
         actions: <Widget>[],
       ),
       drawer: AppDrawer(),
@@ -46,7 +63,8 @@ class AntriansScreen extends StatelessWidget {
         Provider.of<FirestoreDatabase>(context, listen: false);
 
     return StreamBuilder(
-        stream: firestoreDatabase.hecAntriansStream(),
+        stream:
+            firestoreDatabase.hecAntrianModelQryByDateStream(query1: _qryDate),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             List<HecAntrianModel> hecAntrian = snapshot.data;
@@ -132,84 +150,4 @@ class AntriansScreen extends StatelessWidget {
           return Center(child: CircularProgressIndicator());
         });
   }
-
-//   Widget _setUserRole(BuildContext context, HecAntrianModel aa) {
-//     final firestoreDatabase =
-//         Provider.of<FirestoreDatabase>(context, listen: false);
-//     return PopupMenuButton(
-//       onSelected: (UserRole selectedValue) {
-//         if (selectedValue == UserRole.User) {
-//           firestoreDatabase.setAppUser(HecAntrianModel(
-//             appUserUid: aa.appUserUid,
-//             appUserRole: 'User',
-//             appUserFcmId: aa.appUserFcmId,
-//             appUserEmail: aa.appUserEmail,
-//           ));
-//         } else if (selectedValue == UserRole.Resepsionis) {
-//           firestoreDatabase.setAppUser(HecAntrianModel(
-//             appUserUid: aa.appUserUid,
-//             appUserRole: 'Resepsionis',
-//             appUserFcmId: aa.appUserFcmId,
-//             appUserEmail: aa.appUserEmail,
-//           ));
-//         } else if (selectedValue == UserRole.Dokter) {
-//           firestoreDatabase.setAppUser(HecAntrianModel(
-//             appUserUid: aa.appUserUid,
-//             appUserRole: 'Dokter',
-//             appUserFcmId: aa.appUserFcmId,
-//             appUserEmail: aa.appUserEmail,
-//           ));
-//         } else if (selectedValue == UserRole.Oka) {
-//           firestoreDatabase.setAppUser(HecAntrianModel(
-//             appUserUid: aa.appUserUid,
-//             appUserRole: 'Oka',
-//             appUserFcmId: aa.appUserFcmId,
-//             appUserEmail: aa.appUserEmail,
-//           ));
-//         } else if (selectedValue == UserRole.Apotek) {
-//           firestoreDatabase.setAppUser(HecAntrianModel(
-//             appUserUid: aa.appUserUid,
-//             appUserRole: 'Apotek',
-//             appUserFcmId: aa.appUserFcmId,
-//             appUserEmail: aa.appUserEmail,
-//           ));
-//         } else if (selectedValue == UserRole.Billing) {
-//           firestoreDatabase.setAppUser(HecAntrianModel(
-//             appUserUid: aa.appUserUid,
-//             appUserRole: 'Billing',
-//             appUserFcmId: aa.appUserFcmId,
-//             appUserEmail: aa.appUserEmail,
-//           ));
-//         }
-//       },
-//       itemBuilder: (_) => [
-//         PopupMenuItem(
-//           child: Text('User'),
-//           value: UserRole.User,
-//         ),
-//         PopupMenuItem(
-//           child: Text('Resepsionis'),
-//           value: UserRole.Resepsionis,
-//         ),
-//         PopupMenuItem(
-//           child: Text('Dokter'),
-//           value: UserRole.Dokter,
-//         ),
-//         PopupMenuItem(
-//           child: Text('Oka'),
-//           value: UserRole.Oka,
-//         ),
-//         PopupMenuItem(
-//           child: Text('Apotek'),
-//           value: UserRole.Apotek,
-//         ),
-//         PopupMenuItem(
-//           child: Text('Billing'),
-//           value: UserRole.Billing,
-//         ),
-//       ],
-//       icon: Icon(Icons.more_vert),
-//     );
-//   }
-
 }

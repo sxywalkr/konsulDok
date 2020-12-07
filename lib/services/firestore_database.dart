@@ -322,4 +322,16 @@ class FirestoreDatabase {
         builder: (data, documentId) =>
             HecAntrianModel.fromMap(data, documentId),
       );
+
+  //Method to retrieve todoModel object based on the given todoId
+  Stream<List<HecAntrianModel>> hecAntrianModelQryByDateStream(
+          {@required String query1}) =>
+      _firestoreService.collectionStream(
+        path: FirestorePath.hecAntrians(),
+        queryBuilder: query1 != null
+            ? (query) => query.where('hecAntrianTglAntri', isEqualTo: query1)
+            : null,
+        builder: (data, documentId) =>
+            HecAntrianModel.fromMap(data, documentId),
+      );
 }

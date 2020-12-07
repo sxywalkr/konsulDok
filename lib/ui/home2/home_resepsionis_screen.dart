@@ -99,9 +99,7 @@ class WidgetResult extends StatelessWidget {
         .format(DateTime.parse(dateNow));
     return InkWell(
       onTap: () {
-        Navigator.of(context).pushNamed(
-          Routes.antrians,
-        );
+        Navigator.of(context).pushNamed(Routes.antrians, arguments: dateNow);
       },
       child: new ListTile(
         title: Text(
