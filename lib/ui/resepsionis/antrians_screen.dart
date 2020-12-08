@@ -3,7 +3,7 @@ import 'package:hecxd/models/app_user_model.dart';
 import 'package:hecxd/models/hec_antrian_model.dart';
 // import 'package:hecxd/models/user_model.dart';
 // import 'package:hecxd/providers/auth_provider.dart';
-// import 'package:hecxd/routes.dart';
+import 'package:hecxd/routes.dart';
 import 'package:hecxd/services/firestore_database.dart';
 import 'package:hecxd/ui/drawer/app_drawer.dart';
 import 'package:provider/provider.dart';
@@ -124,9 +124,8 @@ class _AntriansScreenState extends State<AntriansScreen> {
                       subtitle: Text(
                           '${DateFormat('EEEE, d MMMM yyyy', 'id_ID').format(DateTime.parse(hecAntrian[index].hecAntrianTglAntri))}'),
                       onTap: () {
-                        // Navigator.of(context).pushNamed(
-                        //     Routes.create_edit_appUser,
-                        //     arguments: hecAntrian[index]);
+                        Navigator.of(context).pushNamed(Routes.user_profile,
+                            arguments: hecAntrian[index].appUserUid);
                       },
                     ),
                   );

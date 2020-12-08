@@ -21,6 +21,7 @@ import 'package:hecxd/ui/user/user_screen.dart';
 import 'package:hecxd/ui/user/create_edit_user_screen.dart';
 import 'package:hecxd/ui/home2/home_resepsionis_screen.dart';
 import 'package:hecxd/ui/resepsionis/antrians_screen.dart';
+import 'package:hecxd/ui/user/user_profile_screen.dart';
 
 class Routes {
   Routes._(); //this is to prevent anyone from instantiate this object
@@ -51,6 +52,7 @@ class Routes {
   static const String create_edit_user = '/create_edit_user';
   static const String home_resepsionis = '/home_resepsionis';
   static const String antrians = '/antrians';
+  static const String user_profile = '/user_profile';
 
   static final routes = <String, WidgetBuilder>{
     splash: (BuildContext context) => SplashScreen(),
@@ -77,5 +79,6 @@ class Routes {
     create_edit_user: (BuildContext context) => CreateEditUserScreen(),
     home_resepsionis: (BuildContext context) => HomeResepsionisScreen(),
     antrians: (BuildContext context) => AntriansScreen(),
+    user_profile: (BuildContext context) => UserProfileScreen(),
   };
 }

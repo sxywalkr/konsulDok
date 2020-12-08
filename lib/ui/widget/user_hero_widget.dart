@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hecxd/models/app_user_model.dart';
+// import 'package:hecxd/models/app_user_model.dart';
 import 'package:hecxd/models/user_model.dart';
-import 'package:hecxd/providers/app_access_level_provider.dart';
+// import 'package:hecxd/providers/app_access_level_provider.dart';
 import 'package:hecxd/routes.dart';
 import 'package:provider/provider.dart';
 import 'package:hecxd/providers/auth_provider.dart';
@@ -25,7 +25,7 @@ class UserHeroWidget extends StatelessWidget {
       child: StreamBuilder(
           stream: authProvider.user,
           builder: (context, snapshot) {
-            print(snapshot.data);
+            // print(snapshot.data);
             if (snapshot.hasData) {
               final UserModel user = snapshot.data;
 
