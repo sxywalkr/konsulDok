@@ -6,7 +6,7 @@
     "configurations": [
         
         {
-            "name": "hecxd",
+            "name": "taskmon",
             "request": "launch",
             "type": "dart"
         }

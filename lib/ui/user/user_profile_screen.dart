@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:hecxd/services/firestore_database.dart';
-import 'package:hecxd/models/app_user_model.dart';
+import 'package:taskmon/providers/app_access_level_provider.dart';
+import 'package:taskmon/services/firestore_database.dart';
+import 'package:taskmon/models/app_user_model.dart';
 import 'package:provider/provider.dart';
-import 'package:hecxd/routes.dart';
+import 'package:taskmon/routes.dart';
 
 class UserProfileScreen extends StatefulWidget {
   @override
@@ -22,6 +23,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
     if (_argUserUid != null) {
       _selectedUserUid = _argUserUid;
     }
+    // _selectedUserUid =
   }
 
   @override
@@ -43,13 +45,21 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
           onPressed: () => Navigator.pop(context),
         ),
         actions: [
-          // IconButton(
-          //   icon: Icon(
-          //     Icons.edit,
-          //     color: Colors.transparent,
-          //   ),
-          //   onPressed: null,
-          // ),
+          IconButton(
+            icon: Icon(
+              Icons.edit,
+              color: Colors.black,
+            ),
+            onPressed: () async {
+              final appUser =
+                  Provider.of<AppAccessLevelProvider>(context, listen: false);
+              await appUser.getRole();
+              Navigator.of(context).pushNamed(
+                Routes.create_edit_user,
+                arguments: appUser.appxUser,
+              );
+            },
+          ),
         ],
       ),
       body: ListView(
@@ -97,7 +107,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                                   ),
                                   SizedBox(height: 7.0),
                                   Text(
-                                    user.appUserStatusRm,
+                                    user.appUserDisplayName,
                                     style: TextStyle(
                                       fontSize: 16.0,
                                       fontWeight: FontWeight.bold,

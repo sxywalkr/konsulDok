@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-// import 'package:hecxd/app_localizations.dart';
-import 'package:hecxd/routes.dart';
+// import 'package:taskmon/app_localizations.dart';
+import 'package:taskmon/routes.dart';
 import 'package:provider/provider.dart';
-import 'package:hecxd/providers/app_access_level_provider.dart';
+import 'package:taskmon/providers/app_access_level_provider.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -27,7 +27,7 @@ class _SplashScreenState extends State<SplashScreen> {
       children: <Widget>[
         Center(
           child: Text(
-            'HEC',
+            'TaskMon',
             style: Theme.of(context).textTheme.headline3,
           ),
         ),

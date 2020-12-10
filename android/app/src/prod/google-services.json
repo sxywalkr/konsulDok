@@ -1,34 +1,33 @@
 {
   "project_info": {
-    "project_number": "277837077146",
-    "firebase_url": "https://hecxd-469f1.firebaseio.com",
-    "project_id": "hecxd-469f1",
-    "storage_bucket": "hecxd-469f1.appspot.com"
+    "project_number": "8162444266",
+    "project_id": "taskmon-52a28",
+    "storage_bucket": "taskmon-52a28.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:277837077146:android:61c67a3ba9f1e5dd5a5d23",
+        "mobilesdk_app_id": "1:8162444266:android:1ac96ede544e9556d06893",
         "android_client_info": {
-          "package_name": "com.sxywalkr.hecxd"
+          "package_name": "com.sxywalkr.taskmon"
         }
       },
       "oauth_client": [
         {
-          "client_id": "277837077146-lpilqta5sjpuil5rbd22g9oa535hr55s.apps.googleusercontent.com",
+          "client_id": "8162444266-a2mcajbf2e4dj2o83aqbpf70q770bnoo.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBBlXaSHsHWkjlggYVe_1pGCc9Kk6mABMA"
+          "current_key": "AIzaSyB7Ou6QiaYF_zf4-0OgEHhvJmDa-TlR7HM"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "277837077146-lpilqta5sjpuil5rbd22g9oa535hr55s.apps.googleusercontent.com",
+              "client_id": "8162444266-a2mcajbf2e4dj2o83aqbpf70q770bnoo.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

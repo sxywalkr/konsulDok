@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:hecxd/flavor.dart';
-import 'package:hecxd/my_app.dart';
-import 'package:hecxd/providers/auth_provider.dart';
-import 'package:hecxd/providers/language_provider.dart';
-import 'package:hecxd/providers/theme_provider.dart';
-import 'package:hecxd/services/firestore_database.dart';
+import 'package:taskmon/flavor.dart';
+import 'package:taskmon/my_app.dart';
+import 'package:taskmon/providers/auth_provider.dart';
+import 'package:taskmon/providers/language_provider.dart';
+import 'package:taskmon/providers/theme_provider.dart';
+import 'package:taskmon/services/firestore_database.dart';
 import 'package:provider/provider.dart';
 
 void main() {

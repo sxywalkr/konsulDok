@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:hecxd/app_localizations.dart';
-// import 'package:hecxd/flavor.dart';
-import 'package:hecxd/providers/auth_provider.dart';
-import 'package:hecxd/routes.dart';
+import 'package:taskmon/app_localizations.dart';
+// import 'package:taskmon/flavor.dart';
+import 'package:taskmon/providers/auth_provider.dart';
+import 'package:taskmon/routes.dart';
 import 'package:provider/provider.dart';
 
 class SignInScreen extends StatefulWidget {
@@ -63,7 +63,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     padding: const EdgeInsets.all(16.0),
                     child: Center(
                       child: Text(
-                        'HEC',
+                        'TaskMon',
                         style: Theme.of(context).textTheme.headline4,
                       ),
                     )),

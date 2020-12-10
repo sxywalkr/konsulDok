@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:hecxd/app_localizations.dart';
-import 'package:hecxd/auth_widget_builder.dart';
-import 'package:hecxd/constants/app_themes.dart';
-import 'package:hecxd/flavor.dart';
-import 'package:hecxd/models/user_model.dart';
-import 'package:hecxd/providers/auth_provider.dart';
-import 'package:hecxd/providers/language_provider.dart';
-import 'package:hecxd/providers/theme_provider.dart';
-import 'package:hecxd/routes.dart';
-import 'package:hecxd/services/firestore_database.dart';
-import 'package:hecxd/ui/auth/sign_in_screen.dart';
-import 'package:hecxd/ui/home/home.dart';
+import 'package:taskmon/app_localizations.dart';
+import 'package:taskmon/auth_widget_builder.dart';
+import 'package:taskmon/constants/app_themes.dart';
+import 'package:taskmon/flavor.dart';
+import 'package:taskmon/models/user_model.dart';
+import 'package:taskmon/providers/auth_provider.dart';
+import 'package:taskmon/providers/language_provider.dart';
+import 'package:taskmon/providers/theme_provider.dart';
+import 'package:taskmon/routes.dart';
+import 'package:taskmon/services/firestore_database.dart';
+import 'package:taskmon/ui/auth/sign_in_screen.dart';
+import 'package:taskmon/ui/home/home.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -65,7 +65,7 @@ class MyApp extends StatelessWidget {
                     //user the first one from the list (in our case, that will be English)
                     return supportedLocales.first;
                   },
-                  title: 'StockMon', // Provider.of<Flavor>(context).toString(),
+                  title: 'TaskMon', // Provider.of<Flavor>(context).toString(),
                   routes: Routes.routes,
                   theme: AppThemes.lightTheme,
                   darkTheme: AppThemes.darkTheme,
@@ -76,10 +76,10 @@ class MyApp extends StatelessWidget {
                     builder: (_, authProviderRef, __) {
                       if (userSnapshot.connectionState ==
                           ConnectionState.active) {
-                        if (userSnapshot.hasData) {
-                          print(
-                              'my_app, cek disini rolenya >> ${userSnapshot.data.uid}');
-                        }
+                        // if (userSnapshot.hasData) {
+                        //   print(
+                        //       'my_app, cek disini rolenya >> ${userSnapshot.data.uid}');
+                        // }
                         return userSnapshot.hasData
                             ? HomeScreen()
                             : SignInScreen();

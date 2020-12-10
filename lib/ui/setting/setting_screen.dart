@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
-import 'package:hecxd/app_localizations.dart';
-import 'package:hecxd/providers/auth_provider.dart';
-import 'package:hecxd/providers/theme_provider.dart';
-import 'package:hecxd/routes.dart';
-import 'package:hecxd/ui/setting/setting_language_actions.dart';
+import 'package:taskmon/app_localizations.dart';
+import 'package:taskmon/providers/auth_provider.dart';
+import 'package:taskmon/providers/theme_provider.dart';
+import 'package:taskmon/routes.dart';
+import 'package:taskmon/ui/setting/setting_language_actions.dart';
 import 'package:provider/provider.dart';
-import 'package:hecxd/ui/drawer/app_drawer.dart';
+import 'package:taskmon/ui/drawer/app_drawer.dart';
 
 class SettingScreen extends StatelessWidget {
   @override

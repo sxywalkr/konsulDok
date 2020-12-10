@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:hecxd/models/app_user_model.dart';
-// import 'package:hecxd/models/app_user_model.dart';
-// import 'package:hecxd/models/user_model.dart';
-import 'package:hecxd/providers/app_access_level_provider.dart';
-import 'package:hecxd/routes.dart';
+import 'package:taskmon/models/app_user_model.dart';
+// import 'package:taskmon/models/app_user_model.dart';
+// import 'package:taskmon/models/user_model.dart';
+import 'package:taskmon/providers/app_access_level_provider.dart';
+import 'package:taskmon/routes.dart';
 import 'package:provider/provider.dart';
-// import 'package:hecxd/providers/auth_provider.dart';
+// import 'package:taskmon/providers/auth_provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class UserHero2Widget extends StatelessWidget {
@@ -53,9 +53,9 @@ class UserHero2Widget extends StatelessWidget {
                           child: InkWell(
                             onTap: () {
                               Navigator.of(context).pushNamed(
-                                  Routes.create_edit_user,
-                                  arguments:
-                                      AppUserModel.fromJson(document.data));
+                                Routes.user_profile,
+                                arguments: document['appUserUid'],
+                              );
                             },
                             child: CircleAvatar(
                               child: Text(

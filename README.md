@@ -460,3 +460,6 @@ flutter build apk --split-per-abi --release --no-shrink
 ?? Optional flutter pub cache repair
 
 // use this flutter build apk --no-shrink
+
+// firebase rules
+allow read, write: if request.auth != null;

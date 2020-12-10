@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-// import 'package:hecxd/models/app_user_model.dart';
-import 'package:hecxd/models/user_model.dart';
-// import 'package:hecxd/providers/app_access_level_provider.dart';
-import 'package:hecxd/routes.dart';
+// import 'package:taskmon/models/app_user_model.dart';
+import 'package:taskmon/models/user_model.dart';
+// import 'package:taskmon/providers/app_access_level_provider.dart';
+import 'package:taskmon/routes.dart';
 import 'package:provider/provider.dart';
-import 'package:hecxd/providers/auth_provider.dart';
+import 'package:taskmon/providers/auth_provider.dart';
 
 class UserHeroWidget extends StatelessWidget {
   final String appUserUid;
