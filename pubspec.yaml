@@ -38,6 +38,7 @@ dependencies:
   uuid: ^2.2.2
   adobe_xd: ^1.0.0+1
   intl: ^0.16.1
+  geolocator: ^6.1.13
   
 dev_dependencies:
   flutter_test:

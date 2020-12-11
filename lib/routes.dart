@@ -8,7 +8,6 @@ import 'package:taskmon/ui/todo/todos_screen.dart';
 
 import 'package:taskmon/ui/home2/home2_screen.dart';
 import 'package:taskmon/ui/appUser/appUsers_screen.dart';
-import 'package:taskmon/ui/appUser/create_edit_appUser_screen.dart';
 import 'package:taskmon/ui/home2/home21_screen.dart';
 import 'package:taskmon/ui/user/user_screen.dart';
 import 'package:taskmon/ui/user/create_edit_user_screen.dart';
@@ -56,7 +55,6 @@ class Routes {
     create_edit_todo: (BuildContext context) => CreateEditTodoScreen(),
     home2: (BuildContext context) => Home2Screen(),
     appUser: (BuildContext context) => AppUsersScreen(),
-    create_edit_appUser: (BuildContext context) => CreateEditAppUserScreen(),
     home21: (BuildContext context) => Home21Screen(),
     user: (BuildContext context) => UserScreen(),
     create_edit_user: (BuildContext context) => CreateEditUserScreen(),

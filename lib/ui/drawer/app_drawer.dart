@@ -14,7 +14,7 @@ class AppDrawer extends StatelessWidget {
         child: Column(
           children: <Widget>[
             AppBar(
-              title: Text('HEC - $appUserRole'),
+              title: Text('TaskMon - $appUserRole'),
               automaticallyImplyLeading: false,
             ),
             Divider(),

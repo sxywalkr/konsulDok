@@ -22,4 +22,7 @@ class FirestorePath {
 
   static String hecAntrian(String itemId) => 'hecAntrians/$itemId';
   static String hecAntrians() => 'hecAntrians';
+
+  static String absensi(String itemId) => 'absensi/$itemId';
+  static String absensis() => 'absensi';
 }

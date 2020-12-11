@@ -7,10 +7,8 @@ import 'package:taskmon/services/firestore_path.dart';
 import 'package:taskmon/services/firestore_service.dart';
 import 'package:uuid/uuid.dart';
 import 'package:taskmon/models/app_user_model.dart';
-import 'package:taskmon/models/stok_brg_masuk_model.dart';
-import 'package:taskmon/models/stok_brg_aktif_model.dart';
-import 'package:taskmon/models/stok_brg_keluar_model.dart';
 import 'package:taskmon/models/hec_antrian_model.dart';
+import 'package:taskmon/models/absensi_model.dart';
 
 String documentIdFromCurrentDate() => DateTime.now().toIso8601String();
 String generateUid() => Uuid().v4();
@@ -137,143 +135,6 @@ class FirestoreDatabase {
         builder: (data, documentId) => AppUserModel.fromMap(data, documentId),
       );
 
-  // stokBarangMasuks
-  //Method to create/update stokBarangMasukModel
-  Future<void> setstokBarangMasuk(StokBarangMasukModel stokBarangMasuk) async =>
-      await _firestoreService.setData(
-        path: FirestorePath.stokBarangMasuk(stokBarangMasuk.id),
-        data: stokBarangMasuk.toMap(),
-      );
-
-  //Method to delete StokBarangMasukModel entry
-  Future<void> deletestokBarangMasuk(
-      StokBarangMasukModel stokBarangMasuk) async {
-    await _firestoreService.deleteData(
-        path: FirestorePath.stokBarangMasuk(stokBarangMasuk.id));
-  }
-
-  //Method to retrieve StokBarangMasukModel object based on the given stokBarangMasukId
-  Stream<StokBarangMasukModel> stokBarangMasukStream(
-          {@required String stokBarangMasukId}) =>
-      _firestoreService.documentStream(
-        path: FirestorePath.stokBarangMasuk(stokBarangMasukId),
-        builder: (data, documentId) =>
-            StokBarangMasukModel.fromMap(data, documentId),
-      );
-
-  //Method to retrieve all stokBarangMasuks item from the same user based on uid
-  Stream<List<StokBarangMasukModel>> stokBarangMasuksStream() =>
-      _firestoreService.collectionStream(
-        path: FirestorePath.stokBarangMasuks(),
-        builder: (data, documentId) =>
-            StokBarangMasukModel.fromMap(data, documentId),
-      );
-
-  // stokBarangAktifs
-  //Method to create/update all stokBarangAktifModel
-  Future<void> setStokBarangAktif(StokBarangAktifModel stokBarangAktif) async =>
-      await _firestoreService.setData(
-        path: FirestorePath.stokBarangAktif(stokBarangAktif.uidBarang),
-        data: stokBarangAktif.toMap(),
-      );
-
-  //Method to update partial stokBarangAktifModel
-  Future<void> updateStokBarangAktif(
-          StokBarangAktifModel stokBarangAktif) async =>
-      await _firestoreService.updateData(
-        path: FirestorePath.stokBarangAktif(stokBarangAktif.uidBarang),
-        data: stokBarangAktif.toMap(),
-      );
-
-  //Method to delete StokBarangAktifModel entry
-  Future<void> deletestokBarangAktif(
-      StokBarangAktifModel stokBarangAktif) async {
-    await _firestoreService.deleteData(
-        path: FirestorePath.stokBarangAktif(stokBarangAktif.uidBarang));
-  }
-
-  //Method to retrieve StokBarangAktifModel object based on the given stokBarangAktifId
-  Stream<StokBarangAktifModel> stokBarangAktifStream(
-          {@required String stokBarangAktifId}) =>
-      _firestoreService.documentStream(
-        path: FirestorePath.stokBarangAktif(stokBarangAktifId),
-        builder: (data, documentId) =>
-            StokBarangAktifModel.fromMap(data, documentId),
-      );
-
-  //Method to retrieve all stokBarangAktifs item from the same user based on uid
-  Stream<List<StokBarangAktifModel>> stokBarangAktifsStream() =>
-      _firestoreService.collectionStream(
-        path: FirestorePath.stokBarangAktifs(),
-        builder: (data, documentId) =>
-            StokBarangAktifModel.fromMap(data, documentId),
-      );
-
-  //Method to retrieve todoModel object based on the given todoId
-  Stream<List<StokBarangAktifModel>> stokBarangAktifModelByQ1Stream(
-          {@required String query1}) =>
-      _firestoreService.collectionStream(
-        path: FirestorePath.stokBarangAktifs(),
-        queryBuilder: query1 != null
-            ? (query) => query.where('xxx1Nama', isEqualTo: query1)
-            : null,
-        builder: (data, documentId) =>
-            StokBarangAktifModel.fromMap(data, documentId),
-      );
-
-  // stokBarangKeluars
-  //Method to create/update all stokBarangKeluarModel
-  Future<void> setStokBarangKeluar(
-          StokBarangKeluarModel stokBarangKeluar) async =>
-      await _firestoreService.setData(
-        path: FirestorePath.stokBarangKeluar(stokBarangKeluar.id),
-        data: stokBarangKeluar.toMap(),
-      );
-
-  //Method to update partial stokBarangKeluarModel
-  Future<void> updateStokBarangKeluar(
-          StokBarangKeluarModel stokBarangKeluar) async =>
-      await _firestoreService.updateData(
-        path: FirestorePath.stokBarangKeluar(stokBarangKeluar.uidBarang),
-        data: stokBarangKeluar.toMap(),
-      );
-
-  //Method to delete StokBarangKeluarModel entry
-  Future<void> deletestokBarangKeluar(
-      StokBarangKeluarModel stokBarangKeluar) async {
-    await _firestoreService.deleteData(
-        path: FirestorePath.stokBarangKeluar(stokBarangKeluar.id));
-  }
-
-  //Method to retrieve StokBarangKeluarModel object based on the given stokBarangKeluarId
-  Stream<StokBarangKeluarModel> stokBarangKeluarStream(
-          {@required String stokBarangKeluarId}) =>
-      _firestoreService.documentStream(
-        path: FirestorePath.stokBarangKeluar(stokBarangKeluarId),
-        builder: (data, documentId) =>
-            StokBarangKeluarModel.fromMap(data, documentId),
-      );
-
-  //Method to retrieve all stokBarangKeluars item from the same user based on uid
-  Stream<List<StokBarangKeluarModel>> stokBarangKeluarsStream() =>
-      _firestoreService.collectionStream(
-        path: FirestorePath.stokBarangKeluars(),
-        builder: (data, documentId) =>
-            StokBarangKeluarModel.fromMap(data, documentId),
-      );
-
-  //Method to retrieve todoModel object based on the given todoId
-  Stream<List<StokBarangKeluarModel>> stokBarangKeluarModelQbyUserIdStream(
-          {@required String query1}) =>
-      _firestoreService.collectionStream(
-        path: FirestorePath.stokBarangKeluars(),
-        queryBuilder: query1 != null
-            ? (query) => query.where('orderByUser', isEqualTo: query1)
-            : null,
-        builder: (data, documentId) =>
-            StokBarangKeluarModel.fromMap(data, documentId),
-      );
-
   // hecAntrians
   //Method to create/update all HecAntrianModel
   Future<void> setHecAntrian(HecAntrianModel hecAntrian) async =>
@@ -333,5 +194,62 @@ class FirestoreDatabase {
             : null,
         builder: (data, documentId) =>
             HecAntrianModel.fromMap(data, documentId),
+      );
+
+  // absensis
+  //Method to create/update all absensiModel
+  Future<void> setabsensi(AbsensiModel absensi) async =>
+      await _firestoreService.setData(
+        path: FirestorePath.absensi(absensi.absensiId),
+        data: absensi.toMap(),
+      );
+
+  //Method to update partial absensiModel
+  Future<void> updateabsensi(AbsensiModel absensi) async =>
+      await _firestoreService.updateData(
+        path: FirestorePath.absensi(absensi.absensiId),
+        data: absensi.toMap(),
+      );
+
+  //Method to delete absensiModel entry
+  Future<void> deleteabsensi(AbsensiModel absensi) async {
+    await _firestoreService.deleteData(
+        path: FirestorePath.absensi(absensi.absensiId));
+  }
+
+  //Method to retrieve absensiModel object based on the given absensiId
+  Stream<AbsensiModel> absensiStream({@required String absensiId}) =>
+      _firestoreService.documentStream(
+        path: FirestorePath.absensi(absensiId),
+        builder: (data, documentId) => AbsensiModel.fromMap(data, documentId),
+      );
+
+  //Method to retrieve all absensis item from the same user based on uid
+  Stream<List<AbsensiModel>> absensisStream() =>
+      _firestoreService.collectionStream(
+        path: FirestorePath.absensis(),
+        builder: (data, documentId) => AbsensiModel.fromMap(data, documentId),
+      );
+
+  //Method to retrieve todoModel object based on the given todoId
+  Stream<List<AbsensiModel>> absensiModelQbyUserIdStream(
+          {@required String query1}) =>
+      _firestoreService.collectionStream(
+        path: FirestorePath.absensis(),
+        queryBuilder: query1 != null
+            ? (query) => query.where('orderByUser', isEqualTo: query1)
+            : null,
+        builder: (data, documentId) => AbsensiModel.fromMap(data, documentId),
+      );
+
+  //Method to retrieve todoModel object based on the given todoId
+  Stream<List<AbsensiModel>> absensiModelQryByDateStream(
+          {@required String query1}) =>
+      _firestoreService.collectionStream(
+        path: FirestorePath.absensis(),
+        queryBuilder: query1 != null
+            ? (query) => query.where('absensiTglAntri', isEqualTo: query1)
+            : null,
+        builder: (data, documentId) => AbsensiModel.fromMap(data, documentId),
       );
 }
