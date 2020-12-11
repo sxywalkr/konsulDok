@@ -265,6 +265,7 @@ _confirmAbsensi(BuildContext context) {
                   final firestoreDatabase =
                       Provider.of<FirestoreDatabase>(context, listen: false);
                   final dbReference = Firestore.instance;
+                  final aa = await Geolocator.getCurrentPosition();
 
                   //cek apakah sudah absen waktu datang
                   Map<String, dynamic> data1 = {};
@@ -279,9 +280,6 @@ _confirmAbsensi(BuildContext context) {
                     data1 = ds.data;
                   }
 
-                  final aa = await Geolocator.getCurrentPosition();
-
-                  // print('${aa.longitude} - ${aa.latitude}');
                   // update db hecAntrians
                   final currDate = documentIdFromCurrentDate();
                   firestoreDatabase.setabsensi(

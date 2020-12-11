@@ -14,6 +14,8 @@ import 'package:taskmon/ui/user/create_edit_user_screen.dart';
 import 'package:taskmon/ui/home2/home_resepsionis_screen.dart';
 import 'package:taskmon/ui/resepsionis/antrians_screen.dart';
 import 'package:taskmon/ui/user/user_profile_screen.dart';
+import 'package:taskmon/ui/project/projects_screen.dart';
+import 'package:taskmon/ui/project/create_edit_project_screen.dart';
 
 class Routes {
   Routes._(); //this is to prevent anyone from instantiate this object
@@ -45,6 +47,8 @@ class Routes {
   static const String home_resepsionis = '/home_resepsionis';
   static const String antrians = '/antrians';
   static const String user_profile = '/user_profile';
+  static const String project = '/project';
+  static const String create_edit_project = '/create_edit_project';
 
   static final routes = <String, WidgetBuilder>{
     splash: (BuildContext context) => SplashScreen(),
@@ -61,5 +65,7 @@ class Routes {
     home_resepsionis: (BuildContext context) => HomeResepsionisScreen(),
     antrians: (BuildContext context) => AntriansScreen(),
     user_profile: (BuildContext context) => UserProfileScreen(),
+    project: (BuildContext context) => ProjectsScreen(),
+    create_edit_project: (BuildContext context) => CreateEditProjectScreen(),
   };
 }

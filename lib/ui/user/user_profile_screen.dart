@@ -145,7 +145,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                 );
               }),
           divider(),
-          listItem(Icons.folder_shared, 'Rekam Medik'),
+          listItem(Icons.folder_shared, 'History Absen'),
         ],
       ),
     );

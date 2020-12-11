@@ -9,6 +9,7 @@ import 'package:uuid/uuid.dart';
 import 'package:taskmon/models/app_user_model.dart';
 import 'package:taskmon/models/hec_antrian_model.dart';
 import 'package:taskmon/models/absensi_model.dart';
+import 'package:taskmon/models/project_model.dart';
 
 String documentIdFromCurrentDate() => DateTime.now().toIso8601String();
 String generateUid() => Uuid().v4();
@@ -251,5 +252,62 @@ class FirestoreDatabase {
             ? (query) => query.where('absensiTglAntri', isEqualTo: query1)
             : null,
         builder: (data, documentId) => AbsensiModel.fromMap(data, documentId),
+      );
+
+// projects
+  //Method to create/update all projectModel
+  Future<void> setProject(ProjectModel project) async =>
+      await _firestoreService.setData(
+        path: FirestorePath.project(project.projectId),
+        data: project.toMap(),
+      );
+
+  //Method to update partial projectModel
+  Future<void> updateProject(ProjectModel project) async =>
+      await _firestoreService.updateData(
+        path: FirestorePath.project(project.projectId),
+        data: project.toMap(),
+      );
+
+  //Method to delete projectModel entry
+  Future<void> deleteProject(ProjectModel project) async {
+    await _firestoreService.deleteData(
+        path: FirestorePath.project(project.projectId));
+  }
+
+  //Method to retrieve projectModel object based on the given projectId
+  Stream<ProjectModel> projectStream({@required String projectId}) =>
+      _firestoreService.documentStream(
+        path: FirestorePath.project(projectId),
+        builder: (data, documentId) => ProjectModel.fromMap(data, documentId),
+      );
+
+  //Method to retrieve all projects item from the same user based on uid
+  Stream<List<ProjectModel>> projectsStream() =>
+      _firestoreService.collectionStream(
+        path: FirestorePath.projects(),
+        builder: (data, documentId) => ProjectModel.fromMap(data, documentId),
+      );
+
+  //Method to retrieve todoModel object based on the given todoId
+  Stream<List<ProjectModel>> projectModelQbyUserIdStream(
+          {@required String query1}) =>
+      _firestoreService.collectionStream(
+        path: FirestorePath.projects(),
+        queryBuilder: query1 != null
+            ? (query) => query.where('orderByUser', isEqualTo: query1)
+            : null,
+        builder: (data, documentId) => ProjectModel.fromMap(data, documentId),
+      );
+
+  //Method to retrieve todoModel object based on the given todoId
+  Stream<List<ProjectModel>> projectModelQryByDateStream(
+          {@required String query1}) =>
+      _firestoreService.collectionStream(
+        path: FirestorePath.projects(),
+        queryBuilder: query1 != null
+            ? (query) => query.where('projectTglAntri', isEqualTo: query1)
+            : null,
+        builder: (data, documentId) => ProjectModel.fromMap(data, documentId),
       );
 }

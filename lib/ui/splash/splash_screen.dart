@@ -45,7 +45,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   startTimer() {
-    var duration = Duration(milliseconds: 1000);
+    var duration = Duration(milliseconds: 3000);
     return Timer(duration, redirect);
   }
 
@@ -53,10 +53,10 @@ class _SplashScreenState extends State<SplashScreen> {
     final appUserRole =
         Provider.of<AppAccessLevelProvider>(context, listen: false)
             .appxUserRole;
-
-    if (appUserRole == 'User') {
-      Navigator.of(context).pushReplacementNamed(Routes.home21);
-    }
+    print('Splash $appUserRole');
+    // if (appUserRole == 'User') {
+    Navigator.of(context).pushReplacementNamed(Routes.home21);
+    // }
     // else if (appUserRole == 'Resepsionis') {
     //   Navigator.of(context).pushReplacementNamed(Routes.home_resepsionis);
     // }

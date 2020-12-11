@@ -25,4 +25,7 @@ class FirestorePath {
 
   static String absensi(String itemId) => 'absensi/$itemId';
   static String absensis() => 'absensi';
+
+  static String project(String itemId) => 'project/$itemId';
+  static String projects() => 'project';
 }
