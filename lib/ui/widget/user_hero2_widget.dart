@@ -70,10 +70,20 @@ class UserHero2Widget extends StatelessWidget {
                             ),
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(right: 20, top: 30),
-                          child: Text(
-                              '${document['appUserDisplayName'] == null ? document['appUserEmail'] : document['appUserDisplayName']}'),
+                        Column(
+                          children: [
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(right: 20, top: 30),
+                              child: Text(
+                                  '${document['appUserDisplayName'] == null ? document['appUserEmail'] : document['appUserDisplayName']}'),
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(right: 20, bottom: 30),
+                              child: Text('${document['appUserFlagActivity']}'),
+                            ),
+                          ],
                         ),
                       ],
                     );

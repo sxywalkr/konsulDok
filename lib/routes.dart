@@ -17,6 +17,9 @@ import 'package:taskmon/ui/user/user_profile_screen.dart';
 import 'package:taskmon/ui/project/projects_screen.dart';
 import 'package:taskmon/ui/project/create_edit_project_screen.dart';
 
+//uiXample
+import 'package:taskmon/ui/uiXample/dropdown.dart';
+
 class Routes {
   Routes._(); //this is to prevent anyone from instantiate this object
 
@@ -49,6 +52,7 @@ class Routes {
   static const String user_profile = '/user_profile';
   static const String project = '/project';
   static const String create_edit_project = '/create_edit_project';
+  static const String dropdown_flutter = '/dropdown_flutter';
 
   static final routes = <String, WidgetBuilder>{
     splash: (BuildContext context) => SplashScreen(),
@@ -67,5 +71,6 @@ class Routes {
     user_profile: (BuildContext context) => UserProfileScreen(),
     project: (BuildContext context) => ProjectsScreen(),
     create_edit_project: (BuildContext context) => CreateEditProjectScreen(),
+    dropdown_flutter: (BuildContext context) => DropDownFlutter(),
   };
 }

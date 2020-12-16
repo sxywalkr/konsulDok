@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:taskmon/models/app_user_model.dart';
 import 'package:taskmon/models/project_model.dart';
 import 'package:taskmon/services/firestore_database.dart';
 import 'package:provider/provider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class CreateEditProjectScreen extends StatefulWidget {
   @override
@@ -15,6 +17,7 @@ class _CreateEditProjectScreenState extends State<CreateEditProjectScreen> {
   ProjectModel _project;
   TextEditingController _projectIdController;
   TextEditingController _appUserUidController;
+  TextEditingController _appUserDisplayNameController;
   TextEditingController _projectTglDeadlineController;
   TextEditingController _projectTglStartController;
   TextEditingController _projectPersenActivityController;
@@ -22,19 +25,52 @@ class _CreateEditProjectScreenState extends State<CreateEditProjectScreen> {
   TextEditingController _projectNameController;
   TextEditingController _projectStatusController;
 
+  bool _isInit = true;
+
   @override
   void initState() {
     super.initState();
+    if (_isInit) {
+      _appUserDisplayNameController = TextEditingController(text: '---');
+      _isInit = false;
+    }
+    // print('init');
+  }
+
+  Future<String> _getName() async {
+    // print('getName');
+    final dbReference = Firestore.instance;
+
+    Map<String, dynamic> data1 = {};
+    if (_project != null) {
+      final qSnap1 = await dbReference
+          .collection("appUsers")
+          .where('appUserUid', isEqualTo: _project.appUserUid)
+          .getDocuments();
+      for (DocumentSnapshot ds in qSnap1.documents) {
+        data1 = ds.data;
+      }
+      setState(() {
+        _appUserDisplayNameController =
+            TextEditingController(text: data1['appUserDisplayName'].toString());
+      });
+      return data1['appUserDisplayName'].toString();
+    }
+    return '---';
   }
 
   @override
-  void didChangeDependencies() {
+  void didChangeDependencies() async {
     super.didChangeDependencies();
+
     final ProjectModel _projectModel =
         ModalRoute.of(context).settings.arguments;
     if (_projectModel != null) {
       _project = _projectModel;
     }
+    // print('didChangeDependencies async');
+    _appUserDisplayNameController = TextEditingController(
+        text: _project != null ? await _getName() : '---');
 
     _projectIdController =
         TextEditingController(text: _project != null ? _project.projectId : '');
@@ -56,6 +92,7 @@ class _CreateEditProjectScreenState extends State<CreateEditProjectScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // print('build');
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
@@ -100,7 +137,7 @@ class _CreateEditProjectScreenState extends State<CreateEditProjectScreen> {
               child: Text("Save"))
         ],
       ),
-      body: Center(
+      body: Container(
         child: _buildForm(context),
       ),
     );
@@ -116,10 +153,12 @@ class _CreateEditProjectScreenState extends State<CreateEditProjectScreen> {
     _projectDescriptionController.dispose();
     _projectNameController.dispose();
     _projectStatusController.dispose();
+    _appUserDisplayNameController.dispose();
     super.dispose();
   }
 
   Widget _buildForm(BuildContext context) {
+    // print('build');
     return Form(
       key: _formKey,
       child: SingleChildScrollView(
@@ -180,27 +219,123 @@ class _CreateEditProjectScreenState extends State<CreateEditProjectScreen> {
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                child: TextFormField(
-                  controller: _appUserUidController,
-                  // enabled: false,
-                  // style: Theme.of(context).textTheme.body1,
-                  // validator: (value) =>
-                  //     value.isEmpty ? 'Nama Barang tidak boleh kosong' : null,
-                  decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: Theme.of(context).iconTheme.color,
-                            width: 2)),
-                    labelText: 'User Yang Handle',
-                  ),
-                ),
-              ),
+              // Padding(
+              //   padding: const EdgeInsets.symmetric(vertical: 16),
+              //   child: TextFormField(
+              //     controller: _appUserUidController,
+              //     // enabled: false,
+              //     // style: Theme.of(context).textTheme.body1,
+              //     // validator: (value) =>
+              //     //     value.isEmpty ? 'Nama Barang tidak boleh kosong' : null,
+              //     decoration: InputDecoration(
+              //       enabledBorder: OutlineInputBorder(
+              //           borderSide: BorderSide(
+              //               color: Theme.of(context).iconTheme.color,
+              //               width: 2)),
+              //       labelText: 'User Id yang handle',
+              //     ),
+              //   ),
+              // ),
+
+              _cbxUser(context),
             ],
           ),
         ),
       ),
     );
   }
+
+  Widget _cbxUser(BuildContext context) {
+    final firestoreDatabase =
+        Provider.of<FirestoreDatabase>(context, listen: false);
+
+    // print('wdiget');
+    // print('cbx ${_appUserDisplayNameController.text}');
+
+    return StreamBuilder(
+      stream: firestoreDatabase.appUsersStream(),
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          // print('snapshot.hasData');
+          List<AppUserModel> appUser = snapshot.data;
+          if (appUser.isNotEmpty) {
+            // print('appUser.isNotEmpty');
+            final aa = <String>['---'];
+            appUser.forEach((element) {
+              aa.add(element.appUserDisplayName);
+            });
+            return DropdownButton<String>(
+              value: _appUserDisplayNameController.text,
+              onChanged: (String newValue) async {
+                if (newValue != null) {
+                  Map<String, dynamic> data1 = {};
+                  final qSnap1 = await Firestore.instance
+                      .collection('appUsers')
+                      .where('appUserDisplayName', isEqualTo: newValue)
+                      .getDocuments();
+                  for (DocumentSnapshot ds in qSnap1.documents) {
+                    data1 = ds.data;
+                  }
+
+                  setState(() {
+                    _appUserDisplayNameController =
+                        TextEditingController(text: newValue);
+                    _appUserUidController =
+                        TextEditingController(text: data1['appUserUid']);
+                  });
+                }
+              },
+              items: aa
+                  // appUser.map((e) => e.appUserDisplayName)
+                  .map<DropdownMenuItem<String>>((String value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(value),
+                );
+              }).toList(),
+            );
+          }
+          // print('appUser.isEmpty');
+        }
+        return Center(child: CircularProgressIndicator());
+        // return Center(child: Container());
+      },
+    );
+  }
+
+  // Widget _wgUserName(BuildContext context) {
+  //   final firestoreDatabase =
+  //       Provider.of<FirestoreDatabase>(context, listen: false);
+  //   return StreamBuilder(
+  //     stream: firestoreDatabase.appUserStream(appUserId: _project.appUserUid),
+  //     builder: (context, snapshot) {
+  //       if (snapshot.hasData) {
+  //         AppUserModel appUser = snapshot.data;
+  //         // _appUserDisplayNameController.text = appUser.appUserDisplayName;
+  //         return Padding(
+  //           padding: const EdgeInsets.symmetric(vertical: 16),
+  //           child: TextFormField(
+  //             // initialValue: appUser.appUserDisplayName,
+  //             controller:
+  //                 _showCbxUser == false ? _appUserDisplayNameController : null,
+  //             readOnly: true,
+  //             decoration: InputDecoration(
+  //               enabledBorder: OutlineInputBorder(
+  //                   borderSide: BorderSide(
+  //                       color: Theme.of(context).iconTheme.color, width: 2)),
+  //               labelText: 'User Yang Handle',
+  //             ),
+  //             onTap: () {
+  //               setState(() {
+  //                 _showCbxUser = true;
+  //               });
+  //             },
+  //           ),
+  //         );
+  //       }
+
+  //       return Center(child: Container());
+  //     },
+  //   );
+  // }
 }

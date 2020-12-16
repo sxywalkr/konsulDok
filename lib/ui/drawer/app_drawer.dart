@@ -48,6 +48,16 @@ class AppDrawer extends StatelessWidget {
                   Navigator.of(context).pushReplacementNamed(Routes.appUser);
                 },
               ),
+            if (appUserRole == 'Admin' || appUserRole == 'Debug') Divider(),
+            if (appUserRole == 'Admin' || appUserRole == 'Debug')
+              ListTile(
+                leading: Icon(Icons.home),
+                title: Text('Dropdown Flutter'),
+                onTap: () {
+                  Navigator.of(context)
+                      .pushReplacementNamed(Routes.dropdown_flutter);
+                },
+              ),
             Divider(),
             ListTile(
               leading: Icon(Icons.settings),

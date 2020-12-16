@@ -280,7 +280,7 @@ _confirmAbsensi(BuildContext context) {
                     data1 = ds.data;
                   }
 
-                  // update db hecAntrians
+                  // update db absensi
                   final currDate = documentIdFromCurrentDate();
                   firestoreDatabase.setabsensi(
                     AbsensiModel(
@@ -292,6 +292,15 @@ _confirmAbsensi(BuildContext context) {
                       absensiLat: aa.latitude.toString(),
                       absensiStatus: 'Bekerja',
                     ),
+                  );
+
+                  dbReference
+                      .collection('appUsers')
+                      .document(appUserProvider.appxUserUid)
+                      .updateData(
+                    {
+                      'appUserFlagActivity': 'Bekerja',
+                    },
                   );
 
                   Navigator.pop(context);

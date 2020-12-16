@@ -148,6 +148,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               {
                                 'appUserUid': userModel.uid,
                                 'appUserEmail': _emailController.text,
+                                'appUserDisplayName': _emailController.text,
                                 'appUserRole': 'User',
                                 'appUserFcmId': _fcmToken,
                               },
