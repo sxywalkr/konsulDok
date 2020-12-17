@@ -22,12 +22,15 @@ class AppDrawer extends StatelessWidget {
               leading: Icon(Icons.home),
               title: Text('Dashboard'),
               onTap: () {
-                if (appUserRole == 'User') {
-                  Navigator.of(context).pushReplacementNamed(Routes.home21);
-                } else if (appUserRole == 'Resepsionis') {
-                  Navigator.of(context)
-                      .pushReplacementNamed(Routes.home_resepsionis);
-                }
+                Navigator.of(context).pushReplacementNamed(Routes.home21);
+              },
+            ),
+            Divider(),
+            ListTile(
+              leading: Icon(Icons.home),
+              title: Text('Absensi'),
+              onTap: () {
+                Navigator.of(context).pushReplacementNamed(Routes.absensi);
               },
             ),
             if (appUserRole == 'Admin' || appUserRole == 'Debug') Divider(),

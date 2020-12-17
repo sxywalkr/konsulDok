@@ -238,7 +238,7 @@ class FirestoreDatabase {
       _firestoreService.collectionStream(
         path: FirestorePath.absensis(),
         queryBuilder: query1 != null
-            ? (query) => query.where('orderByUser', isEqualTo: query1)
+            ? (query) => query.where('appUserUid', isEqualTo: query1)
             : null,
         builder: (data, documentId) => AbsensiModel.fromMap(data, documentId),
       );

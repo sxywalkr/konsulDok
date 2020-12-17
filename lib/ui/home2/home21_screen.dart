@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:taskmon/models/absensi_model.dart';
 import 'package:taskmon/ui/drawer/app_drawer.dart';
-import 'package:taskmon/ui/widget/user_hero2_widget.dart';
+import 'package:taskmon/ui/widget/user_hero3_widget.dart';
 import 'package:taskmon/services/firestore_database.dart';
 import 'package:provider/provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -30,10 +30,17 @@ class Home21Screen extends StatelessWidget {
             Stack(
               // alignment: Alignment.bottomCenter,
               children: <Widget>[
-                UserHero2Widget(),
+                UserHero3Widget(),
               ],
             ),
-            cardActivityAntri(context),
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //   children: [
+            //     Expanded(child: cardActivityIn(context)),
+            //     Expanded(child: cardActivityOut(context)),
+            //   ],
+            // ),
+
             // cardActivity(context, 'Anda belum antri di poli',
             //     'Klik untuk mendapatkan antrian', '', 'notif'),
             // cardDetail('Bonus', 'Dapat Bonus Proyek', '500.000', 'in'),
@@ -45,7 +52,7 @@ class Home21Screen extends StatelessWidget {
   }
 }
 
-Widget cardActivityAntri(BuildContext context) {
+Widget cardActivityIn(BuildContext context) {
   final appUserProvider =
       Provider.of<AppAccessLevelProvider>(context, listen: false);
 
@@ -53,9 +60,9 @@ Widget cardActivityAntri(BuildContext context) {
     margin: EdgeInsets.only(top: 15, left: 15, right: 15),
     elevation: 8,
     child: Container(
-      padding: EdgeInsets.fromLTRB(0, 8, 0, 0),
+      // padding: EdgeInsets.fromLTRB(0, 8, 0, 0),
       // alignment: Alignment.center,
-      height: 100,
+      height: 85,
       child: StreamBuilder(
         stream: Firestore.instance
             .collection('absensi')
@@ -75,7 +82,8 @@ Widget cardActivityAntri(BuildContext context) {
                     snapshot.data.documents.map((DocumentSnapshot document) {
                   DateTime tglAntri =
                       DateTime.parse(document['absensiWaktuDatang']);
-                  String tgl = DateFormat("EEEE, d MMMM yyyy H:m", "id_ID")
+                  String tgl = DateFormat("HH:mm", "id_ID")
+                      // DateFormat("EEEE, d MMMM yyyy H:m", "id_ID")
                       .format(tglAntri);
                   return WidgetResult(tgl: tgl, document: document);
                 }).toList(),
@@ -106,16 +114,20 @@ class WidgetResult extends StatelessWidget {
     return InkWell(
       onTap: () => document == null ? _confirmAbsensi(context) : null,
       child: new ListTile(
+        contentPadding: EdgeInsets.all(8),
+        tileColor: Colors.green[100],
         leading: Icon(
-          Icons.notifications_none_outlined,
-          color: Colors.lightGreen,
+          document == null
+              ? Icons.subdirectory_arrow_left
+              : Icons.subdirectory_arrow_right,
+          size: 35,
+          // color: Colors.lightGreen,
         ),
         title: Text(
-          document == null ? 'Tidak Bekerja' : 'Bekerja $tgl',
+          document == null ? 'Tidak Bekerja' : 'Kedatangan',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
-        subtitle:
-            Text(document == null ? 'Tap untuk Absen' : 'Anda sudah Absen'),
+        subtitle: Text(document == null ? 'Tap untuk Absen' : '$tgl'),
         trailing: Text(
           '',
           style: TextStyle(color: Colors.lightGreen),
@@ -123,6 +135,48 @@ class WidgetResult extends StatelessWidget {
       ),
     );
   }
+}
+
+Widget cardActivityOut(BuildContext context) {
+  final appUserProvider =
+      Provider.of<AppAccessLevelProvider>(context, listen: false);
+
+  return Card(
+    margin: EdgeInsets.only(top: 15, left: 15, right: 15),
+    elevation: 8,
+    child: Container(
+      height: 85,
+      child: StreamBuilder(
+        stream: Firestore.instance
+            .collection('appUsers')
+            .where('appUserUid', isEqualTo: appUserProvider.appxUserUid)
+            // .where('absensiStatus', isEqualTo: 'Tidak Bekerja')
+            .snapshots(),
+        builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          if (snapshot.hasData) {
+            if (snapshot.data.documents.isNotEmpty) {
+              return new ListView(
+                children:
+                    snapshot.data.documents.map((DocumentSnapshot document) {
+                  return InkWell(
+                      onTap: () => document == null,
+                      child: Text('Selesai Bekerja?'));
+                }).toList(),
+              );
+            }
+          }
+          return WidgetResult(tgl: '');
+
+          // return Center(child: CircularProgressIndicator());
+        },
+      ),
+    ),
+  );
 }
 
 Future<void> _presentDatePicker(context) async {
