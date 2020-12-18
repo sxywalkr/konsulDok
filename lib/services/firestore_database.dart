@@ -295,7 +295,7 @@ class FirestoreDatabase {
       _firestoreService.collectionStream(
         path: FirestorePath.projects(),
         queryBuilder: query1 != null
-            ? (query) => query.where('orderByUser', isEqualTo: query1)
+            ? (query) => query.where('appUserUid', isEqualTo: query1)
             : null,
         builder: (data, documentId) => ProjectModel.fromMap(data, documentId),
       );

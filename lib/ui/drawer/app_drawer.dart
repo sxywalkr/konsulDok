@@ -6,9 +6,9 @@ import 'package:taskmon/providers/app_access_level_provider.dart';
 class AppDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final appUserRole =
-        Provider.of<AppAccessLevelProvider>(context, listen: false)
-            .appxUserRole;
+    final appUser = Provider.of<AppAccessLevelProvider>(context, listen: false);
+    final appUserRole = appUser.appxUserRole;
+    final appUserUid = appUser.appxUserUid;
     return Drawer(
       child: SingleChildScrollView(
         child: Column(
@@ -42,8 +42,8 @@ class AppDrawer extends StatelessWidget {
                   Navigator.of(context).pushReplacementNamed(Routes.project);
                 },
               ),
-            if (appUserRole == 'Admin' || appUserRole == 'Debug') Divider(),
-            if (appUserRole == 'Admin' || appUserRole == 'Debug')
+            if (appUserRole == 'Debug' || appUserRole == 'Debug') Divider(),
+            if (appUserRole == 'Debug' || appUserRole == 'Debug')
               ListTile(
                 leading: Icon(Icons.home),
                 title: Text('Manage User'),
@@ -51,16 +51,25 @@ class AppDrawer extends StatelessWidget {
                   Navigator.of(context).pushReplacementNamed(Routes.appUser);
                 },
               ),
-            if (appUserRole == 'Admin' || appUserRole == 'Debug') Divider(),
-            if (appUserRole == 'Admin' || appUserRole == 'Debug')
-              ListTile(
-                leading: Icon(Icons.home),
-                title: Text('Dropdown Flutter'),
-                onTap: () {
-                  Navigator.of(context)
-                      .pushReplacementNamed(Routes.dropdown_flutter);
-                },
-              ),
+            // if (appUserRole == 'Admin' || appUserRole == 'Debug') Divider(),
+            // if (appUserRole == 'Admin' || appUserRole == 'Debug')
+            //   ListTile(
+            //     leading: Icon(Icons.home),
+            //     title: Text('Dropdown Flutter'),
+            //     onTap: () {
+            //       Navigator.of(context)
+            //           .pushReplacementNamed(Routes.dropdown_flutter);
+            //     },
+            //   ),
+            Divider(),
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text('User Profile'),
+              onTap: () {
+                Navigator.of(context).pushReplacementNamed(Routes.user_profile,
+                    arguments: appUserUid);
+              },
+            ),
             Divider(),
             ListTile(
               leading: Icon(Icons.settings),

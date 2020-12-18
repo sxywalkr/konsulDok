@@ -12,6 +12,7 @@ import 'package:taskmon/models/hec_antrian_model.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:taskmon/routes.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:taskmon/ui/project/project_widget_screen.dart';
 
 class Home21Screen extends StatelessWidget {
   Home21Screen({
@@ -25,7 +26,10 @@ class Home21Screen extends StatelessWidget {
       ),
       drawer: AppDrawer(),
       body: Container(
+        // color: Colors.black26,
         child: Column(
+          // mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Stack(
               // alignment: Alignment.bottomCenter,
@@ -33,6 +37,33 @@ class Home21Screen extends StatelessWidget {
                 UserHero3Widget(),
               ],
             ),
+
+            Padding(
+              padding: const EdgeInsets.only(top: 15, left: 10),
+              child: Text(
+                'My Project',
+                style: Theme.of(context).textTheme.headline5,
+              ),
+            ),
+            // Text((MediaQuery.of(context).size.height -
+            //         MediaQuery.of(context).padding.top -
+            //         MediaQuery.of(context).padding.bottom -
+            //         kToolbarHeight)
+            //     .toString()),
+
+            Container(
+              color: Colors.black12,
+              height: MediaQuery.of(context).size.height -
+                  MediaQuery.of(context).padding.top -
+                  MediaQuery.of(context).padding.bottom -
+                  kToolbarHeight -
+                  (((MediaQuery.of(context).size.height / 3) * 2)),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ProjectWidgetScreen(),
+              ),
+            ),
+
             // Row(
             //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
             //   children: [

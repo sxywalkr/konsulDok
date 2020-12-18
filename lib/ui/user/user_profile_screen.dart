@@ -4,6 +4,7 @@ import 'package:taskmon/services/firestore_database.dart';
 import 'package:taskmon/models/app_user_model.dart';
 import 'package:provider/provider.dart';
 import 'package:taskmon/routes.dart';
+import 'package:taskmon/ui/drawer/app_drawer.dart';
 
 class UserProfileScreen extends StatefulWidget {
   @override
@@ -37,13 +38,12 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0.0,
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back,
-            color: Colors.black,
-          ),
-          onPressed: () => Navigator.pop(context),
-        ),
+        // leading: IconButton(
+        //     icon: Icon(
+        //       Icons.arrow_back,
+        //       color: Colors.black,
+        //     ),
+        //     onPressed: () => AppDrawer()),
         actions: [
           IconButton(
             icon: Icon(
@@ -62,6 +62,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
           ),
         ],
       ),
+      drawer: AppDrawer(),
       body: ListView(
         children: [
           Container(
@@ -186,7 +187,9 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
 
   listItem(icon, text) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Navigator.of(context).pushReplacementNamed(Routes.absensi);
+      },
       child: Container(
         padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
         child: Row(

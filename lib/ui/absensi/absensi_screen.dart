@@ -44,7 +44,8 @@ class AbsensiScreen extends StatelessWidget {
   Widget _buildBodySection(BuildContext context) {
     final firestoreDatabase =
         Provider.of<FirestoreDatabase>(context, listen: false);
-    final appUserProvider = Provider.of<AppAccessLevelProvider>(context);
+    final appUserProvider =
+        Provider.of<AppAccessLevelProvider>(context, listen: false);
 
     return StreamBuilder(
         stream: firestoreDatabase.absensiModelQbyUserIdStream(
