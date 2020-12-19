@@ -13,6 +13,7 @@ import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:taskmon/routes.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:taskmon/ui/project/project_widget_screen.dart';
+import 'package:taskmon/ui/projectFeed/project_feed_widget_screen.dart';
 
 class Home21Screen extends StatelessWidget {
   Home21Screen({
@@ -61,6 +62,26 @@ class Home21Screen extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: ProjectWidgetScreen(),
+              ),
+            ),
+
+            Padding(
+              padding: const EdgeInsets.only(top: 15, left: 10),
+              child: Text(
+                'My Feed',
+                style: Theme.of(context).textTheme.headline5,
+              ),
+            ),
+            Container(
+              color: Colors.black12,
+              height: MediaQuery.of(context).size.height -
+                  MediaQuery.of(context).padding.top -
+                  MediaQuery.of(context).padding.bottom -
+                  kToolbarHeight -
+                  (((MediaQuery.of(context).size.height / 3) * 2)),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ProjectFeedWidgetScreen(),
               ),
             ),
 

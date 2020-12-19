@@ -28,4 +28,7 @@ class FirestorePath {
 
   static String project(String itemId) => 'project/$itemId';
   static String projects() => 'project';
+
+  static String projectFeed(String itemId) => 'projectFeed/$itemId';
+  static String projectFeeds() => 'projectFeed';
 }

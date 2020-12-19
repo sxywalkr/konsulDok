@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:taskmon/app_localizations.dart';
+// import 'package:taskmon/app_localizations.dart';
 import 'package:taskmon/models/project_model.dart';
-import 'package:taskmon/models/user_model.dart';
+// import 'package:taskmon/models/user_model.dart';
 import 'package:taskmon/providers/auth_provider.dart';
 import 'package:taskmon/routes.dart';
 import 'package:taskmon/services/firestore_database.dart';
-import 'package:taskmon/ui/drawer/app_drawer.dart';
+// import 'package:taskmon/ui/drawer/app_drawer.dart';
 import 'package:taskmon/ui/project/empty_content.dart';
 import 'package:provider/provider.dart';
 import 'package:taskmon/providers/app_access_level_provider.dart';
@@ -15,9 +15,9 @@ class ProjectWidgetScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final authProvider = Provider.of<AuthProvider>(context);
-    final firestoreDatabase =
-        Provider.of<FirestoreDatabase>(context, listen: false);
+    // final authProvider = Provider.of<AuthProvider>(context);
+    // final firestoreDatabase =
+    //     Provider.of<FirestoreDatabase>(context, listen: false);
 
     return Scaffold(
       key: _scaffoldKey,
