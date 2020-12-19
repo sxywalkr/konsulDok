@@ -82,7 +82,7 @@ class ProjectsScreen extends StatelessWidget {
                     },
                     child: ListTile(
                       title: Text(project[index].projectName),
-                      subtitle: Text(project[index].projectDescription),
+                      subtitle: Text(project[index].projectFungsi),
                       onTap: () {
                         Navigator.of(context).pushNamed(
                             Routes.create_edit_project,

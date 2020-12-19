@@ -21,17 +21,51 @@ class _CreateEditProjectScreenState extends State<CreateEditProjectScreen> {
   TextEditingController _projectTglDeadlineController;
   TextEditingController _projectTglStartController;
   TextEditingController _projectPersenActivityController;
-  TextEditingController _projectDescriptionController;
+  TextEditingController _projectFungsiController;
   TextEditingController _projectNameController;
   TextEditingController _projectStatusController;
+  TextEditingController _projectLuasLahanController;
+  TextEditingController _projectJumlahLantaiController;
+  TextEditingController _projectLuasLantai1Controller;
+  TextEditingController _projectLuasLantai2Controller;
+  TextEditingController _projectLuasLantai3Controller;
+  TextEditingController _projectLuasLantai4Controller;
+  TextEditingController _projectLuasLantai5Controller;
+  TextEditingController _projectLuasLantai6Controller;
+  TextEditingController _projectLuasLantai7Controller;
+  TextEditingController _projectLuasLantai8Controller;
+  TextEditingController _projectLuasLantai9Controller;
+  TextEditingController _projectLuasLantai10Controller;
+  TextEditingController _projectLuasLantai11Controller;
+  TextEditingController _projectLuasLantai12Controller;
+  TextEditingController _projectLuasLantai13Controller;
+  TextEditingController _projectLuasLantai14Controller;
+  TextEditingController _projectLuasLantai15Controller;
+  TextEditingController _projectLuasBangunanController;
 
   bool _isInit = true;
+  bool _viewLt1 = false;
+  bool _viewLt2 = false;
+  bool _viewLt3 = false;
+  bool _viewLt4 = false;
+  bool _viewLt5 = false;
+  bool _viewLt6 = false;
+  bool _viewLt7 = false;
+  bool _viewLt8 = false;
+  bool _viewLt9 = false;
+  bool _viewLt10 = false;
+  bool _viewLt11 = false;
+  bool _viewLt12 = false;
+  bool _viewLt13 = false;
+  bool _viewLt14 = false;
+  bool _viewLt15 = false;
 
   @override
   void initState() {
     super.initState();
     if (_isInit) {
       _appUserDisplayNameController = TextEditingController(text: '---');
+      _projectJumlahLantaiController = TextEditingController(text: '0');
       _isInit = false;
     }
     // print('init');
@@ -82,12 +116,48 @@ class _CreateEditProjectScreenState extends State<CreateEditProjectScreen> {
         text: _project != null ? _project.projectTglStart : '');
     _projectPersenActivityController = TextEditingController(
         text: _project != null ? _project.projectPersenActivity : '');
-    _projectDescriptionController = TextEditingController(
-        text: _project != null ? _project.projectDescription : '');
+    _projectFungsiController = TextEditingController(
+        text: _project != null ? _project.projectFungsi : '');
     _projectNameController = TextEditingController(
         text: _project != null ? _project.projectName : '');
     _projectStatusController = TextEditingController(
         text: _project != null ? _project.projectStatus : '');
+    _projectLuasLahanController = TextEditingController(
+        text: _project != null ? _project.projectLuasLahan : '');
+    _projectJumlahLantaiController = TextEditingController(
+        text: _project != null ? _project.projectJumlahLantai : '0');
+    _projectLuasLantai1Controller = TextEditingController(
+        text: _project != null ? _project.projectLuasLantai1 : '0');
+    _projectLuasLantai2Controller = TextEditingController(
+        text: _project != null ? _project.projectLuasLantai2 : '0');
+    _projectLuasLantai3Controller = TextEditingController(
+        text: _project != null ? _project.projectLuasLantai3 : '0');
+    _projectLuasLantai4Controller = TextEditingController(
+        text: _project != null ? _project.projectLuasLantai4 : '0');
+    _projectLuasLantai5Controller = TextEditingController(
+        text: _project != null ? _project.projectLuasLantai5 : '0');
+    _projectLuasLantai6Controller = TextEditingController(
+        text: _project != null ? _project.projectLuasLantai6 : '0');
+    _projectLuasLantai7Controller = TextEditingController(
+        text: _project != null ? _project.projectLuasLantai7 : '0');
+    _projectLuasLantai8Controller = TextEditingController(
+        text: _project != null ? _project.projectLuasLantai8 : '0');
+    _projectLuasLantai9Controller = TextEditingController(
+        text: _project != null ? _project.projectLuasLantai9 : '0');
+    _projectLuasLantai10Controller = TextEditingController(
+        text: _project != null ? _project.projectLuasLantai10 : '0');
+    _projectLuasLantai11Controller = TextEditingController(
+        text: _project != null ? _project.projectLuasLantai11 : '0');
+    _projectLuasLantai12Controller = TextEditingController(
+        text: _project != null ? _project.projectLuasLantai12 : '0');
+    _projectLuasLantai13Controller = TextEditingController(
+        text: _project != null ? _project.projectLuasLantai13 : '0');
+    _projectLuasLantai14Controller = TextEditingController(
+        text: _project != null ? _project.projectLuasLantai14 : '0');
+    _projectLuasLantai15Controller = TextEditingController(
+        text: _project != null ? _project.projectLuasLantai15 : '0');
+    _projectLuasBangunanController = TextEditingController(
+        text: _project != null ? _project.projectLuasBangunan : '0');
   }
 
   @override
@@ -125,7 +195,7 @@ class _CreateEditProjectScreenState extends State<CreateEditProjectScreen> {
                     projectPersenActivity: _project != null
                         ? _projectPersenActivityController.text
                         : '0',
-                    projectDescription: _projectDescriptionController.text,
+                    projectFungsi: _projectFungsiController.text,
                     projectStatus: _project != null
                         ? _projectStatusController.text
                         : 'Aktif',
@@ -150,10 +220,28 @@ class _CreateEditProjectScreenState extends State<CreateEditProjectScreen> {
     _projectTglDeadlineController.dispose();
     _projectTglStartController.dispose();
     _projectPersenActivityController.dispose();
-    _projectDescriptionController.dispose();
+    _projectFungsiController.dispose();
     _projectNameController.dispose();
     _projectStatusController.dispose();
     _appUserDisplayNameController.dispose();
+    _projectLuasLahanController.dispose();
+    _projectJumlahLantaiController.dispose();
+    _projectLuasLantai1Controller.dispose();
+    _projectLuasLantai2Controller.dispose();
+    _projectLuasLantai3Controller.dispose();
+    _projectLuasLantai4Controller.dispose();
+    _projectLuasLantai5Controller.dispose();
+    _projectLuasLantai6Controller.dispose();
+    _projectLuasLantai7Controller.dispose();
+    _projectLuasLantai8Controller.dispose();
+    _projectLuasLantai9Controller.dispose();
+    _projectLuasLantai10Controller.dispose();
+    _projectLuasLantai11Controller.dispose();
+    _projectLuasLantai12Controller.dispose();
+    _projectLuasLantai13Controller.dispose();
+    _projectLuasLantai14Controller.dispose();
+    _projectLuasLantai15Controller.dispose();
+    _projectLuasBangunanController.dispose();
     super.dispose();
   }
 
@@ -181,7 +269,7 @@ class _CreateEditProjectScreenState extends State<CreateEditProjectScreen> {
                         borderSide: BorderSide(
                             color: Theme.of(context).iconTheme.color,
                             width: 2)),
-                    labelText: 'Nama Project',
+                    labelText: 'Nama',
                   ),
                 ),
               ),
@@ -198,27 +286,11 @@ class _CreateEditProjectScreenState extends State<CreateEditProjectScreen> {
                         borderSide: BorderSide(
                             color: Theme.of(context).iconTheme.color,
                             width: 2)),
-                    labelText: 'Tanggal Deadline Project',
+                    labelText: 'Tanggal Deadline',
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                child: TextFormField(
-                  controller: _projectDescriptionController,
-                  // enabled: false,
-                  // style: Theme.of(context).textTheme.body1,
-                  // validator: (value) =>
-                  //     value.isEmpty ? 'Nama Barang tidak boleh kosong' : null,
-                  decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: Theme.of(context).iconTheme.color,
-                            width: 2)),
-                    labelText: 'Deskripsi Project',
-                  ),
-                ),
-              ),
+
               // Padding(
               //   padding: const EdgeInsets.symmetric(vertical: 16),
               //   child: TextFormField(
@@ -236,8 +308,382 @@ class _CreateEditProjectScreenState extends State<CreateEditProjectScreen> {
               //     ),
               //   ),
               // ),
-
+              SizedBox(
+                height: 16,
+              ),
+              Text('Pilih Penanggung Jawab'),
               _cbxUser(context),
+              SizedBox(
+                height: 16,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                child: TextFormField(
+                  controller: _projectFungsiController,
+                  // enabled: false,
+                  // style: Theme.of(context).textTheme.body1,
+                  // validator: (value) =>
+                  //     value.isEmpty ? 'Nama Barang tidak boleh kosong' : null,
+                  decoration: InputDecoration(
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Theme.of(context).iconTheme.color,
+                            width: 2)),
+                    labelText: 'Fungsi',
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                child: TextFormField(
+                  controller: _projectLuasLahanController,
+                  // enabled: false,
+                  // style: Theme.of(context).textTheme.body1,
+                  // validator: (value) =>
+                  //     value.isEmpty ? 'Nama Barang tidak boleh kosong' : null,
+                  decoration: InputDecoration(
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Theme.of(context).iconTheme.color,
+                            width: 2)),
+                    labelText: 'Luas Lahan',
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                child: TextFormField(
+                  controller: _projectLuasBangunanController,
+                  enabled: false,
+                  // style: Theme.of(context).textTheme.body1,
+                  // validator: (value) =>
+                  //     value.isEmpty ? 'Nama Barang tidak boleh kosong' : null,
+                  decoration: InputDecoration(
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Theme.of(context).iconTheme.color,
+                            width: 2)),
+                    labelText: 'Luas Bangunan',
+                  ),
+                ),
+              ),
+              // jumlah lantai + luas lantai + luas bangunan perlu widget tersendiri
+              _cbxJumlahLantai(context),
+              if (_viewLt1)
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  child: TextFormField(
+                    controller: _projectLuasLantai1Controller,
+                    // enabled: false,
+                    // style: Theme.of(context).textTheme.body1,
+                    // validator: (value) =>
+                    //     value.isEmpty ? 'Nama Barang tidak boleh kosong' : null,
+                    decoration: InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Theme.of(context).iconTheme.color,
+                              width: 2)),
+                      labelText: 'Luas Lantai 1',
+                    ),
+                    onChanged: (value) {
+                      _luasBangunan();
+                    },
+                  ),
+                ),
+              if (_viewLt2)
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  child: TextFormField(
+                    controller: _projectLuasLantai2Controller,
+                    // enabled: false,
+                    // style: Theme.of(context).textTheme.body1,
+                    // validator: (value) =>
+                    //     value.isEmpty ? 'Nama Barang tidak boleh kosong' : null,
+                    decoration: InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Theme.of(context).iconTheme.color,
+                              width: 2)),
+                      labelText: 'Luas Lantai 2',
+                    ),
+                    onChanged: (value) {
+                      _luasBangunan();
+                    },
+                  ),
+                ),
+              if (_viewLt3)
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  child: TextFormField(
+                    controller: _projectLuasLantai3Controller,
+                    // enabled: false,
+                    // style: Theme.of(context).textTheme.body1,
+                    // validator: (value) =>
+                    //     value.isEmpty ? 'Nama Barang tidak boleh kosong' : null,
+                    decoration: InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Theme.of(context).iconTheme.color,
+                              width: 2)),
+                      labelText: 'Luas Lantai 3',
+                    ),
+                    onChanged: (value) {
+                      _luasBangunan();
+                    },
+                  ),
+                ),
+              if (_viewLt4)
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  child: TextFormField(
+                    controller: _projectLuasLantai4Controller,
+                    // enabled: false,
+                    // style: Theme.of(context).textTheme.body1,
+                    // validator: (value) =>
+                    //     value.isEmpty ? 'Nama Barang tidak boleh kosong' : null,
+                    decoration: InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Theme.of(context).iconTheme.color,
+                              width: 2)),
+                      labelText: 'Luas Lantai 4',
+                    ),
+                    onChanged: (value) {
+                      _luasBangunan();
+                    },
+                  ),
+                ),
+              if (_viewLt5)
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  child: TextFormField(
+                    controller: _projectLuasLantai5Controller,
+                    // enabled: false,
+                    // style: Theme.of(context).textTheme.body1,
+                    // validator: (value) =>
+                    //     value.isEmpty ? 'Nama Barang tidak boleh kosong' : null,
+                    decoration: InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Theme.of(context).iconTheme.color,
+                              width: 2)),
+                      labelText: 'Luas Lantai 5',
+                    ),
+                    onChanged: (value) {
+                      _luasBangunan();
+                    },
+                  ),
+                ),
+              if (_viewLt6)
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  child: TextFormField(
+                    controller: _projectLuasLantai6Controller,
+                    // enabled: false,
+                    // style: Theme.of(context).textTheme.body1,
+                    // validator: (value) =>
+                    //     value.isEmpty ? 'Nama Barang tidak boleh kosong' : null,
+                    decoration: InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Theme.of(context).iconTheme.color,
+                              width: 2)),
+                      labelText: 'Luas Lantai 6',
+                    ),
+                    onChanged: (value) {
+                      _luasBangunan();
+                    },
+                  ),
+                ),
+              if (_viewLt7)
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  child: TextFormField(
+                    controller: _projectLuasLantai7Controller,
+                    // enabled: false,
+                    // style: Theme.of(context).textTheme.body1,
+                    // validator: (value) =>
+                    //     value.isEmpty ? 'Nama Barang tidak boleh kosong' : null,
+                    decoration: InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Theme.of(context).iconTheme.color,
+                              width: 2)),
+                      labelText: 'Luas Lantai 7',
+                    ),
+                    onChanged: (value) {
+                      _luasBangunan();
+                    },
+                  ),
+                ),
+              if (_viewLt8)
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  child: TextFormField(
+                    controller: _projectLuasLantai8Controller,
+                    // enabled: false,
+                    // style: Theme.of(context).textTheme.body1,
+                    // validator: (value) =>
+                    //     value.isEmpty ? 'Nama Barang tidak boleh kosong' : null,
+                    decoration: InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Theme.of(context).iconTheme.color,
+                              width: 2)),
+                      labelText: 'Luas Lantai 8',
+                    ),
+                    onChanged: (value) {
+                      _luasBangunan();
+                    },
+                  ),
+                ),
+              if (_viewLt9)
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  child: TextFormField(
+                    controller: _projectLuasLantai9Controller,
+                    // enabled: false,
+                    // style: Theme.of(context).textTheme.body1,
+                    // validator: (value) =>
+                    //     value.isEmpty ? 'Nama Barang tidak boleh kosong' : null,
+                    decoration: InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Theme.of(context).iconTheme.color,
+                              width: 2)),
+                      labelText: 'Luas Lantai 9',
+                    ),
+                    onChanged: (value) {
+                      _luasBangunan();
+                    },
+                  ),
+                ),
+              if (_viewLt10)
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  child: TextFormField(
+                    controller: _projectLuasLantai10Controller,
+                    // enabled: false,
+                    // style: Theme.of(context).textTheme.body1,
+                    // validator: (value) =>
+                    //     value.isEmpty ? 'Nama Barang tidak boleh kosong' : null,
+                    decoration: InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Theme.of(context).iconTheme.color,
+                              width: 2)),
+                      labelText: 'Luas Lantai 10',
+                    ),
+                    onChanged: (value) {
+                      _luasBangunan();
+                    },
+                  ),
+                ),
+              if (_viewLt11)
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  child: TextFormField(
+                    controller: _projectLuasLantai11Controller,
+                    // enabled: false,
+                    // style: Theme.of(context).textTheme.body1,
+                    // validator: (value) =>
+                    //     value.isEmpty ? 'Nama Barang tidak boleh kosong' : null,
+                    decoration: InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Theme.of(context).iconTheme.color,
+                              width: 2)),
+                      labelText: 'Luas Lantai 11',
+                    ),
+                    onChanged: (value) {
+                      _luasBangunan();
+                    },
+                  ),
+                ),
+              if (_viewLt12)
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  child: TextFormField(
+                    controller: _projectLuasLantai12Controller,
+                    // enabled: false,
+                    // style: Theme.of(context).textTheme.body1,
+                    // validator: (value) =>
+                    //     value.isEmpty ? 'Nama Barang tidak boleh kosong' : null,
+                    decoration: InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Theme.of(context).iconTheme.color,
+                              width: 2)),
+                      labelText: 'Luas Lantai 12',
+                    ),
+                    onChanged: (value) {
+                      _luasBangunan();
+                    },
+                  ),
+                ),
+              if (_viewLt13)
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  child: TextFormField(
+                    controller: _projectLuasLantai13Controller,
+                    // enabled: false,
+                    // style: Theme.of(context).textTheme.body1,
+                    // validator: (value) =>
+                    //     value.isEmpty ? 'Nama Barang tidak boleh kosong' : null,
+                    decoration: InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Theme.of(context).iconTheme.color,
+                              width: 2)),
+                      labelText: 'Luas Lantai 13',
+                    ),
+                    onChanged: (value) {
+                      _luasBangunan();
+                    },
+                  ),
+                ),
+              if (_viewLt14)
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  child: TextFormField(
+                    controller: _projectLuasLantai14Controller,
+                    // enabled: false,
+                    // style: Theme.of(context).textTheme.body1,
+                    // validator: (value) =>
+                    //     value.isEmpty ? 'Nama Barang tidak boleh kosong' : null,
+                    decoration: InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Theme.of(context).iconTheme.color,
+                              width: 2)),
+                      labelText: 'Luas Lantai 14',
+                    ),
+                    onChanged: (value) {
+                      _luasBangunan();
+                    },
+                  ),
+                ),
+              if (_viewLt15)
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  child: TextFormField(
+                    controller: _projectLuasLantai15Controller,
+                    // enabled: false,
+                    // style: Theme.of(context).textTheme.body1,
+                    // validator: (value) =>
+                    //     value.isEmpty ? 'Nama Barang tidak boleh kosong' : null,
+                    decoration: InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Theme.of(context).iconTheme.color,
+                              width: 2)),
+                      labelText: 'Luas Lantai 15',
+                    ),
+                    onChanged: (value) {
+                      _luasBangunan();
+                    },
+                  ),
+                ),
             ],
           ),
         ),
@@ -249,17 +695,12 @@ class _CreateEditProjectScreenState extends State<CreateEditProjectScreen> {
     final firestoreDatabase =
         Provider.of<FirestoreDatabase>(context, listen: false);
 
-    // print('wdiget');
-    // print('cbx ${_appUserDisplayNameController.text}');
-
     return StreamBuilder(
       stream: firestoreDatabase.appUsersStream(),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          // print('snapshot.hasData');
           List<AppUserModel> appUser = snapshot.data;
           if (appUser.isNotEmpty) {
-            // print('appUser.isNotEmpty');
             final aa = <String>['---'];
             appUser.forEach((element) {
               aa.add(element.appUserDisplayName);
@@ -302,6 +743,332 @@ class _CreateEditProjectScreenState extends State<CreateEditProjectScreen> {
       },
     );
   }
+
+  Widget _cbxJumlahLantai(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('Jumlah Lantai'),
+          DropdownButton<String>(
+            isExpanded: true,
+            value: _projectJumlahLantaiController.text,
+            items: [
+              '0',
+              '1',
+              '2',
+              '3',
+              '4',
+              '5',
+              '6',
+              '7',
+              '8',
+              '9',
+              '10',
+              '11',
+              '12',
+              '13',
+              '14',
+              '15',
+            ].map<DropdownMenuItem<String>>((String value) {
+              return DropdownMenuItem<String>(
+                value: value,
+                child: Text(value),
+              );
+            }).toList(),
+            onChanged: (String newValue) async {
+              setState(() {
+                _projectJumlahLantaiController.text = newValue;
+                if (newValue == '1') {
+                  _viewLt1 = true;
+                  _viewLt2 = false;
+                  _viewLt3 = false;
+                  _viewLt4 = false;
+                  _viewLt5 = false;
+                  _viewLt6 = false;
+                  _viewLt7 = false;
+                  _viewLt8 = false;
+                  _viewLt9 = false;
+                  _viewLt10 = false;
+                  _viewLt11 = false;
+                  _viewLt12 = false;
+                  _viewLt13 = false;
+                  _viewLt14 = false;
+                  _viewLt15 = false;
+                } else if (newValue == '2') {
+                  _viewLt1 = true;
+                  _viewLt2 = true;
+                  _viewLt3 = false;
+                  _viewLt4 = false;
+                  _viewLt5 = false;
+                  _viewLt6 = false;
+                  _viewLt7 = false;
+                  _viewLt8 = false;
+                  _viewLt9 = false;
+                  _viewLt10 = false;
+                  _viewLt11 = false;
+                  _viewLt12 = false;
+                  _viewLt13 = false;
+                  _viewLt14 = false;
+                  _viewLt15 = false;
+                } else if (newValue == '3') {
+                  _viewLt1 = true;
+                  _viewLt2 = true;
+                  _viewLt3 = true;
+                  _viewLt4 = false;
+                  _viewLt5 = false;
+                  _viewLt6 = false;
+                  _viewLt7 = false;
+                  _viewLt8 = false;
+                  _viewLt9 = false;
+                  _viewLt10 = false;
+                  _viewLt11 = false;
+                  _viewLt12 = false;
+                  _viewLt13 = false;
+                  _viewLt14 = false;
+                  _viewLt15 = false;
+                } else if (newValue == '4') {
+                  _viewLt1 = true;
+                  _viewLt2 = true;
+                  _viewLt3 = true;
+                  _viewLt4 = true;
+                  _viewLt5 = false;
+                  _viewLt6 = false;
+                  _viewLt7 = false;
+                  _viewLt8 = false;
+                  _viewLt9 = false;
+                  _viewLt10 = false;
+                  _viewLt11 = false;
+                  _viewLt12 = false;
+                  _viewLt13 = false;
+                  _viewLt14 = false;
+                  _viewLt15 = false;
+                } else if (newValue == '5') {
+                  _viewLt1 = true;
+                  _viewLt2 = true;
+                  _viewLt3 = true;
+                  _viewLt4 = true;
+                  _viewLt5 = true;
+                  _viewLt6 = false;
+                  _viewLt7 = false;
+                  _viewLt8 = false;
+                  _viewLt9 = false;
+                  _viewLt10 = false;
+                  _viewLt11 = false;
+                  _viewLt12 = false;
+                  _viewLt13 = false;
+                  _viewLt14 = false;
+                  _viewLt15 = false;
+                } else if (newValue == '6') {
+                  _viewLt1 = true;
+                  _viewLt2 = true;
+                  _viewLt3 = true;
+                  _viewLt4 = true;
+                  _viewLt5 = true;
+                  _viewLt6 = true;
+                  _viewLt7 = false;
+                  _viewLt8 = false;
+                  _viewLt9 = false;
+                  _viewLt10 = false;
+                  _viewLt11 = false;
+                  _viewLt12 = false;
+                  _viewLt13 = false;
+                  _viewLt14 = false;
+                  _viewLt15 = false;
+                } else if (newValue == '7') {
+                  _viewLt1 = true;
+                  _viewLt2 = true;
+                  _viewLt3 = true;
+                  _viewLt4 = true;
+                  _viewLt5 = true;
+                  _viewLt6 = true;
+                  _viewLt7 = true;
+                  _viewLt8 = false;
+                  _viewLt9 = false;
+                  _viewLt10 = false;
+                  _viewLt11 = false;
+                  _viewLt12 = false;
+                  _viewLt13 = false;
+                  _viewLt14 = false;
+                  _viewLt15 = false;
+                } else if (newValue == '8') {
+                  _viewLt1 = true;
+                  _viewLt2 = true;
+                  _viewLt3 = true;
+                  _viewLt4 = true;
+                  _viewLt5 = true;
+                  _viewLt6 = true;
+                  _viewLt7 = true;
+                  _viewLt8 = true;
+                  _viewLt9 = false;
+                  _viewLt10 = false;
+                  _viewLt11 = false;
+                  _viewLt12 = false;
+                  _viewLt13 = false;
+                  _viewLt14 = false;
+                  _viewLt15 = false;
+                } else if (newValue == '9') {
+                  _viewLt1 = true;
+                  _viewLt2 = true;
+                  _viewLt3 = true;
+                  _viewLt4 = true;
+                  _viewLt5 = true;
+                  _viewLt6 = true;
+                  _viewLt7 = true;
+                  _viewLt8 = true;
+                  _viewLt9 = true;
+                  _viewLt10 = false;
+                  _viewLt11 = false;
+                  _viewLt12 = false;
+                  _viewLt13 = false;
+                  _viewLt14 = false;
+                  _viewLt15 = false;
+                } else if (newValue == '10') {
+                  _viewLt1 = true;
+                  _viewLt2 = true;
+                  _viewLt3 = true;
+                  _viewLt4 = true;
+                  _viewLt5 = true;
+                  _viewLt6 = true;
+                  _viewLt7 = true;
+                  _viewLt8 = true;
+                  _viewLt9 = true;
+                  _viewLt10 = true;
+                  _viewLt11 = false;
+                  _viewLt12 = false;
+                  _viewLt13 = false;
+                  _viewLt14 = false;
+                  _viewLt15 = false;
+                } else if (newValue == '11') {
+                  _viewLt1 = true;
+                  _viewLt2 = true;
+                  _viewLt3 = true;
+                  _viewLt4 = true;
+                  _viewLt5 = true;
+                  _viewLt6 = true;
+                  _viewLt7 = true;
+                  _viewLt8 = true;
+                  _viewLt9 = true;
+                  _viewLt10 = true;
+                  _viewLt11 = true;
+                  _viewLt12 = false;
+                  _viewLt13 = false;
+                  _viewLt14 = false;
+                  _viewLt15 = false;
+                } else if (newValue == '12') {
+                  _viewLt1 = true;
+                  _viewLt2 = true;
+                  _viewLt3 = true;
+                  _viewLt4 = true;
+                  _viewLt5 = true;
+                  _viewLt6 = true;
+                  _viewLt7 = true;
+                  _viewLt8 = true;
+                  _viewLt9 = true;
+                  _viewLt10 = true;
+                  _viewLt11 = true;
+                  _viewLt12 = true;
+                  _viewLt13 = false;
+                  _viewLt14 = false;
+                  _viewLt15 = false;
+                } else if (newValue == '13') {
+                  _viewLt1 = true;
+                  _viewLt2 = true;
+                  _viewLt3 = true;
+                  _viewLt4 = true;
+                  _viewLt5 = true;
+                  _viewLt6 = true;
+                  _viewLt7 = true;
+                  _viewLt8 = true;
+                  _viewLt9 = true;
+                  _viewLt10 = true;
+                  _viewLt11 = true;
+                  _viewLt12 = true;
+                  _viewLt13 = true;
+                  _viewLt14 = false;
+                  _viewLt15 = false;
+                } else if (newValue == '14') {
+                  _viewLt1 = true;
+                  _viewLt2 = true;
+                  _viewLt3 = true;
+                  _viewLt4 = true;
+                  _viewLt5 = true;
+                  _viewLt6 = true;
+                  _viewLt7 = true;
+                  _viewLt8 = true;
+                  _viewLt9 = true;
+                  _viewLt10 = true;
+                  _viewLt11 = true;
+                  _viewLt12 = true;
+                  _viewLt13 = true;
+                  _viewLt14 = true;
+                  _viewLt15 = false;
+                } else if (newValue == '15') {
+                  _viewLt1 = true;
+                  _viewLt2 = true;
+                  _viewLt3 = true;
+                  _viewLt4 = true;
+                  _viewLt5 = true;
+                  _viewLt6 = true;
+                  _viewLt7 = true;
+                  _viewLt8 = true;
+                  _viewLt9 = true;
+                  _viewLt10 = true;
+                  _viewLt11 = true;
+                  _viewLt12 = true;
+                  _viewLt13 = true;
+                  _viewLt14 = true;
+                  _viewLt15 = true;
+                } else {
+                  _viewLt1 = false;
+                  _viewLt2 = false;
+                  _viewLt3 = false;
+                  _viewLt4 = false;
+                  _viewLt5 = false;
+                  _viewLt6 = false;
+                  _viewLt7 = false;
+                  _viewLt8 = false;
+                  _viewLt9 = false;
+                  _viewLt10 = false;
+                  _viewLt11 = false;
+                  _viewLt12 = false;
+                  _viewLt13 = false;
+                  _viewLt14 = false;
+                  _viewLt15 = false;
+                }
+              });
+            },
+          ),
+        ],
+      ),
+    );
+  }
+
+  _luasBangunan() {
+    Future.delayed(Duration(seconds: 2), () {
+      _projectLuasBangunanController.text =
+          (int.parse(_projectLuasLantai1Controller.text) +
+                  int.parse(_projectLuasLantai2Controller.text) +
+                  int.parse(_projectLuasLantai3Controller.text) +
+                  int.parse(_projectLuasLantai4Controller.text) +
+                  int.parse(_projectLuasLantai5Controller.text) +
+                  int.parse(_projectLuasLantai6Controller.text) +
+                  int.parse(_projectLuasLantai7Controller.text) +
+                  int.parse(_projectLuasLantai8Controller.text) +
+                  int.parse(_projectLuasLantai9Controller.text) +
+                  int.parse(_projectLuasLantai10Controller.text) +
+                  int.parse(_projectLuasLantai11Controller.text) +
+                  int.parse(_projectLuasLantai12Controller.text) +
+                  int.parse(_projectLuasLantai13Controller.text) +
+                  int.parse(_projectLuasLantai14Controller.text) +
+                  int.parse(_projectLuasLantai15Controller.text))
+              .toString();
+    });
+  }
+  // print('appUser.isEmpty');
+
+  // return Center(child: Container());
 
   // Widget _wgUserName(BuildContext context) {
   //   final firestoreDatabase =

@@ -21,7 +21,7 @@ class EditProjectProgressScreenState extends State<EditProjectProgressScreen> {
   TextEditingController _projectTglDeadlineController;
   TextEditingController _projectTglStartController;
   TextEditingController _projectPersenActivityController;
-  TextEditingController _projectDescriptionController;
+  TextEditingController _projectFungsiController;
   TextEditingController _projectNameController;
   TextEditingController _projectStatusController;
 
@@ -82,8 +82,8 @@ class EditProjectProgressScreenState extends State<EditProjectProgressScreen> {
         text: _project != null ? _project.projectTglStart : '');
     _projectPersenActivityController = TextEditingController(
         text: _project != null ? _project.projectPersenActivity : '');
-    _projectDescriptionController = TextEditingController(
-        text: _project != null ? _project.projectDescription : '');
+    _projectFungsiController = TextEditingController(
+        text: _project != null ? _project.projectFungsi : '');
     _projectNameController = TextEditingController(
         text: _project != null ? _project.projectName : '');
     _projectStatusController = TextEditingController(
@@ -125,7 +125,7 @@ class EditProjectProgressScreenState extends State<EditProjectProgressScreen> {
                     projectPersenActivity: _project != null
                         ? _projectPersenActivityController.text
                         : '0',
-                    projectDescription: _projectDescriptionController.text,
+                    projectFungsi: _projectFungsiController.text,
                     projectStatus: _project != null
                         ? _projectStatusController.text
                         : 'Aktif',
@@ -150,7 +150,7 @@ class EditProjectProgressScreenState extends State<EditProjectProgressScreen> {
     _projectTglDeadlineController.dispose();
     _projectTglStartController.dispose();
     _projectPersenActivityController.dispose();
-    _projectDescriptionController.dispose();
+    _projectFungsiController.dispose();
     _projectNameController.dispose();
     _projectStatusController.dispose();
     _appUserDisplayNameController.dispose();
@@ -205,7 +205,7 @@ class EditProjectProgressScreenState extends State<EditProjectProgressScreen> {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 child: TextFormField(
-                  controller: _projectDescriptionController,
+                  controller: _projectFungsiController,
                   enabled: false,
                   // style: Theme.of(context).textTheme.body1,
                   // validator: (value) =>
