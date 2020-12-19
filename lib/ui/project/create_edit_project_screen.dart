@@ -158,6 +158,264 @@ class _CreateEditProjectScreenState extends State<CreateEditProjectScreen> {
         text: _project != null ? _project.projectLuasLantai15 : '0');
     _projectLuasBangunanController = TextEditingController(
         text: _project != null ? _project.projectLuasBangunan : '0');
+
+    if (_projectJumlahLantaiController.text == '1') {
+      _viewLt1 = true;
+      _viewLt2 = false;
+      _viewLt3 = false;
+      _viewLt4 = false;
+      _viewLt5 = false;
+      _viewLt6 = false;
+      _viewLt7 = false;
+      _viewLt8 = false;
+      _viewLt9 = false;
+      _viewLt10 = false;
+      _viewLt11 = false;
+      _viewLt12 = false;
+      _viewLt13 = false;
+      _viewLt14 = false;
+      _viewLt15 = false;
+    } else if (_projectJumlahLantaiController.text == '2') {
+      _viewLt1 = true;
+      _viewLt2 = true;
+      _viewLt3 = false;
+      _viewLt4 = false;
+      _viewLt5 = false;
+      _viewLt6 = false;
+      _viewLt7 = false;
+      _viewLt8 = false;
+      _viewLt9 = false;
+      _viewLt10 = false;
+      _viewLt11 = false;
+      _viewLt12 = false;
+      _viewLt13 = false;
+      _viewLt14 = false;
+      _viewLt15 = false;
+    } else if (_projectJumlahLantaiController.text == '3') {
+      _viewLt1 = true;
+      _viewLt2 = true;
+      _viewLt3 = true;
+      _viewLt4 = false;
+      _viewLt5 = false;
+      _viewLt6 = false;
+      _viewLt7 = false;
+      _viewLt8 = false;
+      _viewLt9 = false;
+      _viewLt10 = false;
+      _viewLt11 = false;
+      _viewLt12 = false;
+      _viewLt13 = false;
+      _viewLt14 = false;
+      _viewLt15 = false;
+    } else if (_projectJumlahLantaiController.text == '4') {
+      _viewLt1 = true;
+      _viewLt2 = true;
+      _viewLt3 = true;
+      _viewLt4 = true;
+      _viewLt5 = false;
+      _viewLt6 = false;
+      _viewLt7 = false;
+      _viewLt8 = false;
+      _viewLt9 = false;
+      _viewLt10 = false;
+      _viewLt11 = false;
+      _viewLt12 = false;
+      _viewLt13 = false;
+      _viewLt14 = false;
+      _viewLt15 = false;
+    } else if (_projectJumlahLantaiController.text == '5') {
+      _viewLt1 = true;
+      _viewLt2 = true;
+      _viewLt3 = true;
+      _viewLt4 = true;
+      _viewLt5 = true;
+      _viewLt6 = false;
+      _viewLt7 = false;
+      _viewLt8 = false;
+      _viewLt9 = false;
+      _viewLt10 = false;
+      _viewLt11 = false;
+      _viewLt12 = false;
+      _viewLt13 = false;
+      _viewLt14 = false;
+      _viewLt15 = false;
+    } else if (_projectJumlahLantaiController.text == '6') {
+      _viewLt1 = true;
+      _viewLt2 = true;
+      _viewLt3 = true;
+      _viewLt4 = true;
+      _viewLt5 = true;
+      _viewLt6 = true;
+      _viewLt7 = false;
+      _viewLt8 = false;
+      _viewLt9 = false;
+      _viewLt10 = false;
+      _viewLt11 = false;
+      _viewLt12 = false;
+      _viewLt13 = false;
+      _viewLt14 = false;
+      _viewLt15 = false;
+    } else if (_projectJumlahLantaiController.text == '7') {
+      _viewLt1 = true;
+      _viewLt2 = true;
+      _viewLt3 = true;
+      _viewLt4 = true;
+      _viewLt5 = true;
+      _viewLt6 = true;
+      _viewLt7 = true;
+      _viewLt8 = false;
+      _viewLt9 = false;
+      _viewLt10 = false;
+      _viewLt11 = false;
+      _viewLt12 = false;
+      _viewLt13 = false;
+      _viewLt14 = false;
+      _viewLt15 = false;
+    } else if (_projectJumlahLantaiController.text == '8') {
+      _viewLt1 = true;
+      _viewLt2 = true;
+      _viewLt3 = true;
+      _viewLt4 = true;
+      _viewLt5 = true;
+      _viewLt6 = true;
+      _viewLt7 = true;
+      _viewLt8 = true;
+      _viewLt9 = false;
+      _viewLt10 = false;
+      _viewLt11 = false;
+      _viewLt12 = false;
+      _viewLt13 = false;
+      _viewLt14 = false;
+      _viewLt15 = false;
+    } else if (_projectJumlahLantaiController.text == '9') {
+      _viewLt1 = true;
+      _viewLt2 = true;
+      _viewLt3 = true;
+      _viewLt4 = true;
+      _viewLt5 = true;
+      _viewLt6 = true;
+      _viewLt7 = true;
+      _viewLt8 = true;
+      _viewLt9 = true;
+      _viewLt10 = false;
+      _viewLt11 = false;
+      _viewLt12 = false;
+      _viewLt13 = false;
+      _viewLt14 = false;
+      _viewLt15 = false;
+    } else if (_projectJumlahLantaiController.text == '10') {
+      _viewLt1 = true;
+      _viewLt2 = true;
+      _viewLt3 = true;
+      _viewLt4 = true;
+      _viewLt5 = true;
+      _viewLt6 = true;
+      _viewLt7 = true;
+      _viewLt8 = true;
+      _viewLt9 = true;
+      _viewLt10 = true;
+      _viewLt11 = false;
+      _viewLt12 = false;
+      _viewLt13 = false;
+      _viewLt14 = false;
+      _viewLt15 = false;
+    } else if (_projectJumlahLantaiController.text == '11') {
+      _viewLt1 = true;
+      _viewLt2 = true;
+      _viewLt3 = true;
+      _viewLt4 = true;
+      _viewLt5 = true;
+      _viewLt6 = true;
+      _viewLt7 = true;
+      _viewLt8 = true;
+      _viewLt9 = true;
+      _viewLt10 = true;
+      _viewLt11 = true;
+      _viewLt12 = false;
+      _viewLt13 = false;
+      _viewLt14 = false;
+      _viewLt15 = false;
+    } else if (_projectJumlahLantaiController.text == '12') {
+      _viewLt1 = true;
+      _viewLt2 = true;
+      _viewLt3 = true;
+      _viewLt4 = true;
+      _viewLt5 = true;
+      _viewLt6 = true;
+      _viewLt7 = true;
+      _viewLt8 = true;
+      _viewLt9 = true;
+      _viewLt10 = true;
+      _viewLt11 = true;
+      _viewLt12 = true;
+      _viewLt13 = false;
+      _viewLt14 = false;
+      _viewLt15 = false;
+    } else if (_projectJumlahLantaiController.text == '13') {
+      _viewLt1 = true;
+      _viewLt2 = true;
+      _viewLt3 = true;
+      _viewLt4 = true;
+      _viewLt5 = true;
+      _viewLt6 = true;
+      _viewLt7 = true;
+      _viewLt8 = true;
+      _viewLt9 = true;
+      _viewLt10 = true;
+      _viewLt11 = true;
+      _viewLt12 = true;
+      _viewLt13 = true;
+      _viewLt14 = false;
+      _viewLt15 = false;
+    } else if (_projectJumlahLantaiController.text == '14') {
+      _viewLt1 = true;
+      _viewLt2 = true;
+      _viewLt3 = true;
+      _viewLt4 = true;
+      _viewLt5 = true;
+      _viewLt6 = true;
+      _viewLt7 = true;
+      _viewLt8 = true;
+      _viewLt9 = true;
+      _viewLt10 = true;
+      _viewLt11 = true;
+      _viewLt12 = true;
+      _viewLt13 = true;
+      _viewLt14 = true;
+      _viewLt15 = false;
+    } else if (_projectJumlahLantaiController.text == '15') {
+      _viewLt1 = true;
+      _viewLt2 = true;
+      _viewLt3 = true;
+      _viewLt4 = true;
+      _viewLt5 = true;
+      _viewLt6 = true;
+      _viewLt7 = true;
+      _viewLt8 = true;
+      _viewLt9 = true;
+      _viewLt10 = true;
+      _viewLt11 = true;
+      _viewLt12 = true;
+      _viewLt13 = true;
+      _viewLt14 = true;
+      _viewLt15 = true;
+    } else {
+      _viewLt1 = false;
+      _viewLt2 = false;
+      _viewLt3 = false;
+      _viewLt4 = false;
+      _viewLt5 = false;
+      _viewLt6 = false;
+      _viewLt7 = false;
+      _viewLt8 = false;
+      _viewLt9 = false;
+      _viewLt10 = false;
+      _viewLt11 = false;
+      _viewLt12 = false;
+      _viewLt13 = false;
+      _viewLt14 = false;
+      _viewLt15 = false;
+    }
   }
 
   @override
@@ -199,6 +457,24 @@ class _CreateEditProjectScreenState extends State<CreateEditProjectScreen> {
                     projectStatus: _project != null
                         ? _projectStatusController.text
                         : 'Aktif',
+                    projectLuasLahan: _projectLuasLahanController.text,
+                    projectJumlahLantai: _projectJumlahLantaiController.text,
+                    projectLuasLantai1: _projectLuasLantai1Controller.text,
+                    projectLuasLantai2: _projectLuasLantai2Controller.text,
+                    projectLuasLantai3: _projectLuasLantai3Controller.text,
+                    projectLuasLantai4: _projectLuasLantai4Controller.text,
+                    projectLuasLantai5: _projectLuasLantai5Controller.text,
+                    projectLuasLantai6: _projectLuasLantai6Controller.text,
+                    projectLuasLantai7: _projectLuasLantai7Controller.text,
+                    projectLuasLantai8: _projectLuasLantai8Controller.text,
+                    projectLuasLantai9: _projectLuasLantai9Controller.text,
+                    projectLuasLantai10: _projectLuasLantai10Controller.text,
+                    projectLuasLantai11: _projectLuasLantai11Controller.text,
+                    projectLuasLantai12: _projectLuasLantai12Controller.text,
+                    projectLuasLantai13: _projectLuasLantai13Controller.text,
+                    projectLuasLantai14: _projectLuasLantai14Controller.text,
+                    projectLuasLantai15: _projectLuasLantai15Controller.text,
+                    projectLuasBangunan: _projectLuasBangunanController.text,
                   ));
 
                   Navigator.of(context).pop();
@@ -780,6 +1056,22 @@ class _CreateEditProjectScreenState extends State<CreateEditProjectScreen> {
             onChanged: (String newValue) async {
               setState(() {
                 _projectJumlahLantaiController.text = newValue;
+                _projectLuasLantai1Controller.text = '0';
+                _projectLuasLantai2Controller.text = '0';
+                _projectLuasLantai3Controller.text = '0';
+                _projectLuasLantai4Controller.text = '0';
+                _projectLuasLantai5Controller.text = '0';
+                _projectLuasLantai6Controller.text = '0';
+                _projectLuasLantai7Controller.text = '0';
+                _projectLuasLantai8Controller.text = '0';
+                _projectLuasLantai9Controller.text = '0';
+                _projectLuasLantai10Controller.text = '0';
+                _projectLuasLantai11Controller.text = '0';
+                _projectLuasLantai12Controller.text = '0';
+                _projectLuasLantai13Controller.text = '0';
+                _projectLuasLantai14Controller.text = '0';
+                _projectLuasLantai15Controller.text = '0';
+                _projectLuasBangunanController.text = '0';
                 if (newValue == '1') {
                   _viewLt1 = true;
                   _viewLt2 = false;
