@@ -52,8 +52,10 @@ class ProjectFeedWidgetScreen extends StatelessWidget {
     final appUserProvider =
         Provider.of<AppAccessLevelProvider>(context, listen: false);
     return StreamBuilder(
-        stream: firestoreDatabase.projectFeedModelQbyUserIdStream(
-            query1: appUserProvider.appxUserUid),
+        stream: appUserProvider.appxUserRole == 'User'
+            ? firestoreDatabase.projectFeedModelQbyUserIdStream(
+                query1: appUserProvider.appxUserUid)
+            : firestoreDatabase.projectFeedsStream(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             List<ProjectFeedModel> projectFeed = snapshot.data;
@@ -83,9 +85,11 @@ class ProjectFeedWidgetScreen extends StatelessWidget {
                       ],
                     ),
                     onTap: () {
-                      // Navigator.of(context).pushNamed(
-                      //     Routes.create_edit_appUser,
-                      //     arguments: projectFeed[index]);
+                      if (appUserProvider.appxUserRole == 'Admin') {
+                        Navigator.of(context).pushNamed(
+                            Routes.create_edit_project_feed,
+                            arguments: projectFeed[index]);
+                      }
                     },
                   );
                 },

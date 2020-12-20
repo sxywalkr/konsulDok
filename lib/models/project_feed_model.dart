@@ -10,6 +10,8 @@ class ProjectFeedModel {
   String projectFeedDateSubmit;
   String projectFeedDateApproval;
   String projectFeedStatus;
+  String projectFeedPersentaseApproval;
+  String projectFeedActivityDescriptionApproval;
 
   ProjectFeedModel({
     this.projectFeedId,
@@ -23,6 +25,8 @@ class ProjectFeedModel {
     this.projectFeedDateSubmit,
     this.projectFeedDateApproval,
     this.projectFeedStatus,
+    this.projectFeedPersentaseApproval,
+    this.projectFeedActivityDescriptionApproval,
   });
 
   factory ProjectFeedModel.fromMap(
@@ -43,6 +47,10 @@ class ProjectFeedModel {
     String projectFeedDateSubmit = data['projectFeedDateSubmit'];
     String projectFeedDateApproval = data['projectFeedDateApproval'];
     String projectFeedStatus = data['projectFeedStatus'];
+    String projectFeedPersentaseApproval =
+        data['projectFeedPersentaseApproval'];
+    String projectFeedActivityDescriptionApproval =
+        data['projectFeedActivityDescriptionApproval'];
 
     return ProjectFeedModel(
       projectFeedId: projectFeedId,
@@ -56,6 +64,9 @@ class ProjectFeedModel {
       projectFeedDateSubmit: projectFeedDateSubmit,
       projectFeedDateApproval: projectFeedDateApproval,
       projectFeedStatus: projectFeedStatus,
+      projectFeedPersentaseApproval: projectFeedPersentaseApproval,
+      projectFeedActivityDescriptionApproval:
+          projectFeedActivityDescriptionApproval,
     );
   }
 
@@ -72,6 +83,9 @@ class ProjectFeedModel {
       'projectFeedDateSubmit': projectFeedDateSubmit,
       'projectFeedDateApproval': projectFeedDateApproval,
       'projectFeedStatus': projectFeedStatus,
+      'projectFeedPersentaseApproval': projectFeedPersentaseApproval,
+      'projectFeedActivityDescriptionApproval':
+          projectFeedActivityDescriptionApproval,
     };
   }
 }

@@ -90,9 +90,11 @@ class ProjectWidgetScreen extends StatelessWidget {
                           project[index].projectPersenActivity +
                           '%'),
                       onTap: () {
-                        Navigator.of(context).pushNamed(
-                            Routes.edit_project_progress,
-                            arguments: project[index]);
+                        if (appUserProvider.appxUserRole != 'User') {
+                          Navigator.of(context).pushNamed(
+                              Routes.edit_project_progress,
+                              arguments: project[index]);
+                        }
                       },
                     ),
                   );
