@@ -42,6 +42,12 @@ class _CreateEditProjectScreenState extends State<CreateEditProjectScreen> {
   TextEditingController _projectLuasLantai14Controller;
   TextEditingController _projectLuasLantai15Controller;
   TextEditingController _projectLuasBangunanController;
+  TextEditingController _projectTaskUmumController;
+  TextEditingController _projectTaskArsitekturController;
+  TextEditingController _projectTaskStrukturController;
+  TextEditingController _projectTaskMepController;
+  TextEditingController _projectTaskInteriorController;
+  TextEditingController _projectTaskRabController;
 
   bool _isInit = true;
   bool _viewLt1 = false;
@@ -84,10 +90,12 @@ class _CreateEditProjectScreenState extends State<CreateEditProjectScreen> {
       for (DocumentSnapshot ds in qSnap1.documents) {
         data1 = ds.data;
       }
-      setState(() {
-        _appUserDisplayNameController =
-            TextEditingController(text: data1['appUserDisplayName'].toString());
-      });
+      if (mounted) {
+        setState(() {
+          _appUserDisplayNameController = TextEditingController(
+              text: data1['appUserDisplayName'].toString());
+        });
+      }
       return data1['appUserDisplayName'].toString();
     }
     return '---';
@@ -115,7 +123,7 @@ class _CreateEditProjectScreenState extends State<CreateEditProjectScreen> {
     _projectTglStartController = TextEditingController(
         text: _project != null ? _project.projectTglStart : '');
     _projectPersenActivityController = TextEditingController(
-        text: _project != null ? _project.projectPersenActivity : '');
+        text: _project != null ? _project.projectPersenActivity : '0');
     _projectFungsiController = TextEditingController(
         text: _project != null ? _project.projectFungsi : '');
     _projectNameController = TextEditingController(
@@ -158,6 +166,18 @@ class _CreateEditProjectScreenState extends State<CreateEditProjectScreen> {
         text: _project != null ? _project.projectLuasLantai15 : '0');
     _projectLuasBangunanController = TextEditingController(
         text: _project != null ? _project.projectLuasBangunan : '0');
+    _projectTaskUmumController = TextEditingController(
+        text: _project != null ? _project.projectTaskUmum : '0');
+    _projectTaskArsitekturController = TextEditingController(
+        text: _project != null ? _project.projectTaskArsitektur : '0');
+    _projectTaskStrukturController = TextEditingController(
+        text: _project != null ? _project.projectTaskStruktur : '0');
+    _projectTaskMepController = TextEditingController(
+        text: _project != null ? _project.projectTaskMep : '0');
+    _projectTaskInteriorController = TextEditingController(
+        text: _project != null ? _project.projectTaskInterior : '0');
+    _projectTaskRabController = TextEditingController(
+        text: _project != null ? _project.projectTaskRab : '0');
 
     if (_projectJumlahLantaiController.text == '1') {
       _viewLt1 = true;
@@ -475,12 +495,19 @@ class _CreateEditProjectScreenState extends State<CreateEditProjectScreen> {
                     projectLuasLantai14: _projectLuasLantai14Controller.text,
                     projectLuasLantai15: _projectLuasLantai15Controller.text,
                     projectLuasBangunan: _projectLuasBangunanController.text,
+                    projectTaskUmum: _projectTaskUmumController.text,
+                    projectTaskArsitektur:
+                        _projectTaskArsitekturController.text,
+                    projectTaskStruktur: _projectTaskStrukturController.text,
+                    projectTaskMep: _projectTaskMepController.text,
+                    projectTaskInterior: _projectTaskInteriorController.text,
+                    projectTaskRab: _projectTaskRabController.text,
                   ));
 
                   Navigator.of(context).pop();
                 }
               },
-              child: Text("Save"))
+              child: Text("Simpan"))
         ],
       ),
       body: Container(
@@ -518,6 +545,12 @@ class _CreateEditProjectScreenState extends State<CreateEditProjectScreen> {
     _projectLuasLantai14Controller.dispose();
     _projectLuasLantai15Controller.dispose();
     _projectLuasBangunanController.dispose();
+    _projectTaskUmumController.dispose();
+    _projectTaskArsitekturController.dispose();
+    _projectTaskStrukturController.dispose();
+    _projectTaskMepController.dispose();
+    _projectTaskInteriorController.dispose();
+    _projectTaskRabController.dispose();
     super.dispose();
   }
 
@@ -606,6 +639,125 @@ class _CreateEditProjectScreenState extends State<CreateEditProjectScreen> {
                             color: Theme.of(context).iconTheme.color,
                             width: 2)),
                     labelText: 'Fungsi',
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 16, bottom: 8),
+                child: TextFormField(
+                  controller: _projectPersenActivityController,
+                  enabled: false,
+                  // style: Theme.of(context).textTheme.body1,
+                  // validator: (value) =>
+                  //     value.isEmpty ? 'Nama Barang tidak boleh kosong' : null,
+                  decoration: InputDecoration(
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Theme.of(context).iconTheme.color,
+                            width: 2)),
+                    labelText: 'Persen Activity',
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 24, top: 8, bottom: 8),
+                child: TextFormField(
+                  controller: _projectTaskUmumController,
+                  enabled: false,
+                  // style: Theme.of(context).textTheme.body1,
+                  // validator: (value) =>
+                  //     value.isEmpty ? 'Nama Barang tidak boleh kosong' : null,
+                  decoration: InputDecoration(
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Theme.of(context).iconTheme.color,
+                            width: 2)),
+                    labelText: 'Task Umum',
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 24, top: 8, bottom: 8),
+                child: TextFormField(
+                  controller: _projectTaskArsitekturController,
+                  enabled: false,
+                  // style: Theme.of(context).textTheme.body1,
+                  // validator: (value) =>
+                  //     value.isEmpty ? 'Nama Barang tidak boleh kosong' : null,
+                  decoration: InputDecoration(
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Theme.of(context).iconTheme.color,
+                            width: 2)),
+                    labelText: 'Task Arsitektur',
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 24, top: 8, bottom: 8),
+                child: TextFormField(
+                  controller: _projectTaskStrukturController,
+                  enabled: false,
+                  // style: Theme.of(context).textTheme.body1,
+                  // validator: (value) =>
+                  //     value.isEmpty ? 'Nama Barang tidak boleh kosong' : null,
+                  decoration: InputDecoration(
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Theme.of(context).iconTheme.color,
+                            width: 2)),
+                    labelText: 'Task Struktur',
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 24, top: 8, bottom: 8),
+                child: TextFormField(
+                  controller: _projectTaskMepController,
+                  enabled: false,
+                  // style: Theme.of(context).textTheme.body1,
+                  // validator: (value) =>
+                  //     value.isEmpty ? 'Nama Barang tidak boleh kosong' : null,
+                  decoration: InputDecoration(
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Theme.of(context).iconTheme.color,
+                            width: 2)),
+                    labelText: 'Task MEP',
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 24, top: 8, bottom: 8),
+                child: TextFormField(
+                  controller: _projectTaskInteriorController,
+                  enabled: false,
+                  // style: Theme.of(context).textTheme.body1,
+                  // validator: (value) =>
+                  //     value.isEmpty ? 'Nama Barang tidak boleh kosong' : null,
+                  decoration: InputDecoration(
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Theme.of(context).iconTheme.color,
+                            width: 2)),
+                    labelText: 'Task Interior',
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 24, top: 8, bottom: 16),
+                child: TextFormField(
+                  controller: _projectTaskRabController,
+                  enabled: false,
+                  // style: Theme.of(context).textTheme.body1,
+                  // validator: (value) =>
+                  //     value.isEmpty ? 'Nama Barang tidak boleh kosong' : null,
+                  decoration: InputDecoration(
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Theme.of(context).iconTheme.color,
+                            width: 2)),
+                    labelText: 'Task RAB',
                   ),
                 ),
               ),

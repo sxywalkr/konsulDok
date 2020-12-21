@@ -75,7 +75,10 @@ class ProjectFeedWidgetScreen extends StatelessWidget {
                         Text(projectFeed[index].projectFeedActivityDescription),
                     trailing: Column(
                       children: [
-                        Text(projectFeed[index].projectFeedStatus),
+                        Text(projectFeed[index].projectFeedStatus +
+                            ' (' +
+                            projectFeed[index].projectFeedPersentaseApproval +
+                            ')'),
                         Text(
                           DateFormat("EEEE, d MMMM yyyy HH:mm", "id_ID").format(
                               DateTime.parse(

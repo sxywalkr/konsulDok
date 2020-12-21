@@ -45,8 +45,10 @@ class ProjectWidgetScreen extends StatelessWidget {
         Provider.of<AppAccessLevelProvider>(context, listen: false);
 
     return StreamBuilder(
-        stream: firestoreDatabase.projectModelQbyUserIdStream(
-            query1: appUserProvider.appxUserUid),
+        stream: appUserProvider.appxUserRole == 'User'
+            ? firestoreDatabase.projectModelQbyUserIdStream(
+                query1: appUserProvider.appxUserUid)
+            : firestoreDatabase.projectsStream(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             List<ProjectModel> project = snapshot.data;
@@ -87,7 +89,8 @@ class ProjectWidgetScreen extends StatelessWidget {
                     child: ListTile(
                       title: Text(project[index].projectName),
                       subtitle: Text('Progress : ' +
-                          project[index].projectPersenActivity +
+                          double.parse(project[index].projectPersenActivity)
+                              .toStringAsFixed(2) +
                           '%'),
                       onTap: () {
                         if (appUserProvider.appxUserRole != 'User') {

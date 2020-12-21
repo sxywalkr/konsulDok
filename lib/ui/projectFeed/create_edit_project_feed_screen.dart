@@ -32,6 +32,7 @@ class _CreateEditProjectFeedScreenState
   TextEditingController _projectFeedStatusCbxController;
   TextEditingController _projectFeedPersentaseApprovalController;
   TextEditingController _projectFeedActivityDescriptionApprovalController;
+  String _approvalValue = '0';
 
   bool _isInit = true;
 
@@ -44,10 +45,11 @@ class _CreateEditProjectFeedScreenState
       _projectFeedStatusCbxController = TextEditingController(text: 'Approve');
       _isInit = false;
     }
+    print('initState');
   }
 
   Future<String> _getProjectName() async {
-    // print('getName');
+    print('_getProjectName');
     final dbReference = Firestore.instance;
 
     Map<String, dynamic> data1 = {};
@@ -59,10 +61,12 @@ class _CreateEditProjectFeedScreenState
       for (DocumentSnapshot ds in qSnap1.documents) {
         data1 = ds.data;
       }
-      setState(() {
-        _projectNameController =
-            TextEditingController(text: data1['projectName'].toString());
-      });
+      if (mounted) {
+        setState(() {
+          _projectNameController =
+              TextEditingController(text: data1['projectName'].toString());
+        });
+      }
       return data1['projectName'].toString();
     }
     return '---';
@@ -90,6 +94,8 @@ class _CreateEditProjectFeedScreenState
         text: _projectFeed != null ? _projectFeed.projectId : '');
     _projectNameController = TextEditingController(
         text: _projectFeed != null ? await _getProjectName() : '---');
+    // _projectNameController = TextEditingController(
+    //     text: _projectFeed != null ? _projectFeed.projectName : '---');
     _projectFeedMainTaskController = TextEditingController(
         text: _projectFeed != null ? _projectFeed.projectFeedMainTask : 'Umum');
     _projectFeedPersentaseController = TextEditingController(
@@ -108,11 +114,15 @@ class _CreateEditProjectFeedScreenState
     _projectFeedPersentaseApprovalController = TextEditingController(
         text: _projectFeed != null
             ? _projectFeed.projectFeedPersentaseApproval
-            : '');
+            : '0');
     _projectFeedActivityDescriptionApprovalController = TextEditingController(
         text: _projectFeed != null
             ? _projectFeed.projectFeedActivityDescriptionApproval
             : '');
+    // if (mounted) {
+    print(
+        'didChangeDependencies ${_projectFeedPersentaseApprovalController.text}');
+    // }
   }
 
   @override
@@ -134,33 +144,147 @@ class _CreateEditProjectFeedScreenState
               if (_formKey.currentState.validate()) {
                 FocusScope.of(context).unfocus();
 
+                print(
+                    'after unfocus ${_projectFeedPersentaseApprovalController.text}');
+
                 final firestoreDatabase =
                     Provider.of<FirestoreDatabase>(context, listen: false);
                 final appUserData =
                     Provider.of<AppAccessLevelProvider>(context, listen: false);
-                // final _uid = _projectFeed != null ? _projectFeed.id : generateUid();
+                final dbReference = Firestore.instance;
 
-                firestoreDatabase.setProjectFeed(ProjectFeedModel(
-                  projectFeedId: _projectFeed != null
-                      ? _projectFeed.projectFeedId
-                      : documentIdFromCurrentDate(),
-                  appUserUid: appUserData.appxUserUid,
-                  appUserDisplayName: appUserData.appxUser.appUserDisplayName,
-                  projectId: _projectIdController.text,
-                  projectName: _projectNameController.text,
-                  projectFeedMainTask: _projectFeedMainTaskController.text,
-                  projectFeedPersentase: _projectFeedPersentaseController.text,
-                  projectFeedActivityDescription:
-                      _projectFeedActivityDescriptionController.text,
-                  projectFeedDateSubmit: DateTime.now().toIso8601String(),
-                  projectFeedDateApproval: '2000-01-01',
-                  projectFeedStatus: 'Submit Progress',
-                  projectFeedPersentaseApproval:
-                      _projectFeedPersentaseApprovalController.text,
-                  projectFeedActivityDescriptionApproval:
-                      _projectFeedActivityDescriptionApprovalController.text,
-                ));
+                if (appUserData.appxUserRole == 'User') {
+                  print('on user');
+                  firestoreDatabase.setProjectFeed(ProjectFeedModel(
+                    projectFeedId: _projectFeed != null
+                        ? _projectFeed.projectFeedId
+                        : documentIdFromCurrentDate(),
+                    appUserUid: appUserData.appxUserUid,
+                    appUserDisplayName: appUserData.appxUser.appUserDisplayName,
+                    projectId: _projectIdController.text,
+                    projectName: _projectNameController.text,
+                    projectFeedMainTask: _projectFeedMainTaskController.text,
+                    projectFeedPersentase:
+                        _projectFeedPersentaseController.text,
+                    projectFeedActivityDescription:
+                        _projectFeedActivityDescriptionController.text,
+                    projectFeedDateSubmit: DateTime.now().toIso8601String(),
+                    projectFeedDateApproval: '2000-01-01',
+                    projectFeedStatus: 'Submit Progress',
+                    projectFeedPersentaseApproval:
+                        _projectFeedPersentaseController.text,
+                    projectFeedActivityDescriptionApproval:
+                        _projectFeedActivityDescriptionApprovalController.text,
+                  ));
+                }
+                if (appUserData.appxUserRole == 'Admin') {
+                  // print(
+                  //     'before future ${_projectFeedPersentaseApprovalController.text}');
+                  // Future.delayed(Duration(seconds: 5), () {});
+                  print(
+                      'after future ${_projectFeedPersentaseApprovalController.text}');
+                  Map<String, dynamic> data1 = {};
+                  final qSnap1 = await Firestore.instance
+                      .collection('project')
+                      .where('projectId', isEqualTo: _projectIdController.text)
+                      .getDocuments();
+                  for (DocumentSnapshot ds in qSnap1.documents) {
+                    data1 = ds.data;
+                  }
+                  // process only if have data
+                  if (data1.isNotEmpty) {
+                    print(
+                        'data1 hasData ${_projectFeedPersentaseApprovalController.text}');
+                    firestoreDatabase.setProjectFeed(ProjectFeedModel(
+                      projectFeedId: _projectFeed != null
+                          ? _projectFeed.projectFeedId
+                          : documentIdFromCurrentDate(),
+                      appUserUid: appUserData.appxUserUid,
+                      appUserDisplayName:
+                          appUserData.appxUser.appUserDisplayName,
+                      projectId: _projectIdController.text,
+                      projectName: _projectNameController.text,
+                      projectFeedMainTask: _projectFeedMainTaskController.text,
+                      projectFeedPersentase:
+                          _projectFeedPersentaseController.text,
+                      projectFeedActivityDescription:
+                          _projectFeedActivityDescriptionController.text,
+                      projectFeedDateSubmit:
+                          _projectFeedDateSubmitController.text,
+                      projectFeedDateApproval: DateTime.now().toIso8601String(),
+                      projectFeedStatus: _projectFeedStatusCbxController.text,
+                      projectFeedPersentaseApproval:
+                          // _projectFeedPersentaseApprovalController.text,
+                          _approvalValue,
+                      projectFeedActivityDescriptionApproval:
+                          _projectFeedActivityDescriptionApprovalController
+                              .text,
+                    ));
 
+                    String umum = _projectFeedMainTaskController.text == 'Umum'
+                        ? (double.parse(data1['projectTaskUmum']) +
+                                double.parse(_approvalValue))
+                            .toString()
+                        : data1['projectTaskUmum'];
+                    String arsitektur =
+                        _projectFeedMainTaskController.text == 'Arsitektur'
+                            ? (double.parse(data1['projectTaskArsitektur']) +
+                                    double.parse(_approvalValue))
+                                .toString()
+                            : data1['projectTaskArsitektur'];
+
+                    String struktur =
+                        _projectFeedMainTaskController.text == 'Struktur'
+                            ? (double.parse(data1['projectTaskStruktur']) +
+                                    double.parse(_approvalValue))
+                                .toString()
+                            : data1['projectTaskStruktur'];
+                    String mep = _projectFeedMainTaskController.text ==
+                            'MEP (Mechanical, Electrical, Plumbing)'
+                        ? (double.parse(data1['projectTaskMep']) +
+                                double.parse(_approvalValue))
+                            .toString()
+                        : data1['projectTaskMep'];
+                    String interior = _projectFeedMainTaskController.text ==
+                            'Interior dan Visualisasi'
+                        ? (double.parse(data1['projectTaskInterior']) +
+                                double.parse(_approvalValue))
+                            .toString()
+                        : data1['projectTaskInterior'];
+                    String rab = _projectFeedMainTaskController.text == 'RAB'
+                        ? (double.parse(data1['projectTaskRab']) +
+                                double.parse(_approvalValue))
+                            .toString()
+                        : data1['projectTaskRab'];
+
+                    dbReference
+                        .collection('project')
+                        .document(_projectIdController.text)
+                        .updateData(
+                      {
+                        'projectTaskUmum': umum,
+                        'projectTaskArsitektur': arsitektur,
+                        'projectTaskStruktur': struktur,
+                        'projectTaskMep': mep,
+                        'projectTaskInterior': interior,
+                        'projectTaskRab': rab,
+                        'projectPersenActivity': (
+                                // double.parse(data1['projectPersenActivity']) +
+                                double.parse(umum) +
+                                    double.parse(arsitektur) +
+                                    double.parse(struktur) +
+                                    double.parse(mep) +
+                                    double.parse(interior) +
+                                    double.parse(rab))
+                            .toString(),
+                      },
+                    );
+                  } else if (data1.isEmpty) {
+                    print('data1 empty');
+                  }
+                  print(
+                      'data1 here too? ${data1['projectTaskMep']} ${_projectFeedPersentaseApprovalController.text}');
+                }
                 Navigator.of(context).pop();
               }
             },
@@ -260,6 +384,13 @@ class _CreateEditProjectFeedScreenState
                               width: 2)),
                       labelText: 'Persentase Progress Approval',
                     ),
+                    onChanged: (value) {
+                      Future.delayed(Duration(seconds: 1), () {
+                        setState(() {
+                          _approvalValue = value;
+                        });
+                      });
+                    },
                   ),
                 ),
               if (appUserProvider.appxUserRole == 'Admin')

@@ -78,7 +78,7 @@ class Home21Screen extends StatelessWidget {
                   MediaQuery.of(context).padding.top -
                   MediaQuery.of(context).padding.bottom -
                   kToolbarHeight -
-                  (((MediaQuery.of(context).size.height / 3) * 2)),
+                  (((MediaQuery.of(context).size.height / 3) * 1.3)),
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: ProjectFeedWidgetScreen(),

@@ -25,6 +25,12 @@ class ProjectModel {
   String projectLuasLantai14;
   String projectLuasLantai15;
   String projectLuasBangunan;
+  String projectTaskUmum;
+  String projectTaskArsitektur;
+  String projectTaskStruktur;
+  String projectTaskMep;
+  String projectTaskInterior;
+  String projectTaskRab;
 
   ProjectModel({
     this.projectId,
@@ -53,6 +59,12 @@ class ProjectModel {
     this.projectLuasLantai14,
     this.projectLuasLantai15,
     this.projectLuasBangunan,
+    this.projectTaskUmum,
+    this.projectTaskArsitektur,
+    this.projectTaskStruktur,
+    this.projectTaskMep,
+    this.projectTaskInterior,
+    this.projectTaskRab,
   });
 
   factory ProjectModel.fromMap(Map<String, dynamic> data, String documentId) {
@@ -86,6 +98,12 @@ class ProjectModel {
     String projectLuasLantai14 = data['projectLuasLantai14'];
     String projectLuasLantai15 = data['projectLuasLantai15'];
     String projectLuasBangunan = data['projectLuasBangunan'];
+    String projectTaskUmum = data['projectTaskUmum'];
+    String projectTaskArsitektur = data['projectTaskArsitektur'];
+    String projectTaskStruktur = data['projectTaskStruktur'];
+    String projectTaskMep = data['projectTaskMep'];
+    String projectTaskInterior = data['projectTaskInterior'];
+    String projectTaskRab = data['projectTaskRab'];
 
     return ProjectModel(
       projectId: projectId,
@@ -114,6 +132,12 @@ class ProjectModel {
       projectLuasLantai14: projectLuasLantai14,
       projectLuasLantai15: projectLuasLantai15,
       projectLuasBangunan: projectLuasBangunan,
+      projectTaskUmum: projectTaskUmum,
+      projectTaskArsitektur: projectTaskArsitektur,
+      projectTaskStruktur: projectTaskStruktur,
+      projectTaskMep: projectTaskMep,
+      projectTaskInterior: projectTaskInterior,
+      projectTaskRab: projectTaskRab,
     );
   }
 
@@ -145,6 +169,12 @@ class ProjectModel {
       'projectLuasLantai14': projectLuasLantai14,
       'projectLuasLantai15': projectLuasLantai15,
       'projectLuasBangunan': projectLuasBangunan,
+      'projectTaskUmum': projectTaskUmum,
+      'projectTaskArsitektur': projectTaskArsitektur,
+      'projectTaskStruktur': projectTaskStruktur,
+      'projectTaskMep': projectTaskMep,
+      'projectTaskInterior': projectTaskInterior,
+      'projectTaskRab': projectTaskRab,
     };
   }
 }

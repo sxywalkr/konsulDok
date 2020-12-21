@@ -236,8 +236,7 @@ class EditProjectProgressScreenState extends State<EditProjectProgressScreen> {
                   ),
                 ),
               ),
-
-              // _cbxUser(context),
+              _cbxUser(context),
             ],
           ),
         ),
