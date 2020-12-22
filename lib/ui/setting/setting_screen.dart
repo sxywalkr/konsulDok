@@ -46,6 +46,16 @@ class SettingScreen extends StatelessWidget {
         //   trailing: SettingLanguageActions(),
         // ),
         ListTile(
+          title: Text('Mengatur Koordinat Kantor'),
+          subtitle: Text('Klik tombol'),
+          trailing: RaisedButton(
+              onPressed: () {
+                Navigator.of(context)
+                    .pushNamed(Routes.create_edit_absensi_setting);
+              },
+              child: Text('Atur')),
+        ),
+        ListTile(
           title: Text('Logout'),
           subtitle: Text('Keluar dari aplikasi'),
           trailing: RaisedButton(
@@ -54,7 +64,7 @@ class SettingScreen extends StatelessWidget {
               },
               child: Text(AppLocalizations.of(context)
                   .translate("settingLogoutButton"))),
-        )
+        ),
       ],
     );
   }

@@ -7,7 +7,7 @@ import 'package:taskmon/services/firestore_path.dart';
 import 'package:taskmon/services/firestore_service.dart';
 import 'package:uuid/uuid.dart';
 import 'package:taskmon/models/app_user_model.dart';
-import 'package:taskmon/models/hec_antrian_model.dart';
+import 'package:taskmon/models/absensi_setting_model.dart';
 import 'package:taskmon/models/absensi_model.dart';
 import 'package:taskmon/models/project_model.dart';
 import 'package:taskmon/models/project_feed_model.dart';
@@ -135,67 +135,6 @@ class FirestoreDatabase {
       _firestoreService.collectionStream(
         path: FirestorePath.appUsers(uid),
         builder: (data, documentId) => AppUserModel.fromMap(data, documentId),
-      );
-
-  // hecAntrians
-  //Method to create/update all HecAntrianModel
-  Future<void> setHecAntrian(HecAntrianModel hecAntrian) async =>
-      await _firestoreService.setData(
-        path: FirestorePath.hecAntrian(hecAntrian.hecAntrianId),
-        data: hecAntrian.toMap(),
-      );
-
-  //Method to update partial HecAntrianModel
-  Future<void> updateHecAntrian(HecAntrianModel hecAntrian) async =>
-      await _firestoreService.updateData(
-        path: FirestorePath.hecAntrian(hecAntrian.hecAntrianId),
-        data: hecAntrian.toMap(),
-      );
-
-  //Method to delete HecAntrianModel entry
-  Future<void> deleteHecAntrian(HecAntrianModel hecAntrian) async {
-    await _firestoreService.deleteData(
-        path: FirestorePath.hecAntrian(hecAntrian.hecAntrianId));
-  }
-
-  //Method to retrieve HecAntrianModel object based on the given HecAntrianId
-  Stream<HecAntrianModel> hecAntrianStream({@required String hecAntrianId}) =>
-      _firestoreService.documentStream(
-        path: FirestorePath.hecAntrian(hecAntrianId),
-        builder: (data, documentId) =>
-            HecAntrianModel.fromMap(data, documentId),
-      );
-
-  //Method to retrieve all HecAntrians item from the same user based on uid
-  Stream<List<HecAntrianModel>> hecAntriansStream() =>
-      _firestoreService.collectionStream(
-        path: FirestorePath.hecAntrians(),
-        builder: (data, documentId) =>
-            HecAntrianModel.fromMap(data, documentId),
-      );
-
-  //Method to retrieve todoModel object based on the given todoId
-  Stream<List<HecAntrianModel>> hecAntrianModelQbyUserIdStream(
-          {@required String query1}) =>
-      _firestoreService.collectionStream(
-        path: FirestorePath.hecAntrians(),
-        queryBuilder: query1 != null
-            ? (query) => query.where('orderByUser', isEqualTo: query1)
-            : null,
-        builder: (data, documentId) =>
-            HecAntrianModel.fromMap(data, documentId),
-      );
-
-  //Method to retrieve todoModel object based on the given todoId
-  Stream<List<HecAntrianModel>> hecAntrianModelQryByDateStream(
-          {@required String query1}) =>
-      _firestoreService.collectionStream(
-        path: FirestorePath.hecAntrians(),
-        queryBuilder: query1 != null
-            ? (query) => query.where('hecAntrianTglAntri', isEqualTo: query1)
-            : null,
-        builder: (data, documentId) =>
-            HecAntrianModel.fromMap(data, documentId),
       );
 
   // absensis
@@ -372,5 +311,68 @@ class FirestoreDatabase {
             : null,
         builder: (data, documentId) =>
             ProjectFeedModel.fromMap(data, documentId),
+      );
+
+  // absensiSettings
+  //Method to create/update all absensiSettingModel
+  Future<void> setAbsensiSetting(AbsensiSettingModel absensiSetting) async =>
+      await _firestoreService.setData(
+        path: FirestorePath.absensiSetting(absensiSetting.absensiSettingId),
+        data: absensiSetting.toMap(),
+      );
+
+  //Method to update partial absensiSettingModel
+  Future<void> updateabsensiSetting(AbsensiSettingModel absensiSetting) async =>
+      await _firestoreService.updateData(
+        path: FirestorePath.absensiSetting(absensiSetting.absensiSettingId),
+        data: absensiSetting.toMap(),
+      );
+
+  //Method to delete absensiSettingModel entry
+  Future<void> deleteabsensiSetting(AbsensiSettingModel absensiSetting) async {
+    await _firestoreService.deleteData(
+        path: FirestorePath.absensiSetting(absensiSetting.absensiSettingId));
+  }
+
+  //Method to retrieve absensiSettingModel object based on the given absensiSettingId
+  Stream<AbsensiSettingModel> absensiSettingStream(
+          {@required String absensiSettingId}) =>
+      _firestoreService.documentStream(
+        path: FirestorePath.absensiSetting(absensiSettingId),
+        builder: (data, documentId) =>
+            AbsensiSettingModel.fromMap(data, documentId),
+      );
+
+  //Method to retrieve all absensiSettings item from the same user based on uid
+  Stream<List<AbsensiSettingModel>> absensiSettingsStream() =>
+      _firestoreService.collectionStream(
+        path: FirestorePath.absensiSettings(),
+        builder: (data, documentId) =>
+            AbsensiSettingModel.fromMap(data, documentId),
+      );
+
+  //Method to retrieve todoModel object based on the given todoId
+  Stream<List<AbsensiSettingModel>> absensiSettingModelQbyUserIdStream(
+          {@required String query1}) =>
+      _firestoreService.collectionStream(
+        path: FirestorePath.absensiSettings(),
+        queryBuilder: query1 != null
+            ? (query) => query.where('appUserUid', isEqualTo: query1)
+            : null,
+        builder: (data, documentId) =>
+            AbsensiSettingModel.fromMap(data, documentId),
+      );
+
+  //Method to retrieve todoModel object based on the given todoId
+  Stream<List<AbsensiSettingModel>> absensiSettingModelQryByDateStream(
+          {@required String query1}) =>
+      _firestoreService.collectionStream(
+        path: FirestorePath.absensiSettings(),
+        queryBuilder: query1 != null
+            ? (query) =>
+                query.where('absensiSettingTglAntri', isEqualTo: query1)
+            : null,
+        builder: (data, documentId) =>
+            AbsensiSettingModel.fromMap(data, documentId),
       );
 }

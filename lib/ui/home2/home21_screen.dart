@@ -282,14 +282,14 @@ Future<void> _presentDatePicker(context) async {
         }
 
         // update db hecAntrians
-        final currDate = documentIdFromCurrentDate();
-        firestoreDatabase.setHecAntrian(HecAntrianModel(
-          hecAntrianId: currDate,
-          appUserUid: appUserProvider.appxUserUid,
-          hecAntrianNomorAntri: hNomorAntri,
-          hecAntrianTglAntri: e.toIso8601String(),
-          hecAntrianStatusAntri: 'yes',
-        ));
+        // final currDate = documentIdFromCurrentDate();
+        // firestoreDatabase.setHecAntrian(HecAntrianModel(
+        //   hecAntrianId: currDate,
+        //   appUserUid: appUserProvider.appxUserUid,
+        //   hecAntrianNomorAntri: hNomorAntri,
+        //   hecAntrianTglAntri: e.toIso8601String(),
+        //   hecAntrianStatusAntri: 'yes',
+        // ));
 
         // update status user
         dbReference

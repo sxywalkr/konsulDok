@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:taskmon/models/absensi_setting_model.dart';
 import 'package:taskmon/models/app_user_model.dart';
 
 class AppAccessLevelProvider extends ChangeNotifier {
@@ -9,16 +10,13 @@ class AppAccessLevelProvider extends ChangeNotifier {
   final String _appUserUid;
   String _appUserRole;
   AppUserModel _appUser;
+  AbsensiSettingModel _absensiSetting;
 
   AppAccessLevelProvider(BuildContext context, this._appUserUid, this._appUser);
 
-  // Stream<AppUserModel> get appUserStream => _userFromDb(_appUser);
-  // Stream<AppUserModel> get appUserStream async* {
-  //   final a = dbReference.collection('AppUsers');
-  //   return a.snapshots().map((snapShot) => snapShot.documents
-  //       .map((docx) => AppUserModel.fromJson(docx.data))
-  //       .toList());
-  // }
+  AbsensiSettingModel get absensiSetting {
+    return _absensiSetting;
+  }
 
   AppUserModel get appxUser {
     return _appUser;
@@ -45,6 +43,14 @@ class AppAccessLevelProvider extends ChangeNotifier {
     _appUserRole = data1['appUserRole'];
     AppUserModel data = AppUserModel.fromMap(data1, null);
     _appUser = data;
+
+    // absensi setting
+    final qSnap2 = await dbReference
+        .collection("absensiSetting")
+        .document('Office')
+        .get()
+        .then((DocumentSnapshot ds) => ds.data);
+    _absensiSetting = AbsensiSettingModel.fromMap(qSnap2, '');
     notifyListeners();
   }
 }

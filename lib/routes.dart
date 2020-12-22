@@ -11,8 +11,6 @@ import 'package:taskmon/ui/appUser/appUsers_screen.dart';
 import 'package:taskmon/ui/home2/home21_screen.dart';
 import 'package:taskmon/ui/user/user_screen.dart';
 import 'package:taskmon/ui/user/create_edit_user_screen.dart';
-import 'package:taskmon/ui/home2/home_resepsionis_screen.dart';
-import 'package:taskmon/ui/resepsionis/antrians_screen.dart';
 import 'package:taskmon/ui/user/user_profile_screen.dart';
 import 'package:taskmon/ui/project/projects_screen.dart';
 import 'package:taskmon/ui/project/create_edit_project_screen.dart';
@@ -20,6 +18,8 @@ import 'package:taskmon/ui/absensi/absensi_screen.dart';
 import 'package:taskmon/ui/project/edit_project_progress_screen.dart';
 import 'package:taskmon/ui/projectFeed/project_feeds_screen.dart';
 import 'package:taskmon/ui/projectFeed/create_edit_project_feed_screen.dart';
+import 'package:taskmon/ui/absensiSetting/absensi_setting_screen.dart';
+import 'package:taskmon/ui/absensiSetting/create_edit_absensi_setting_screen.dart';
 
 //uiXample
 import 'package:taskmon/ui/uiXample/dropdown.dart';
@@ -36,23 +36,12 @@ class Routes {
 
   static const String home2 = '/home2';
 
-  static const String stokBarangMasuk = '/stokBarangMasuk';
-  static const String create_edit_stokBarangMasuk =
-      '/create_edit_stokBarangMasuk';
-  static const String stokBarangAktif = '/stokBarangAktif';
-  static const String create_edit_stokBarangAktif =
-      '/create_edit_stokBarangAktif';
-  static const String stokBarangKeluar = '/stokBarangKeluar';
-  static const String create_edit_stokBarangKeluar =
-      '/create_edit_stokBarangKeluar';
   static const String appUser = '/appUser';
   static const String create_edit_appUser = '/create_edit_appUser';
   static const String home21 = '/home21';
   static const String xdhome22 = '/xdhome22';
   static const String user = '/user';
   static const String create_edit_user = '/create_edit_user';
-  static const String home_resepsionis = '/home_resepsionis';
-  static const String antrians = '/antrians';
   static const String user_profile = '/user_profile';
   static const String project = '/project';
   static const String create_edit_project = '/create_edit_project';
@@ -61,6 +50,9 @@ class Routes {
   static const String edit_project_progress = '/edit_project_progress';
   static const String project_feed = '/project_feed';
   static const String create_edit_project_feed = '/create_edit_project_feed';
+  static const String absensi_setting = '/absensi_setting';
+  static const String create_edit_absensi_setting =
+      '/create_edit_absensi_setting';
 
   static final routes = <String, WidgetBuilder>{
     splash: (BuildContext context) => SplashScreen(),
@@ -74,8 +66,6 @@ class Routes {
     home21: (BuildContext context) => Home21Screen(),
     user: (BuildContext context) => UserScreen(),
     create_edit_user: (BuildContext context) => CreateEditUserScreen(),
-    home_resepsionis: (BuildContext context) => HomeResepsionisScreen(),
-    antrians: (BuildContext context) => AntriansScreen(),
     user_profile: (BuildContext context) => UserProfileScreen(),
     project: (BuildContext context) => ProjectsScreen(),
     create_edit_project: (BuildContext context) => CreateEditProjectScreen(),
@@ -86,5 +76,8 @@ class Routes {
     project_feed: (BuildContext context) => ProjectFeedsScreen(),
     create_edit_project_feed: (BuildContext context) =>
         CreateEditProjectFeedScreen(),
+    absensi_setting: (BuildContext context) => AbsensiSettingScreen(),
+    create_edit_absensi_setting: (BuildContext context) =>
+        CreateEditAbsensiSettingScreen(),
   };
 }

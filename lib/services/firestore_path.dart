@@ -11,18 +11,6 @@ class FirestorePath {
   static String appUser(String uid, String itemId) => 'appUsers/$itemId';
   static String appUsers(String uid) => 'appUsers';
 
-  static String stokBarangMasuk(String itemId) => 'stokBarangMasuks/$itemId';
-  static String stokBarangMasuks() => 'stokBarangMasuks';
-
-  static String stokBarangAktif(String itemId) => 'stokBarangAktifs/$itemId';
-  static String stokBarangAktifs() => 'stokBarangAktifs';
-
-  static String stokBarangKeluar(String itemId) => 'stokBarangKeluars/$itemId';
-  static String stokBarangKeluars() => 'stokBarangKeluars';
-
-  static String hecAntrian(String itemId) => 'hecAntrians/$itemId';
-  static String hecAntrians() => 'hecAntrians';
-
   static String absensi(String itemId) => 'absensi/$itemId';
   static String absensis() => 'absensi';
 
@@ -31,4 +19,7 @@ class FirestorePath {
 
   static String projectFeed(String itemId) => 'projectFeed/$itemId';
   static String projectFeeds() => 'projectFeed';
+
+  static String absensiSetting(String itemId) => 'absensiSetting/$itemId';
+  static String absensiSettings() => 'absensiSetting';
 }
