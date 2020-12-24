@@ -8,13 +8,14 @@ import 'package:provider/provider.dart';
 
 import 'package:taskmon/models/app_user_model.dart';
 import 'package:taskmon/ui/appUser/empty_content.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 enum UserRole {
-  User,
-  Admin,
+  Approve,
+  Reject,
 }
 
-class AppUsersScreen extends StatelessWidget {
+class AbsensiUserScreen extends StatelessWidget {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -95,7 +96,7 @@ class AppUsersScreen extends StatelessWidget {
                     // },
                     child: ListTile(
                       title: Text(appUsers[index].appUserEmail),
-                      subtitle: Text('${appUsers[index].appUserRole}'),
+                      subtitle: Text('${appUsers[index].appUserFlagActivity}'),
                       trailing: appUsers[index].appUserRole == 'Debug' ||
                               appUsers[index].appUserRole == 'Debug'
                           ? null
@@ -129,34 +130,68 @@ class AppUsersScreen extends StatelessWidget {
   }
 
   Widget _setUserRole(BuildContext context, AppUserModel aa) {
-    final firestoreDatabase =
-        Provider.of<FirestoreDatabase>(context, listen: false);
+    final dbReference = Firestore.instance;
     return PopupMenuButton(
-      onSelected: (UserRole selectedValue) {
-        if (selectedValue == UserRole.User) {
-          firestoreDatabase.setAppUser(AppUserModel(
-            appUserUid: aa.appUserUid,
-            appUserRole: 'User',
-            appUserFcmId: aa.appUserFcmId,
-            appUserEmail: aa.appUserEmail,
-          ));
-        } else if (selectedValue == UserRole.Admin) {
-          firestoreDatabase.setAppUser(AppUserModel(
-            appUserUid: aa.appUserUid,
-            appUserRole: 'Admin',
-            appUserFcmId: aa.appUserFcmId,
-            appUserEmail: aa.appUserEmail,
-          ));
+      onSelected: (UserRole selectedValue) async {
+        if (selectedValue == UserRole.Approve) {
+          dbReference
+              .collection('appUsers')
+              .document(aa.appUserUid)
+              .updateData({
+            'appUserFlagActivity': 'Bekerja',
+          });
+          Map<String, dynamic> data1 = {};
+          final qSnap1 = await dbReference
+              .collection("absensi")
+              .where('absensiStatus', isEqualTo: 'Open')
+              .where('appUserUid', isEqualTo: aa.appUserUid)
+              .getDocuments();
+          for (DocumentSnapshot ds in qSnap1.documents) {
+            data1 = ds.data;
+          }
+          dbReference
+              .collection('absensi')
+              .document(data1['absensiId'])
+              .updateData(
+            {
+              'absensiPlace': 'Site',
+            },
+          );
+        } else if (selectedValue == UserRole.Reject) {
+          dbReference
+              .collection('appUsers')
+              .document(aa.appUserUid)
+              .updateData({
+            'appUserFlagActivity': 'Tidak Bekerja',
+          });
+          Map<String, dynamic> data1 = {};
+          final qSnap1 = await dbReference
+              .collection("absensi")
+              .where('absensiStatus', isEqualTo: 'Open')
+              .where('appUserUid', isEqualTo: aa.appUserUid)
+              .getDocuments();
+          for (DocumentSnapshot ds in qSnap1.documents) {
+            data1 = ds.data;
+          }
+          dbReference
+              .collection('absensi')
+              .document(data1['absensiId'])
+              .updateData(
+            {
+              'absensiPlace': 'Site',
+              'absensiStatus': 'Closed',
+            },
+          );
         }
       },
       itemBuilder: (_) => [
         PopupMenuItem(
-          child: Text('User'),
-          value: UserRole.User,
+          child: Text('Approve'),
+          value: UserRole.Approve,
         ),
         PopupMenuItem(
-          child: Text('Admin'),
-          value: UserRole.Admin,
+          child: Text('Reject'),
+          value: UserRole.Reject,
         ),
       ],
       icon: Icon(Icons.more_vert),

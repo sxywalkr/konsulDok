@@ -252,6 +252,23 @@ class _CreateEditAbsensiSettingScreenState
                   ),
                 ),
               ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                child: TextFormField(
+                  controller: _absensiSettingHomeRadiusController,
+                  // enabled: _absensiSetting != null ? false : true,
+                  // style: Theme.of(context).textTheme.body1,
+                  // validator: (value) =>
+                  //     value.isEmpty ? 'Nama Barang tidak boleh kosong' : null,
+                  decoration: InputDecoration(
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Theme.of(context).iconTheme.color,
+                            width: 2)),
+                    labelText: 'Home Radius (m)',
+                  ),
+                ),
+              ),
             ],
           ),
         ),

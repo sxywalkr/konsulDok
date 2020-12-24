@@ -84,7 +84,8 @@ class _AbsensiScreenState extends State<AbsensiScreen> {
                             title: Text(DateFormat("EEEE, d MMMM yyyy", "id_ID")
                                 .format(DateTime.parse(
                                     absensi[index].absensiWaktuDatang))),
-                            subtitle: Text('Datang ' +
+                            subtitle: Text(absensi[index].absensiPlace +
+                                ' - Datang ' +
                                 DateFormat("HH:mm:ss", "id_ID").format(
                                     DateTime.parse(
                                         absensi[index].absensiWaktuDatang)) +
@@ -130,7 +131,9 @@ class _AbsensiScreenState extends State<AbsensiScreen> {
                                   children: [
                                     // Text('status' +
                                     //     appUser.appUserFlagActivity),
-                                    _cbxAbsensiPlase(context),
+                                    if (appUser.appUserFlagActivity ==
+                                        'Tidak Bekerja')
+                                      _cbxAbsensiPlase(context),
                                     if (appUser.appUserFlagActivity ==
                                         'Tidak Bekerja')
                                       RaisedButton(
@@ -154,56 +157,64 @@ class _AbsensiScreenState extends State<AbsensiScreen> {
                 ),
               );
             } else {
-              return EmptyContentWidget(
-                title: 'Data Absensi belum ada',
-                message: 'Tap + untuk menambah data',
-              );
-              // return Container(
-              //   // color: Colors.black26,
-              //   width: double.infinity,
-              //   // height: double.infinity,
-              //   child: StreamBuilder(
-              //       stream: Firestore.instance
-              //           .collection('appUsers')
-              //           .where('appUserUid',
-              //               isEqualTo: appUserProvider.appxUserUid)
-              //           .snapshots(),
-              //       builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
-              //         // print(appUserModel.appUserFlagActivity);
-              //         if (snapshot.hasError)
-              //           return new Text('Error: ${snapshot.error}');
-
-              //         switch (snapshot.connectionState) {
-              //           case ConnectionState.waiting:
-              //             return new Center(
-              //               child: CircularProgressIndicator(),
-              //             );
-              //           default:
-              //             AppUserModel appUser = AppUserModel.fromMap(
-              //                 snapshot.data.documents.first.data, 'null');
-              //             return Column(
-              //               children: [
-              //                 // Text('status' +
-              //                 //     appUser.appUserFlagActivity),
-
-              //                 if (appUser.appUserFlagActivity ==
-              //                     'Tidak Bekerja')
-              //                   RaisedButton(
-              //                     onPressed: () =>
-              //                         _confirmAbsensi(context, 'Datang'),
-              //                     child: Text("Absen Datang"),
-              //                   ),
-              //                 if (appUser.appUserFlagActivity == 'Bekerja')
-              //                   RaisedButton(
-              //                     onPressed: () =>
-              //                         _confirmAbsensi(context, 'Pulang'),
-              //                     child: Text("Absen Pulang"),
-              //                   ),
-              //               ],
-              //             );
-              //         }
-              //       }),
+              // return EmptyContentWidget(
+              //   title: 'Data Absensi belum ada',
+              //   message: 'Tap + untuk menambah data',
               // );
+              return Column(
+                children: [
+                  _cbxAbsensiPlase(context),
+                  Container(
+                    // color: Colors.black26,
+                    width: double.infinity,
+                    height: 300,
+                    child: StreamBuilder(
+                        stream: Firestore.instance
+                            .collection('appUsers')
+                            .where('appUserUid',
+                                isEqualTo: appUserProvider.appxUserUid)
+                            .snapshots(),
+                        builder:
+                            (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                          // print(appUserModel.appUserFlagActivity);
+                          if (snapshot.hasError)
+                            return new Text('Error: ${snapshot.error}');
+
+                          switch (snapshot.connectionState) {
+                            case ConnectionState.waiting:
+                              return new Center(
+                                child: CircularProgressIndicator(),
+                              );
+                            default:
+                              AppUserModel appUser = AppUserModel.fromMap(
+                                  snapshot.data.documents.first.data, 'null');
+                              return Column(
+                                children: [
+                                  // Text('status' +
+                                  //     appUser.appUserFlagActivity),
+
+                                  if (appUser.appUserFlagActivity ==
+                                          'Tidak Bekerja' ||
+                                      appUser.appUserFlagActivity ==
+                                          'Site, Waiting approval')
+                                    RaisedButton(
+                                      onPressed: () =>
+                                          _confirmAbsensi(context, 'Datang'),
+                                      child: Text("Absen Datang"),
+                                    ),
+                                  if (appUser.appUserFlagActivity == 'Bekerja')
+                                    RaisedButton(
+                                      onPressed: () =>
+                                          _confirmAbsensi(context, 'Pulang'),
+                                      child: Text("Absen Pulang"),
+                                    ),
+                                ],
+                              );
+                          }
+                        }),
+                  ),
+                ],
+              );
             }
           } else if (snapshot.hasError) {
             return EmptyContentWidget(
@@ -223,8 +234,8 @@ class _AbsensiScreenState extends State<AbsensiScreen> {
                   backgroundColor: Theme.of(context).buttonColor),
               title: Text('TaskMon Notification'),
               content: Text(flagAbsen == 'Datang'
-                  ? 'Anda akan melakukan Absensi Datang. Teruskan?'
-                  : 'Anda sudah menyelesaikan semua kerjaan? Teruskan Absensi Pulang?.'),
+                  ? 'Anda akan melakukan Absensi Datang di $_absensiPlace. \nTeruskan?'
+                  : 'Anda sudah menyelesaikan semua kerjaan? \nTeruskan Absensi Pulang?'),
               actions: <Widget>[
                 PlatformDialogAction(
                   child: Text('Batal'),
@@ -236,74 +247,123 @@ class _AbsensiScreenState extends State<AbsensiScreen> {
                     final appUserProvider = Provider.of<AppAccessLevelProvider>(
                         context,
                         listen: false);
-                    final firestoreDatabase =
-                        Provider.of<FirestoreDatabase>(context, listen: false);
-                    final dbReference = Firestore.instance;
+
                     final aa = await Geolocator.getCurrentPosition();
 
-                    if (flagAbsen == 'Datang') {
-                      final currDate = documentIdFromCurrentDate();
-                      firestoreDatabase.setabsensi(
-                        AbsensiModel(
-                          absensiId: currDate,
-                          appUserUid: appUserProvider.appxUserUid,
-                          absensiWaktuDatang: DateTime.now().toIso8601String(),
-                          absensiWaktuPulang: '2000-01-01',
-                          absensiLong: aa.longitude.toString(),
-                          absensiLat: aa.latitude.toString(),
-                          absensiStatus: 'Open',
-                        ),
-                      );
+                    final distance = Geolocator.distanceBetween(
+                        double.parse(appUserProvider
+                            .absensiSetting.absensiSettingOfficeLat),
+                        double.parse(appUserProvider
+                            .absensiSetting.absensiSettingOfficeLong),
+                        aa.latitude,
+                        aa.longitude);
 
-                      dbReference
-                          .collection('appUsers')
-                          .document(appUserProvider.appxUserUid)
-                          .updateData(
-                        {
-                          'appUserFlagActivity': 'Bekerja',
-                        },
-                      );
-                    } else if (flagAbsen == 'Pulang') {
-                      //cek apakah sudah absen waktu datang
-                      Map<String, dynamic> data1 = {};
-                      final qSnap1 = await dbReference
-                          .collection("absensi")
-                          .where('absensiStatus', isEqualTo: 'Open')
-                          .where('appUserUid',
-                              isEqualTo: appUserProvider.appxUserUid)
-                          .getDocuments();
-                      for (DocumentSnapshot ds in qSnap1.documents) {
-                        data1 = ds.data;
-                      }
-                      // print(data1['absensiId']);
-                      dbReference
-                          .collection('absensi')
-                          .document(data1['absensiId'])
-                          .updateData(
-                        {
-                          'absensiWaktuPulang':
-                              DateTime.now().toIso8601String(),
-                          'absensiStatus': 'Closed'
-                        },
-                      );
-
-                      dbReference
-                          .collection('appUsers')
-                          .document(appUserProvider.appxUserUid)
-                          .updateData(
-                        {
-                          'appUserFlagActivity': 'Tidak Bekerja',
-                        },
-                      );
+                    if (flagAbsen == 'Pulang') {
+                      _absensiPlace = 'Pulang';
+                    } else {
+                      _absensiPlace = _absensiPlace;
                     }
+                    print(_absensiPlace);
+                    if (_absensiPlace == 'Kantor') {
+                      if (distance <=
+                          double.parse(appUserProvider
+                              .absensiSetting.absensiSettingOfficeRadius)) {
+                        _prosesAbsensiOk(flagAbsen, aa);
+                        Navigator.pop(context);
 
-                    Navigator.pop(context);
-                    Navigator.of(context).pushNamedAndRemoveUntil(
-                        Routes.home21, ModalRoute.withName(Routes.home21));
+                        Navigator.of(context).pushNamedAndRemoveUntil(
+                            Routes.home21, ModalRoute.withName(Routes.home21));
+                      } else {
+                        Navigator.pop(context);
+                        _scaffoldKey.currentState.showSnackBar(SnackBar(
+                          backgroundColor: Theme.of(context).colorScheme.error,
+                          content: Text(
+                            'Maaf, Proses Absensi di $_absensiPlace gagal. Pastikan anda berada dalam radius absensi ${appUserProvider.absensiSetting.absensiSettingOfficeRadius} meter. \nAnda berada ${distance.toStringAsFixed(2)} meter dari $_absensiPlace.',
+                            style:
+                                TextStyle(color: Theme.of(context).canvasColor),
+                          ),
+                          duration: Duration(seconds: 3),
+                        ));
+                      }
+                    } else if (_absensiPlace == 'Site') {
+                      _prosesAbsensiOk(flagAbsen, aa);
+                      Navigator.pop(context);
+                      Navigator.of(context).pushNamedAndRemoveUntil(
+                          Routes.home21, ModalRoute.withName(Routes.home21));
+                    }
+                    if (_absensiPlace == 'Pulang') {
+                      _prosesAbsensiOk(flagAbsen, aa);
+                      Navigator.pop(context);
+                      Navigator.of(context).pushNamedAndRemoveUntil(
+                          Routes.home21, ModalRoute.withName(Routes.home21));
+                    }
                   },
                 )
               ],
             ));
+  }
+
+  void _prosesAbsensiOk(String flagAbsen, Position aa) async {
+    final appUserProvider =
+        Provider.of<AppAccessLevelProvider>(context, listen: false);
+    final firestoreDatabase =
+        Provider.of<FirestoreDatabase>(context, listen: false);
+    final dbReference = Firestore.instance;
+
+    if (flagAbsen == 'Datang') {
+      final currDate = documentIdFromCurrentDate();
+      firestoreDatabase.setabsensi(
+        AbsensiModel(
+          absensiId: currDate,
+          appUserUid: appUserProvider.appxUserUid,
+          absensiWaktuDatang: DateTime.now().toIso8601String(),
+          absensiWaktuPulang: '2000-01-01',
+          absensiLong: aa.longitude.toString(),
+          absensiLat: aa.latitude.toString(),
+          absensiStatus: 'Open',
+          absensiPlace: _absensiPlace == 'Site'
+              ? 'Site, Waiting approval'
+              : _absensiPlace,
+        ),
+      );
+
+      dbReference
+          .collection('appUsers')
+          .document(appUserProvider.appxUserUid)
+          .updateData(
+        {
+          'appUserFlagActivity':
+              _absensiPlace == 'Site' ? 'Site, Waiting approval' : 'Bekerja',
+        },
+      );
+    } else if (flagAbsen == 'Pulang') {
+      //cek apakah sudah absen waktu datang
+      Map<String, dynamic> data1 = {};
+      final qSnap1 = await dbReference
+          .collection("absensi")
+          .where('absensiStatus', isEqualTo: 'Open')
+          .where('appUserUid', isEqualTo: appUserProvider.appxUserUid)
+          .getDocuments();
+      for (DocumentSnapshot ds in qSnap1.documents) {
+        data1 = ds.data;
+      }
+      // print(data1['absensiId']);
+      dbReference.collection('absensi').document(data1['absensiId']).updateData(
+        {
+          'absensiWaktuPulang': DateTime.now().toIso8601String(),
+          'absensiStatus': 'Closed'
+        },
+      );
+
+      dbReference
+          .collection('appUsers')
+          .document(appUserProvider.appxUserUid)
+          .updateData(
+        {
+          'appUserFlagActivity': 'Tidak Bekerja',
+        },
+      );
+    }
   }
 
   Widget _cbxAbsensiPlase(BuildContext context) {
@@ -316,8 +376,11 @@ class _AbsensiScreenState extends State<AbsensiScreen> {
           DropdownButton<String>(
             isExpanded: true,
             value: _absensiPlace,
-            items: ['Kantor', 'Rumah', 'Site']
-                .map<DropdownMenuItem<String>>((String value) {
+            items: [
+              'Kantor',
+              // 'Rumah',
+              'Site',
+            ].map<DropdownMenuItem<String>>((String value) {
               return DropdownMenuItem<String>(
                 value: value,
                 child: Text(value),

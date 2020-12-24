@@ -28,11 +28,21 @@ class AppDrawer extends StatelessWidget {
             Divider(),
             ListTile(
               leading: Icon(Icons.home),
-              title: Text('Absensi'),
+              title: Text('Absensi Saya'),
               onTap: () {
                 Navigator.of(context).pushReplacementNamed(Routes.absensi);
               },
             ),
+            if (appUserRole == 'Admin' || appUserRole == 'Debug') Divider(),
+            if (appUserRole == 'Admin' || appUserRole == 'Debug')
+              ListTile(
+                leading: Icon(Icons.home),
+                title: Text('Manage Absensi'),
+                onTap: () {
+                  Navigator.of(context)
+                      .pushReplacementNamed(Routes.absensi_user);
+                },
+              ),
             if (appUserRole == 'Admin' || appUserRole == 'Debug') Divider(),
             if (appUserRole == 'Admin' || appUserRole == 'Debug')
               ListTile(
@@ -42,8 +52,8 @@ class AppDrawer extends StatelessWidget {
                   Navigator.of(context).pushReplacementNamed(Routes.project);
                 },
               ),
-            if (appUserRole == 'Debug' || appUserRole == 'Debug') Divider(),
-            if (appUserRole == 'Debug' || appUserRole == 'Debug')
+            if (appUserRole == 'Admin' || appUserRole == 'Debug') Divider(),
+            if (appUserRole == 'Admin' || appUserRole == 'Debug')
               ListTile(
                 leading: Icon(Icons.home),
                 title: Text('Manage User'),
