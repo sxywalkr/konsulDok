@@ -15,13 +15,28 @@ import 'package:taskmon/routes.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
-class AbsensiSummaryScreen extends StatefulWidget {
+class AbsensiSummaryDetailScreen extends StatefulWidget {
   @override
-  _AbsensiSummaryScreenState createState() => _AbsensiSummaryScreenState();
+  _AbsensiSummaryDetailScreenState createState() =>
+      _AbsensiSummaryDetailScreenState();
 }
 
-class _AbsensiSummaryScreenState extends State<AbsensiSummaryScreen> {
+class _AbsensiSummaryDetailScreenState
+    extends State<AbsensiSummaryDetailScreen> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  AbsensiModel _absensi;
+
+  @override
+  void didChangeDependencies() async {
+    super.didChangeDependencies();
+
+    final AbsensiModel _absensiModel =
+        ModalRoute.of(context).settings.arguments;
+    if (_absensiModel != null) {
+      _absensi = _absensiModel;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,15 +47,21 @@ class _AbsensiSummaryScreenState extends State<AbsensiSummaryScreen> {
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
         title: StreamBuilder(
             stream: authProvider.user,
             builder: (context, snapshot) {
               // final UserModel user = snapshot.data;
-              return Text('Summary Absensi');
+              return Text('Absensi');
             }),
         actions: <Widget>[],
       ),
-      drawer: AppDrawer(),
+      // drawer: AppDrawer(),
       body: WillPopScope(
           onWillPop: () async => false, child: _buildBodySection(context)),
     );
@@ -49,28 +70,35 @@ class _AbsensiSummaryScreenState extends State<AbsensiSummaryScreen> {
   Widget _buildBodySection(BuildContext context) {
     final firestoreDatabase =
         Provider.of<FirestoreDatabase>(context, listen: false);
-    final appUserProvider =
-        Provider.of<AppAccessLevelProvider>(context, listen: false);
+    // final appUserProvider =
+    //     Provider.of<AppAccessLevelProvider>(context, listen: false);
 
     return StreamBuilder(
-        stream: firestoreDatabase.absensisStream(),
+        stream: firestoreDatabase.absensiModelQbyUserIdStream(
+            query1: _absensi.appUserUid),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             List<AbsensiModel> absensi = snapshot.data;
-            // absensi.sort((a, b) => b.absensiId.compareTo(a.absensiId));
+            absensi.sort((a, b) => b.absensiId.compareTo(a.absensiId));
             if (absensi.isNotEmpty) {
               return Container(
                 child: ListView.separated(
                   itemCount: absensi.length,
                   itemBuilder: (context, index) {
                     return ListTile(
-                      title: Text(absensi[index].absensiUserName),
-                      subtitle: Text('-'),
-                      onTap: () {
-                        Navigator.of(context).pushNamed(
-                            Routes.absensi_summary_detail,
-                            arguments: absensi[index]);
-                      },
+                      title: Text(DateFormat("EEEE, d MMMM yyyy", "id_ID")
+                          .format(DateTime.parse(
+                              absensi[index].absensiWaktuDatang))),
+                      subtitle: Text(absensi[index].absensiPlace +
+                          ' - Datang ' +
+                          DateFormat("HH:mm:ss", "id_ID").format(DateTime.parse(
+                              absensi[index].absensiWaktuDatang)) +
+                          '   |   Pulang ' +
+                          (absensi[index].absensiWaktuPulang == '2000-01-01'
+                              ? '-'
+                              : DateFormat("HH:mm:ss", "id_ID").format(
+                                  DateTime.parse(
+                                      absensi[index].absensiWaktuPulang)))),
                     );
                   },
                   separatorBuilder: (context, index) {
