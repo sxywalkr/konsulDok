@@ -47,6 +47,16 @@ class AppDrawer extends StatelessWidget {
             if (appUserRole == 'Admin' || appUserRole == 'Debug')
               ListTile(
                 leading: Icon(Icons.home),
+                title: Text('Summary Absensi'),
+                onTap: () {
+                  Navigator.of(context)
+                      .pushReplacementNamed(Routes.absensi_summary);
+                },
+              ),
+            if (appUserRole == 'Admin' || appUserRole == 'Debug') Divider(),
+            if (appUserRole == 'Admin' || appUserRole == 'Debug')
+              ListTile(
+                leading: Icon(Icons.home),
                 title: Text('Manage Project'),
                 onTap: () {
                   Navigator.of(context).pushReplacementNamed(Routes.project);

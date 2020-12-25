@@ -151,6 +151,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 'appUserDisplayName': _emailController.text,
                                 'appUserRole': 'User',
                                 'appUserFcmId': _fcmToken,
+                                'appUserFlagActivity':
+                                    'User Baru, menunggu approval',
+                                'appUserAlamat': '-',
+                                'appUserGender': '-',
+                                'appUserNoHape': '-',
                               },
                             );
 

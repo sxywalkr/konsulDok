@@ -261,8 +261,11 @@ class EditProjectProgressScreenState extends State<EditProjectProgressScreen> {
             // print('appUser.isNotEmpty');
             final aa = <String>['---'];
             appUser.forEach((element) {
-              aa.add(element.appUserDisplayName);
+              aa.add(element.appUserDisplayName == null
+                  ? element.appUserEmail
+                  : element.appUserDisplayName);
             });
+            // print(aa);
             return DropdownButton<String>(
               value: _appUserDisplayNameController.text,
               onChanged: (String newValue) async {

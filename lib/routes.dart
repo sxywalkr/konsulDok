@@ -15,6 +15,7 @@ import 'package:taskmon/ui/user/user_profile_screen.dart';
 import 'package:taskmon/ui/project/projects_screen.dart';
 import 'package:taskmon/ui/project/create_edit_project_screen.dart';
 import 'package:taskmon/ui/absensi/absensi_screen.dart';
+import 'package:taskmon/ui/absensi/absensi_summary_screen.dart';
 import 'package:taskmon/ui/project/edit_project_progress_screen.dart';
 import 'package:taskmon/ui/projectFeed/project_feeds_screen.dart';
 import 'package:taskmon/ui/projectFeed/create_edit_project_feed_screen.dart';
@@ -49,6 +50,7 @@ class Routes {
   static const String dropdown_flutter = '/dropdown_flutter';
   static const String absensi = '/absensi';
   static const String absensi_user = '/absensi_user';
+  static const String absensi_summary = '/absensi_summary';
   static const String edit_project_progress = '/edit_project_progress';
   static const String project_feed = '/project_feed';
   static const String create_edit_project_feed = '/create_edit_project_feed';
@@ -73,6 +75,7 @@ class Routes {
     create_edit_project: (BuildContext context) => CreateEditProjectScreen(),
     dropdown_flutter: (BuildContext context) => DropDownFlutter(),
     absensi: (BuildContext context) => AbsensiScreen(),
+    absensi_summary: (BuildContext context) => AbsensiSummaryScreen(),
     absensi_user: (BuildContext context) => AbsensiUserScreen(),
     edit_project_progress: (BuildContext context) =>
         EditProjectProgressScreen(),

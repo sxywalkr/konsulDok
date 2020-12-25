@@ -7,6 +7,7 @@ import 'package:taskmon/routes.dart';
 import 'package:taskmon/ui/setting/setting_language_actions.dart';
 import 'package:provider/provider.dart';
 import 'package:taskmon/ui/drawer/app_drawer.dart';
+import 'package:taskmon/providers/app_access_level_provider.dart';
 
 class SettingScreen extends StatelessWidget {
   @override
@@ -21,6 +22,8 @@ class SettingScreen extends StatelessWidget {
   }
 
   Widget _buildLayoutSection(BuildContext context) {
+    final appUserProvider =
+        Provider.of<AppAccessLevelProvider>(context, listen: false);
     return ListView(
       children: <Widget>[
         // ListTile(
@@ -45,16 +48,18 @@ class SettingScreen extends StatelessWidget {
         //       .translate("settingLanguageListSubTitle")),
         //   trailing: SettingLanguageActions(),
         // ),
-        ListTile(
-          title: Text('Mengatur Koordinat Kantor'),
-          subtitle: Text('Klik tombol'),
-          trailing: RaisedButton(
-              onPressed: () {
-                Navigator.of(context)
-                    .pushNamed(Routes.create_edit_absensi_setting);
-              },
-              child: Text('Atur')),
-        ),
+        if (appUserProvider.appxUserRole == 'Debug' ||
+            appUserProvider.appxUserRole == 'Admin')
+          ListTile(
+            title: Text('Mengatur Koordinat Kantor'),
+            subtitle: Text('Klik tombol'),
+            trailing: RaisedButton(
+                onPressed: () {
+                  Navigator.of(context)
+                      .pushNamed(Routes.create_edit_absensi_setting);
+                },
+                child: Text('Atur')),
+          ),
         ListTile(
           title: Text('Logout'),
           subtitle: Text('Keluar dari aplikasi'),

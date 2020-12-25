@@ -7,6 +7,7 @@ class AbsensiModel {
   String absensiLat;
   String absensiStatus;
   String absensiPlace;
+  String absensiUserName;
 
   AbsensiModel({
     this.absensiId,
@@ -17,6 +18,7 @@ class AbsensiModel {
     this.absensiLat,
     this.absensiStatus,
     this.absensiPlace,
+    this.absensiUserName,
   });
 
   factory AbsensiModel.fromMap(Map<String, dynamic> data, String documentId) {
@@ -32,6 +34,7 @@ class AbsensiModel {
     String absensiLat = data['absensiLat'];
     String absensiStatus = data['absensiStatus'];
     String absensiPlace = data['absensiPlace'];
+    String absensiUserName = data['absensiUserName'];
 
     return AbsensiModel(
       absensiId: absensiId,
@@ -42,6 +45,7 @@ class AbsensiModel {
       absensiLat: absensiLat,
       absensiStatus: absensiStatus,
       absensiPlace: absensiPlace,
+      absensiUserName: absensiUserName,
     );
   }
 
@@ -55,6 +59,7 @@ class AbsensiModel {
       'absensiLat': absensiLat,
       'absensiStatus': absensiStatus,
       'absensiPlace': absensiPlace,
+      'absensiUserName': absensiUserName,
     };
   }
 }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 // import 'package:taskmon/app_localizations.dart';
 import 'package:taskmon/models/project_model.dart';
 // import 'package:taskmon/models/user_model.dart';
-import 'package:taskmon/providers/auth_provider.dart';
+// import 'package:taskmon/providers/auth_provider.dart';
 import 'package:taskmon/routes.dart';
 import 'package:taskmon/services/firestore_database.dart';
 // import 'package:taskmon/ui/drawer/app_drawer.dart';

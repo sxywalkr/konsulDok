@@ -324,6 +324,7 @@ class _AbsensiScreenState extends State<AbsensiScreen> {
           absensiPlace: _absensiPlace == 'Site'
               ? 'Site, Waiting approval'
               : _absensiPlace,
+          absensiUserName: appUserProvider.appxUser.appUserDisplayName,
         ),
       );
 

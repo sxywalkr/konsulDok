@@ -53,12 +53,26 @@ class Home21Screen extends StatelessWidget {
             //     .toString()),
 
             Container(
-              color: Colors.black12,
+              // color: Colors.black12,
+              margin: EdgeInsets.all(12),
               height: MediaQuery.of(context).size.height -
                   MediaQuery.of(context).padding.top -
                   MediaQuery.of(context).padding.bottom -
                   kToolbarHeight -
-                  (((MediaQuery.of(context).size.height / 3) * 2)),
+                  (((MediaQuery.of(context).size.height / 3) * 2)) -
+                  50,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 1,
+                    blurRadius: 7,
+                    offset: Offset(0, 3),
+                  )
+                ],
+                borderRadius: BorderRadius.circular(15.0),
+              ),
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: ProjectWidgetScreen(),
@@ -73,12 +87,25 @@ class Home21Screen extends StatelessWidget {
               ),
             ),
             Container(
-              color: Colors.black12,
+              // color: Colors.black12,
+              margin: EdgeInsets.all(12),
               height: MediaQuery.of(context).size.height -
                   MediaQuery.of(context).padding.top -
                   MediaQuery.of(context).padding.bottom -
                   kToolbarHeight -
                   (((MediaQuery.of(context).size.height / 3) * 1.3)),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 1,
+                    blurRadius: 7,
+                    offset: Offset(0, 3),
+                  )
+                ],
+                borderRadius: BorderRadius.circular(15.0),
+              ),
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: ProjectFeedWidgetScreen(),
