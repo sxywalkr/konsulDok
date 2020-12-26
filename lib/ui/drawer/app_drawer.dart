@@ -27,7 +27,7 @@ class AppDrawer extends StatelessWidget {
             ),
             Divider(),
             ListTile(
-              leading: Icon(Icons.home),
+              leading: Icon(Icons.access_alarm),
               title: Text('Absensi Saya'),
               onTap: () {
                 Navigator.of(context).pushReplacementNamed(Routes.absensi);
@@ -36,7 +36,7 @@ class AppDrawer extends StatelessWidget {
             if (appUserRole == 'Admin' || appUserRole == 'Debug') Divider(),
             if (appUserRole == 'Admin' || appUserRole == 'Debug')
               ListTile(
-                leading: Icon(Icons.home),
+                leading: Icon(Icons.access_alarm),
                 title: Text('Manage Absensi'),
                 onTap: () {
                   Navigator.of(context)
@@ -46,7 +46,7 @@ class AppDrawer extends StatelessWidget {
             if (appUserRole == 'Admin' || appUserRole == 'Debug') Divider(),
             if (appUserRole == 'Admin' || appUserRole == 'Debug')
               ListTile(
-                leading: Icon(Icons.home),
+                leading: Icon(Icons.access_alarm),
                 title: Text('Summary Absensi'),
                 onTap: () {
                   Navigator.of(context)
@@ -56,7 +56,7 @@ class AppDrawer extends StatelessWidget {
             if (appUserRole == 'Admin' || appUserRole == 'Debug') Divider(),
             if (appUserRole == 'Admin' || appUserRole == 'Debug')
               ListTile(
-                leading: Icon(Icons.home),
+                leading: Icon(Icons.perm_contact_cal),
                 title: Text('Manage Project'),
                 onTap: () {
                   Navigator.of(context).pushReplacementNamed(Routes.project);
@@ -65,7 +65,7 @@ class AppDrawer extends StatelessWidget {
             if (appUserRole == 'Admin' || appUserRole == 'Debug') Divider(),
             if (appUserRole == 'Admin' || appUserRole == 'Debug')
               ListTile(
-                leading: Icon(Icons.home),
+                leading: Icon(Icons.supervised_user_circle),
                 title: Text('Manage User'),
                 onTap: () {
                   Navigator.of(context).pushReplacementNamed(Routes.appUser);
@@ -83,7 +83,7 @@ class AppDrawer extends StatelessWidget {
             //   ),
             Divider(),
             ListTile(
-              leading: Icon(Icons.settings),
+              leading: Icon(Icons.supervised_user_circle),
               title: Text('User Profile'),
               onTap: () {
                 Navigator.of(context).pushReplacementNamed(Routes.user_profile,

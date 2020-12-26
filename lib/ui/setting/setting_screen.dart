@@ -51,8 +51,8 @@ class SettingScreen extends StatelessWidget {
         if (appUserProvider.appxUserRole == 'Debug' ||
             appUserProvider.appxUserRole == 'Admin')
           ListTile(
-            title: Text('Mengatur Koordinat Kantor'),
-            subtitle: Text('Klik tombol'),
+            title: Text('Pengaturan Absensi'),
+            subtitle: Text('Koordinat kantor, Radius dan Jumlah Jam Kerja'),
             trailing: RaisedButton(
                 onPressed: () {
                   Navigator.of(context)

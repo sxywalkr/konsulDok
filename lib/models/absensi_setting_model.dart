@@ -2,7 +2,7 @@ class AbsensiSettingModel {
   String absensiSettingId;
   String absensiSettingOfficeLong;
   String absensiSettingOfficeLat;
-  String absensiSettingHomeLong;
+  String absensiSettingOfficeWorkHour;
   String absensiSettingHomeLat;
   String absensiSettingSiteLong;
   String absensiSettingSiteLat;
@@ -14,7 +14,7 @@ class AbsensiSettingModel {
     this.absensiSettingId,
     this.absensiSettingOfficeLong,
     this.absensiSettingOfficeLat,
-    this.absensiSettingHomeLong,
+    this.absensiSettingOfficeWorkHour,
     this.absensiSettingHomeLat,
     this.absensiSettingSiteLong,
     this.absensiSettingSiteLat,
@@ -32,7 +32,7 @@ class AbsensiSettingModel {
     String absensiSettingId = data['absensiSettingId'];
     String absensiSettingOfficeLong = data['absensiSettingOfficeLong'];
     String absensiSettingOfficeLat = data['absensiSettingOfficeLat'];
-    String absensiSettingHomeLong = data['absensiSettingHomeLong'];
+    String absensiSettingOfficeWorkHour = data['absensiSettingOfficeWorkHour'];
     String absensiSettingHomeLat = data['absensiSettingHomeLat'];
     String absensiSettingSiteLong = data['absensiSettingSiteLong'];
     String absensiSettingSiteLat = data['absensiSettingSiteLat'];
@@ -44,7 +44,7 @@ class AbsensiSettingModel {
       absensiSettingId: absensiSettingId,
       absensiSettingOfficeLong: absensiSettingOfficeLong,
       absensiSettingOfficeLat: absensiSettingOfficeLat,
-      absensiSettingHomeLong: absensiSettingHomeLong,
+      absensiSettingOfficeWorkHour: absensiSettingOfficeWorkHour,
       absensiSettingHomeLat: absensiSettingHomeLat,
       absensiSettingSiteLong: absensiSettingSiteLong,
       absensiSettingSiteLat: absensiSettingSiteLat,
@@ -59,7 +59,7 @@ class AbsensiSettingModel {
       'absensiSettingId': absensiSettingId,
       'absensiSettingOfficeLong': absensiSettingOfficeLong,
       'absensiSettingOfficeLat': absensiSettingOfficeLat,
-      'absensiSettingHomeLong': absensiSettingHomeLong,
+      'absensiSettingOfficeWorkHour': absensiSettingOfficeWorkHour,
       'absensiSettingHomeLat': absensiSettingHomeLat,
       'absensiSettingSiteLong': absensiSettingSiteLong,
       'absensiSettingSiteLat': absensiSettingSiteLat,

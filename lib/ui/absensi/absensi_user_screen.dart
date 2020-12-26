@@ -98,7 +98,10 @@ class AbsensiUserScreen extends StatelessWidget {
                       title: Text(appUsers[index].appUserEmail),
                       subtitle: Text('${appUsers[index].appUserFlagActivity}'),
                       trailing: appUsers[index].appUserRole == 'Debug' ||
-                              appUsers[index].appUserRole == 'Debug'
+                              appUsers[index].appUserRole == 'Debug' ||
+                              !appUsers[index]
+                                  .appUserFlagActivity
+                                  .contains('Waiting')
                           ? null
                           : _setUserRole(context, appUsers[index]),
                       onTap: () {

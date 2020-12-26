@@ -156,6 +156,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 'appUserAlamat': '-',
                                 'appUserGender': '-',
                                 'appUserNoHape': '-',
+                                'appUserTotalJamKerja': '0',
                               },
                             );
 

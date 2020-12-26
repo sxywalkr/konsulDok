@@ -349,11 +349,9 @@ class _AbsensiScreenState extends State<AbsensiScreen> {
         data1 = ds.data;
       }
       // print(data1['absensiId']);
+      final dtPulang = DateTime.now().toIso8601String();
       dbReference.collection('absensi').document(data1['absensiId']).updateData(
-        {
-          'absensiWaktuPulang': DateTime.now().toIso8601String(),
-          'absensiStatus': 'Closed'
-        },
+        {'absensiWaktuPulang': dtPulang, 'absensiStatus': 'Closed'},
       );
 
       dbReference
@@ -362,6 +360,12 @@ class _AbsensiScreenState extends State<AbsensiScreen> {
           .updateData(
         {
           'appUserFlagActivity': 'Tidak Bekerja',
+          'appUserTotalJamKerja': (int.parse(
+                      appUserProvider.appxUser.appUserTotalJamKerja) +
+                  (DateTime.parse(dtPulang)
+                      .difference(DateTime.parse(data1['absensiWaktuDatang']))
+                      .inMinutes))
+              .toString(),
         },
       );
     }

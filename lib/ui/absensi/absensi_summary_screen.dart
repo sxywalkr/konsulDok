@@ -49,27 +49,31 @@ class _AbsensiSummaryScreenState extends State<AbsensiSummaryScreen> {
   Widget _buildBodySection(BuildContext context) {
     final firestoreDatabase =
         Provider.of<FirestoreDatabase>(context, listen: false);
-    final appUserProvider =
-        Provider.of<AppAccessLevelProvider>(context, listen: false);
+    // final appUserProvider =
+    //     Provider.of<AppAccessLevelProvider>(context, listen: false);
 
     return StreamBuilder(
-        stream: firestoreDatabase.absensisStream(),
+        stream: firestoreDatabase.appUsersStream(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            List<AbsensiModel> absensi = snapshot.data;
-            // absensi.sort((a, b) => b.absensiId.compareTo(a.absensiId));
-            if (absensi.isNotEmpty) {
+            List<AppUserModel> appUser = snapshot.data;
+            // appUser.sort((a, b) => b.absensiId.compareTo(a.absensiId));
+            if (appUser.isNotEmpty) {
               return Container(
                 child: ListView.separated(
-                  itemCount: absensi.length,
+                  itemCount: appUser.length,
                   itemBuilder: (context, index) {
                     return ListTile(
-                      title: Text(absensi[index].absensiUserName),
-                      subtitle: Text('-'),
+                      title: Text(appUser[index].appUserDisplayName == null
+                          ? appUser[index].appUserEmail
+                          : appUser[index].appUserDisplayName),
+                      subtitle: Text('Total Jam Kerja : ' +
+                          durationToString(
+                              int.parse(appUser[index].appUserTotalJamKerja))),
                       onTap: () {
                         Navigator.of(context).pushNamed(
                             Routes.absensi_summary_detail,
-                            arguments: absensi[index]);
+                            arguments: appUser[index].appUserUid);
                       },
                     );
                   },
@@ -92,5 +96,11 @@ class _AbsensiSummaryScreenState extends State<AbsensiSummaryScreen> {
           }
           return Center(child: CircularProgressIndicator());
         });
+  }
+
+  String durationToString(int minutes) {
+    var d = Duration(minutes: minutes);
+    List<String> parts = d.toString().split(':');
+    return '${parts[0].padLeft(2, '0')}:${parts[1].padLeft(2, '0')}';
   }
 }

@@ -8,6 +8,7 @@ class AppUserModel {
   String appUserGender;
   String appUserAlamat;
   String appUserFlagActivity;
+  String appUserTotalJamKerja;
 
   AppUserModel({
     this.appUserUid,
@@ -19,6 +20,7 @@ class AppUserModel {
     this.appUserGender,
     this.appUserAlamat,
     this.appUserFlagActivity,
+    this.appUserTotalJamKerja,
   });
 
   AppUserModel.fromJson(Map<String, dynamic> parsedJSON)
@@ -30,7 +32,8 @@ class AppUserModel {
         appUserNoHape = parsedJSON['appUserNoHape'],
         appUserGender = parsedJSON['appUserGender'],
         appUserAlamat = parsedJSON['appUserAlamat'],
-        appUserFlagActivity = parsedJSON['appUserFlagActivity'];
+        appUserFlagActivity = parsedJSON['appUserFlagActivity'],
+        appUserTotalJamKerja = parsedJSON['appUserTotalJamKerja'];
 
   factory AppUserModel.fromMap(Map<String, dynamic> data, String documentId) {
     if (data == null) {
@@ -46,6 +49,7 @@ class AppUserModel {
     String appUserGender = data['appUserGender'];
     String appUserAlamat = data['appUserAlamat'];
     String appUserFlagActivity = data['appUserFlagActivity'];
+    String appUserTotalJamKerja = data['appUserTotalJamKerja'];
 
     return AppUserModel(
       appUserUid: appUserUid,
@@ -57,6 +61,7 @@ class AppUserModel {
       appUserGender: appUserGender,
       appUserAlamat: appUserAlamat,
       appUserFlagActivity: appUserFlagActivity,
+      appUserTotalJamKerja: appUserTotalJamKerja,
     );
   }
 
@@ -71,6 +76,7 @@ class AppUserModel {
       'appUserGender': appUserGender,
       'appUserAlamat': appUserAlamat,
       'appUserFlagActivity': appUserFlagActivity,
+      'appUserTotalJamKerja': appUserTotalJamKerja,
     };
   }
 }

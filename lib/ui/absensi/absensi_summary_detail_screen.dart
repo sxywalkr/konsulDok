@@ -26,15 +26,20 @@ class _AbsensiSummaryDetailScreenState
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   AbsensiModel _absensi;
+  String appUid;
 
   @override
-  void didChangeDependencies() async {
+  void didChangeDependencies() {
     super.didChangeDependencies();
 
-    final AbsensiModel _absensiModel =
-        ModalRoute.of(context).settings.arguments;
-    if (_absensiModel != null) {
-      _absensi = _absensiModel;
+    // final AbsensiModel _absensiModel =
+    //     ModalRoute.of(context).settings.arguments;
+    // if (_absensiModel != null) {
+    //   _absensi = _absensiModel;
+    // }
+    final String _appUid = ModalRoute.of(context).settings.arguments;
+    if (_appUid != null) {
+      appUid = _appUid;
     }
   }
 
@@ -57,7 +62,7 @@ class _AbsensiSummaryDetailScreenState
             stream: authProvider.user,
             builder: (context, snapshot) {
               // final UserModel user = snapshot.data;
-              return Text('Absensi');
+              return Text('Absensi Summary Detail');
             }),
         actions: <Widget>[],
       ),
@@ -74,11 +79,11 @@ class _AbsensiSummaryDetailScreenState
     //     Provider.of<AppAccessLevelProvider>(context, listen: false);
 
     return StreamBuilder(
-        stream: firestoreDatabase.absensiModelQbyUserIdStream(
-            query1: _absensi.appUserUid),
+        stream: firestoreDatabase.absensiModelQbyUserIdStream(query1: appUid),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             List<AbsensiModel> absensi = snapshot.data;
+
             absensi.sort((a, b) => b.absensiId.compareTo(a.absensiId));
             if (absensi.isNotEmpty) {
               return Container(
@@ -86,20 +91,22 @@ class _AbsensiSummaryDetailScreenState
                   itemCount: absensi.length,
                   itemBuilder: (context, index) {
                     return ListTile(
-                      title: Text(DateFormat("EEEE, d MMMM yyyy", "id_ID")
-                          .format(DateTime.parse(
-                              absensi[index].absensiWaktuDatang))),
-                      subtitle: Text(absensi[index].absensiPlace +
-                          ' - Datang ' +
-                          DateFormat("HH:mm:ss", "id_ID").format(DateTime.parse(
-                              absensi[index].absensiWaktuDatang)) +
-                          '   |   Pulang ' +
-                          (absensi[index].absensiWaktuPulang == '2000-01-01'
-                              ? '-'
-                              : DateFormat("HH:mm:ss", "id_ID").format(
-                                  DateTime.parse(
-                                      absensi[index].absensiWaktuPulang)))),
-                    );
+                        title: Text(DateFormat("EEEE, d MMMM yyyy", "id_ID").format(
+                            DateTime.parse(absensi[index].absensiWaktuDatang))),
+                        subtitle: Text(absensi[index].absensiPlace +
+                            ' - Datang ' +
+                            DateFormat("HH:mm:ss", "id_ID").format(DateTime.parse(
+                                absensi[index].absensiWaktuDatang)) +
+                            '   |   Pulang ' +
+                            (absensi[index].absensiWaktuPulang == '2000-01-01'
+                                ? '-'
+                                : DateFormat("HH:mm:ss", "id_ID").format(
+                                    DateTime.parse(
+                                        absensi[index].absensiWaktuPulang)))),
+                        leading: Text(absensi[index].absensiWaktuPulang ==
+                                '2000-01-01'
+                            ? durationToString(DateTime.now().difference(DateTime.parse(absensi[index].absensiWaktuDatang)).inMinutes)
+                            : durationToString(DateTime.parse(absensi[index].absensiWaktuPulang).difference(DateTime.parse(absensi[index].absensiWaktuDatang)).inMinutes)));
                   },
                   separatorBuilder: (context, index) {
                     return Divider(height: 0.5);
@@ -120,5 +127,11 @@ class _AbsensiSummaryDetailScreenState
           }
           return Center(child: CircularProgressIndicator());
         });
+  }
+
+  String durationToString(int minutes) {
+    var d = Duration(minutes: minutes);
+    List<String> parts = d.toString().split(':');
+    return '${parts[0].padLeft(2, '0')}:${parts[1].padLeft(2, '0')}';
   }
 }

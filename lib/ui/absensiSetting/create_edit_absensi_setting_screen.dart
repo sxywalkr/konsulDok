@@ -24,7 +24,7 @@ class _CreateEditAbsensiSettingScreenState
   TextEditingController _absensiSettingIdController;
   TextEditingController _absensiSettingOfficeLongController;
   TextEditingController _absensiSettingOfficeLatController;
-  TextEditingController _absensiSettingHomeLongController;
+  TextEditingController _absensiSettingOfficeWorkHourController;
   TextEditingController _absensiSettingHomeLatController;
   TextEditingController _absensiSettingSiteLongController;
   TextEditingController _absensiSettingSiteLatController;
@@ -80,9 +80,9 @@ class _CreateEditAbsensiSettingScreenState
         text: _absensiSetting != null
             ? _absensiSetting.absensiSettingOfficeLat
             : '');
-    _absensiSettingHomeLongController = TextEditingController(
+    _absensiSettingOfficeWorkHourController = TextEditingController(
         text: _absensiSetting != null
-            ? _absensiSetting.absensiSettingHomeLong
+            ? _absensiSetting.absensiSettingOfficeWorkHour
             : '');
     _absensiSettingHomeLatController = TextEditingController(
         text: _absensiSetting != null
@@ -143,8 +143,8 @@ class _CreateEditAbsensiSettingScreenState
                       _absensiSettingOfficeLongController.text,
                   absensiSettingOfficeLat:
                       _absensiSettingOfficeLatController.text,
-                  absensiSettingHomeLong:
-                      _absensiSettingHomeLongController.text,
+                  absensiSettingOfficeWorkHour:
+                      _absensiSettingOfficeWorkHourController.text,
                   absensiSettingHomeLat: _absensiSettingHomeLatController.text,
                   absensiSettingSiteLong:
                       _absensiSettingSiteLongController.text,
@@ -174,7 +174,7 @@ class _CreateEditAbsensiSettingScreenState
     _absensiSettingIdController.dispose();
     _absensiSettingOfficeLongController.dispose();
     _absensiSettingOfficeLatController.dispose();
-    _absensiSettingHomeLongController.dispose();
+    _absensiSettingOfficeWorkHourController.dispose();
     _absensiSettingHomeLatController.dispose();
     _absensiSettingSiteLongController.dispose();
     _absensiSettingSiteLatController.dispose();
@@ -266,6 +266,23 @@ class _CreateEditAbsensiSettingScreenState
                             color: Theme.of(context).iconTheme.color,
                             width: 2)),
                     labelText: 'Home Radius (m)',
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                child: TextFormField(
+                  controller: _absensiSettingOfficeWorkHourController,
+                  // enabled: _absensiSetting != null ? false : true,
+                  // style: Theme.of(context).textTheme.body1,
+                  // validator: (value) =>
+                  //     value.isEmpty ? 'Nama Barang tidak boleh kosong' : null,
+                  decoration: InputDecoration(
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Theme.of(context).iconTheme.color,
+                            width: 2)),
+                    labelText: 'Total Jam Kerja',
                   ),
                 ),
               ),
