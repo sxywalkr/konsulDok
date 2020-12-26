@@ -1,31 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:taskmon/ui/auth/register_screen.dart';
-import 'package:taskmon/ui/auth/sign_in_screen.dart';
-import 'package:taskmon/ui/setting/setting_screen.dart';
-import 'package:taskmon/ui/splash/splash_screen.dart';
-import 'package:taskmon/ui/todo/create_edit_todo_screen.dart';
-import 'package:taskmon/ui/todo/todos_screen.dart';
+import 'package:konsuldok/ui/auth/register_screen.dart';
+import 'package:konsuldok/ui/auth/sign_in_screen.dart';
+import 'package:konsuldok/ui/setting/setting_screen.dart';
+import 'package:konsuldok/ui/splash/splash_screen.dart';
+import 'package:konsuldok/ui/todo/create_edit_todo_screen.dart';
+import 'package:konsuldok/ui/todo/todos_screen.dart';
 
-import 'package:taskmon/ui/home2/home2_screen.dart';
-import 'package:taskmon/ui/appUser/appUsers_screen.dart';
-import 'package:taskmon/ui/home2/home21_screen.dart';
-import 'package:taskmon/ui/user/user_screen.dart';
-import 'package:taskmon/ui/user/create_edit_user_screen.dart';
-import 'package:taskmon/ui/user/user_profile_screen.dart';
-import 'package:taskmon/ui/project/projects_screen.dart';
-import 'package:taskmon/ui/project/create_edit_project_screen.dart';
-import 'package:taskmon/ui/absensi/absensi_screen.dart';
-import 'package:taskmon/ui/absensi/absensi_summary_screen.dart';
-import 'package:taskmon/ui/absensi/absensi_summary_detail_screen.dart';
-import 'package:taskmon/ui/project/edit_project_progress_screen.dart';
-import 'package:taskmon/ui/projectFeed/project_feeds_screen.dart';
-import 'package:taskmon/ui/projectFeed/create_edit_project_feed_screen.dart';
-import 'package:taskmon/ui/absensiSetting/absensi_setting_screen.dart';
-import 'package:taskmon/ui/absensiSetting/create_edit_absensi_setting_screen.dart';
-import 'package:taskmon/ui/absensi/absensi_user_screen.dart';
+import 'package:konsuldok/ui/home2/home2_screen.dart';
+import 'package:konsuldok/ui/appUser/appUsers_screen.dart';
+import 'package:konsuldok/ui/home2/home21_screen.dart';
+import 'package:konsuldok/ui/user/user_screen.dart';
+import 'package:konsuldok/ui/user/create_edit_user_screen.dart';
+import 'package:konsuldok/ui/user/user_profile_screen.dart';
+import 'package:konsuldok/ui/project/projects_screen.dart';
+import 'package:konsuldok/ui/project/create_edit_project_screen.dart';
+import 'package:konsuldok/ui/absensi/absensi_screen.dart';
+import 'package:konsuldok/ui/absensi/absensi_summary_screen.dart';
+import 'package:konsuldok/ui/absensi/absensi_summary_detail_screen.dart';
+import 'package:konsuldok/ui/project/edit_project_progress_screen.dart';
+import 'package:konsuldok/ui/projectFeed/project_feeds_screen.dart';
+import 'package:konsuldok/ui/projectFeed/create_edit_project_feed_screen.dart';
+import 'package:konsuldok/ui/absensiSetting/absensi_setting_screen.dart';
+import 'package:konsuldok/ui/absensiSetting/create_edit_absensi_setting_screen.dart';
+import 'package:konsuldok/ui/absensi/absensi_user_screen.dart';
 
 //uiXample
-import 'package:taskmon/ui/uiXample/dropdown.dart';
+import 'package:konsuldok/ui/uiXample/dropdown.dart';
 
 class Routes {
   Routes._(); //this is to prevent anyone from instantiate this object

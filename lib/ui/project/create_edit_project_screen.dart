@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:taskmon/models/app_user_model.dart';
-import 'package:taskmon/models/project_model.dart';
-import 'package:taskmon/services/firestore_database.dart';
+import 'package:konsuldok/models/app_user_model.dart';
+import 'package:konsuldok/models/project_model.dart';
+import 'package:konsuldok/services/firestore_database.dart';
 import 'package:provider/provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 

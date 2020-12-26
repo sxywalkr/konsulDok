@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:taskmon/ui/drawer/app_drawer.dart';
-import 'package:taskmon/ui/widget/user_hero_widget.dart';
+import 'package:konsuldok/ui/drawer/app_drawer.dart';
+import 'package:konsuldok/ui/widget/user_hero_widget.dart';
 
 class UserScreen extends StatelessWidget {
   UserScreen({

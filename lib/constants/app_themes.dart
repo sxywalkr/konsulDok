@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:taskmon/constants/app_font_family.dart';
+import 'package:konsuldok/constants/app_font_family.dart';
 
 class AppThemes {
   AppThemes._();

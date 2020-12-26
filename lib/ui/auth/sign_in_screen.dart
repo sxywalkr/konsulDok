@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:taskmon/app_localizations.dart';
-// import 'package:taskmon/flavor.dart';
-import 'package:taskmon/providers/auth_provider.dart';
-import 'package:taskmon/routes.dart';
+import 'package:konsuldok/app_localizations.dart';
+// import 'package:konsuldok/flavor.dart';
+import 'package:konsuldok/providers/auth_provider.dart';
+import 'package:konsuldok/routes.dart';
 import 'package:provider/provider.dart';
 
 class SignInScreen extends StatefulWidget {
@@ -63,7 +63,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     padding: const EdgeInsets.all(16.0),
                     child: Center(
                       child: Text(
-                        'TaskMon',
+                        'konsuldok',
                         style: Theme.of(context).textTheme.headline4,
                       ),
                     )),

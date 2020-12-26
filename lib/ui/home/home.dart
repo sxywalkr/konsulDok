@@ -2,8 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:taskmon/ui/splash/splash_screen.dart';
-import 'package:taskmon/providers/app_access_level_provider.dart';
+import 'package:konsuldok/ui/splash/splash_screen.dart';
+import 'package:konsuldok/providers/app_access_level_provider.dart';
 
 class HomeScreen extends StatelessWidget {
   Future<void> _cekRole(BuildContext context) async {

@@ -2,15 +2,15 @@ import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:meta/meta.dart';
-import 'package:taskmon/models/todo_model.dart';
-import 'package:taskmon/services/firestore_path.dart';
-import 'package:taskmon/services/firestore_service.dart';
+import 'package:konsuldok/models/todo_model.dart';
+import 'package:konsuldok/services/firestore_path.dart';
+import 'package:konsuldok/services/firestore_service.dart';
 import 'package:uuid/uuid.dart';
-import 'package:taskmon/models/app_user_model.dart';
-import 'package:taskmon/models/absensi_setting_model.dart';
-import 'package:taskmon/models/absensi_model.dart';
-import 'package:taskmon/models/project_model.dart';
-import 'package:taskmon/models/project_feed_model.dart';
+import 'package:konsuldok/models/app_user_model.dart';
+import 'package:konsuldok/models/absensi_setting_model.dart';
+import 'package:konsuldok/models/absensi_model.dart';
+import 'package:konsuldok/models/project_model.dart';
+import 'package:konsuldok/models/project_feed_model.dart';
 
 String documentIdFromCurrentDate() => DateTime.now().toIso8601String();
 String generateUid() => Uuid().v4();

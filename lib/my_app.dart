@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:taskmon/app_localizations.dart';
-import 'package:taskmon/auth_widget_builder.dart';
-import 'package:taskmon/constants/app_themes.dart';
-import 'package:taskmon/flavor.dart';
-import 'package:taskmon/models/user_model.dart';
-import 'package:taskmon/providers/auth_provider.dart';
-import 'package:taskmon/providers/language_provider.dart';
-import 'package:taskmon/providers/theme_provider.dart';
-import 'package:taskmon/routes.dart';
-import 'package:taskmon/services/firestore_database.dart';
-import 'package:taskmon/ui/auth/sign_in_screen.dart';
-import 'package:taskmon/ui/home/home.dart';
+import 'package:konsuldok/app_localizations.dart';
+import 'package:konsuldok/auth_widget_builder.dart';
+import 'package:konsuldok/constants/app_themes.dart';
+import 'package:konsuldok/flavor.dart';
+import 'package:konsuldok/models/user_model.dart';
+import 'package:konsuldok/providers/auth_provider.dart';
+import 'package:konsuldok/providers/language_provider.dart';
+import 'package:konsuldok/providers/theme_provider.dart';
+import 'package:konsuldok/routes.dart';
+import 'package:konsuldok/services/firestore_database.dart';
+import 'package:konsuldok/ui/auth/sign_in_screen.dart';
+import 'package:konsuldok/ui/home/home.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -65,7 +65,8 @@ class MyApp extends StatelessWidget {
                     //user the first one from the list (in our case, that will be English)
                     return supportedLocales.first;
                   },
-                  title: 'TaskMon', // Provider.of<Flavor>(context).toString(),
+                  title:
+                      'konsuldok', // Provider.of<Flavor>(context).toString(),
                   routes: Routes.routes,
                   theme: AppThemes.lightTheme,
                   darkTheme: AppThemes.darkTheme,

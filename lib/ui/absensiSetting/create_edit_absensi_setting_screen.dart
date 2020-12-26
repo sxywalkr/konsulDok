@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-// import 'package:taskmon/models/project_model.dart';
+// import 'package:konsuldok/models/project_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:taskmon/services/firestore_database.dart';
+import 'package:konsuldok/services/firestore_database.dart';
 import 'package:provider/provider.dart';
-import 'package:taskmon/models/absensi_setting_model.dart';
-import 'package:taskmon/providers/app_access_level_provider.dart';
+import 'package:konsuldok/models/absensi_setting_model.dart';
+import 'package:konsuldok/providers/app_access_level_provider.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
-import 'package:taskmon/routes.dart';
+import 'package:konsuldok/routes.dart';
 
 class CreateEditAbsensiSettingScreen extends StatefulWidget {
   @override

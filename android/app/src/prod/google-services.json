@@ -1,15 +1,15 @@
 {
   "project_info": {
     "project_number": "8162444266",
-    "project_id": "taskmon-52a28",
-    "storage_bucket": "taskmon-52a28.appspot.com"
+    "project_id": "konsuldok-52a28",
+    "storage_bucket": "konsuldok-52a28.appspot.com"
   },
   "client": [
     {
       "client_info": {
         "mobilesdk_app_id": "1:8162444266:android:1ac96ede544e9556d06893",
         "android_client_info": {
-          "package_name": "com.sxywalkr.taskmon"
+          "package_name": "com.sxywalkr.konsuldok"
         }
       },
       "oauth_client": [

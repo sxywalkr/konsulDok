@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:taskmon/routes.dart';
+import 'package:konsuldok/routes.dart';
 import 'package:provider/provider.dart';
-import 'package:taskmon/providers/app_access_level_provider.dart';
+import 'package:konsuldok/providers/app_access_level_provider.dart';
 
 class AppDrawer extends StatelessWidget {
   @override
@@ -14,7 +14,7 @@ class AppDrawer extends StatelessWidget {
         child: Column(
           children: <Widget>[
             AppBar(
-              title: Text('TaskMon - $appUserRole'),
+              title: Text('konsuldok - $appUserRole'),
               automaticallyImplyLeading: false,
             ),
             Divider(),

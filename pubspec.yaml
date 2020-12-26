@@ -1,4 +1,4 @@
-name: taskmon
+name: konsuldok
 description: Sxy Developer App.
 
 # The following defines the version and build number for your application.
@@ -39,6 +39,7 @@ dependencies:
   adobe_xd: ^1.0.0+1
   intl: ^0.16.1
   geolocator: ^6.1.13
+  dash_chat: ^1.1.15
   
 dev_dependencies:
   flutter_test:

@@ -1,19 +1,19 @@
 // import 'dart:js';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
-import 'package:taskmon/models/absensi_model.dart';
-import 'package:taskmon/ui/drawer/app_drawer.dart';
-import 'package:taskmon/ui/widget/user_hero3_widget.dart';
-import 'package:taskmon/services/firestore_database.dart';
+import 'package:konsuldok/models/absensi_model.dart';
+import 'package:konsuldok/ui/drawer/app_drawer.dart';
+import 'package:konsuldok/ui/widget/user_hero3_widget.dart';
+import 'package:konsuldok/services/firestore_database.dart';
 import 'package:provider/provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:taskmon/providers/app_access_level_provider.dart';
-import 'package:taskmon/models/hec_antrian_model.dart';
+import 'package:konsuldok/providers/app_access_level_provider.dart';
+import 'package:konsuldok/models/hec_antrian_model.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
-import 'package:taskmon/routes.dart';
+import 'package:konsuldok/routes.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:taskmon/ui/project/project_widget_screen.dart';
-import 'package:taskmon/ui/projectFeed/project_feed_widget_screen.dart';
+import 'package:konsuldok/ui/project/project_widget_screen.dart';
+import 'package:konsuldok/ui/projectFeed/project_feed_widget_screen.dart';
 
 class Home21Screen extends StatelessWidget {
   Home21Screen({
@@ -23,7 +23,7 @@ class Home21Screen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('TaskMon'),
+        title: Text('konsuldok'),
       ),
       drawer: AppDrawer(),
       body: Container(
@@ -382,7 +382,7 @@ _confirmAbsensi(BuildContext context) {
       builder: (_) => PlatformAlertDialog(
             android: (_) => MaterialAlertDialogData(
                 backgroundColor: Theme.of(context).primaryColor),
-            title: Text('TaskMon'),
+            title: Text('konsuldok'),
             content: Text('Anda akan melakukan Absensi. Teruskan?'),
             actions: <Widget>[
               PlatformDialogAction(

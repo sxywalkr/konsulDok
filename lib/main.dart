@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:taskmon/flavor.dart';
-import 'package:taskmon/my_app.dart';
-import 'package:taskmon/providers/auth_provider.dart';
-import 'package:taskmon/providers/language_provider.dart';
-import 'package:taskmon/providers/theme_provider.dart';
-import 'package:taskmon/services/firestore_database.dart';
+import 'package:konsuldok/flavor.dart';
+import 'package:konsuldok/my_app.dart';
+import 'package:konsuldok/providers/auth_provider.dart';
+import 'package:konsuldok/providers/language_provider.dart';
+import 'package:konsuldok/providers/theme_provider.dart';
+import 'package:konsuldok/services/firestore_database.dart';
 import 'package:provider/provider.dart';
 
 void main() {

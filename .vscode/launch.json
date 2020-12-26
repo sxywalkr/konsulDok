@@ -6,7 +6,7 @@
     "configurations": [
         
         {
-            "name": "taskmon",
+            "name": "konsuldok",
             "request": "launch",
             "type": "dart"
         }

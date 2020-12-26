@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:taskmon/app_localizations.dart';
-import 'package:taskmon/models/user_model.dart';
-import 'package:taskmon/providers/auth_provider.dart';
-import 'package:taskmon/routes.dart';
+import 'package:konsuldok/app_localizations.dart';
+import 'package:konsuldok/models/user_model.dart';
+import 'package:konsuldok/providers/auth_provider.dart';
+import 'package:konsuldok/routes.dart';
 import 'package:provider/provider.dart';
-// import 'package:taskmon/services/firestore_database.dart';
-// import 'package:taskmon/models/app_user_model.dart';
+// import 'package:konsuldok/services/firestore_database.dart';
+// import 'package:konsuldok/models/app_user_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
@@ -79,7 +79,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     padding: const EdgeInsets.all(16.0),
                     child: Center(
                       child: Text(
-                        'TaskMon',
+                        'konsuldok',
                         style: Theme.of(context).textTheme.headline4,
                       ),
                     )),
