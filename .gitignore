@@ -32,6 +32,8 @@
 .pub/
 /build/
 /android/app/google-services.json
+/android/app/src/dev/google-services.json
+/android/app/src/prod/google-services.json
 
 # Web related
 lib/generated_plugin_registrant.dart

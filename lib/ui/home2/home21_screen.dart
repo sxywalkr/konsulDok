@@ -8,7 +8,7 @@ import 'package:konsuldok/services/firestore_database.dart';
 import 'package:provider/provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:konsuldok/providers/app_access_level_provider.dart';
-import 'package:konsuldok/models/hec_antrian_model.dart';
+// import 'package:konsuldok/models/hec_antrian_model.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:konsuldok/routes.dart';
 import 'package:geolocator/geolocator.dart';
@@ -285,7 +285,7 @@ Future<void> _presentDatePicker(context) async {
             Provider.of<AppAccessLevelProvider>(context, listen: false);
         final firestoreDatabase =
             Provider.of<FirestoreDatabase>(context, listen: false);
-        final dbReference = Firestore.instance;
+        final dbReference = FirebaseFirestore.instance;
         // final HecAntrianModel _hecAntrian;
 
         //cek apakah sudah ada antrian di hari req
@@ -293,9 +293,9 @@ Future<void> _presentDatePicker(context) async {
         final qSnap1 = await dbReference
             .collection("hecAntrians")
             .where('hecAntrianTglAntri', isEqualTo: e.toIso8601String())
-            .getDocuments();
-        for (DocumentSnapshot ds in qSnap1.documents) {
-          data1 = ds.data;
+            .get();
+        for (DocumentSnapshot ds in qSnap1.docs) {
+          data1 = ds.data();
         }
         print(data1.length);
         String hNomorAntri = '0';
@@ -397,7 +397,7 @@ _confirmAbsensi(BuildContext context) {
                       listen: false);
                   final firestoreDatabase =
                       Provider.of<FirestoreDatabase>(context, listen: false);
-                  final dbReference = Firestore.instance;
+                  final dbReference = FirebaseFirestore.instance;
                   final aa = await Geolocator.getCurrentPosition();
 
                   //cek apakah sudah absen waktu datang
@@ -408,9 +408,9 @@ _confirmAbsensi(BuildContext context) {
                           isEqualTo: DateTime.now().toIso8601String())
                       .where('appUserUid',
                           isEqualTo: appUserProvider.appxUserUid)
-                      .getDocuments();
-                  for (DocumentSnapshot ds in qSnap1.documents) {
-                    data1 = ds.data;
+                      .get();
+                  for (DocumentSnapshot ds in qSnap1.docs) {
+                    data1 = ds.data();
                   }
 
                   // update db absensi
@@ -429,8 +429,8 @@ _confirmAbsensi(BuildContext context) {
 
                   dbReference
                       .collection('appUsers')
-                      .document(appUserProvider.appxUserUid)
-                      .updateData(
+                      .doc(appUserProvider.appxUserUid)
+                      .update(
                     {
                       'appUserFlagActivity': 'Bekerja',
                     },

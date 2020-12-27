@@ -50,16 +50,16 @@ class _CreateEditProjectFeedScreenState
 
   Future<String> _getProjectName() async {
     print('_getProjectName');
-    final dbReference = Firestore.instance;
+    final dbReference = FirebaseFirestore.instance;
 
     Map<String, dynamic> data1 = {};
     if (_projectFeed != null) {
       final qSnap1 = await dbReference
           .collection("projectFeed")
           .where('projectId', isEqualTo: _projectFeed.projectId)
-          .getDocuments();
-      for (DocumentSnapshot ds in qSnap1.documents) {
-        data1 = ds.data;
+          .get();
+      for (DocumentSnapshot ds in qSnap1.docs) {
+        data1 = ds.data();
       }
       if (mounted) {
         setState(() {
@@ -184,12 +184,12 @@ class _CreateEditProjectFeedScreenState
                   print(
                       'after future ${_projectFeedPersentaseApprovalController.text}');
                   Map<String, dynamic> data1 = {};
-                  final qSnap1 = await Firestore.instance
+                  final qSnap1 = await FirebaseFirestore.instance
                       .collection('project')
                       .where('projectId', isEqualTo: _projectIdController.text)
-                      .getDocuments();
-                  for (DocumentSnapshot ds in qSnap1.documents) {
-                    data1 = ds.data;
+                      .get();
+                  for (DocumentSnapshot ds in qSnap1.docs) {
+                    data1 = ds.data();
                   }
                   // process only if have data
                   if (data1.isNotEmpty) {
@@ -491,12 +491,12 @@ class _CreateEditProjectFeedScreenState
                       onChanged: (String newValue) async {
                         if (newValue != null) {
                           Map<String, dynamic> data1 = {};
-                          final qSnap1 = await Firestore.instance
+                          final qSnap1 = await FirebaseFirestore.instance
                               .collection('project')
                               .where('projectName', isEqualTo: newValue)
-                              .getDocuments();
-                          for (DocumentSnapshot ds in qSnap1.documents) {
-                            data1 = ds.data;
+                              .get();
+                          for (DocumentSnapshot ds in qSnap1.docs) {
+                            data1 = ds.data();
                           }
 
                           setState(() {

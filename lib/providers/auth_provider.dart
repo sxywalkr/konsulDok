@@ -31,26 +31,26 @@ class AuthProvider extends ChangeNotifier {
 
   Status get status => _status;
 
-  Stream<UserModel> get user => _auth.onAuthStateChanged.map(_userFromFirebase);
+  Stream<UserModel> get user => _auth.authStateChanges().map(_userFromFirebase);
 
-  String get userUid => _auth
-      // .currentUser().toString();
-      .onAuthStateChanged
-      .map(_userFromFirebase)
-      .map((event) => event.email)
-      .map((event) => event)
-      .toString();
+  // String get userUid => _auth
+  //     // .currentUser().toString();
+  //     .authStateChanges()
+  //     .map(_userFromFirebase)
+  //     .map((event) => event.email)
+  //     .map((event) => event)
+  //     .toString();
 
   AuthProvider() {
     //initialise object
     _auth = FirebaseAuth.instance;
 
     //listener for authentication changes such as user sign in and sign out
-    _auth.onAuthStateChanged.listen(onAuthStateChanged);
+    _auth.authStateChanges().listen(onAuthStateChanged);
   }
 
   //Create user object based on the given FirebaseUser
-  UserModel _userFromFirebase(FirebaseUser user) {
+  UserModel _userFromFirebase(User user) {
     if (user == null) {
       return null;
     }
@@ -60,11 +60,11 @@ class AuthProvider extends ChangeNotifier {
         email: user.email,
         displayName: user.displayName,
         phoneNumber: user.phoneNumber,
-        photoUrl: user.photoUrl);
+        photoUrl: user.photoURL);
   }
 
   //Method to detect live auth changes such as user sign in and sign out
-  Future<void> onAuthStateChanged(FirebaseUser firebaseUser) async {
+  Future<void> onAuthStateChanged(User firebaseUser) async {
     if (firebaseUser == null) {
       _status = Status.Unauthenticated;
     } else {
@@ -80,7 +80,7 @@ class AuthProvider extends ChangeNotifier {
     try {
       _status = Status.Registering;
       notifyListeners();
-      final AuthResult result = await _auth.createUserWithEmailAndPassword(
+      final UserCredential result = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
       print(result);
       return _userFromFirebase(result.user);

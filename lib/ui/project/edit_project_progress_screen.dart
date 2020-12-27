@@ -39,16 +39,16 @@ class EditProjectProgressScreenState extends State<EditProjectProgressScreen> {
 
   Future<String> _getName() async {
     // print('getName');
-    final dbReference = Firestore.instance;
+    final dbReference = FirebaseFirestore.instance;
 
     Map<String, dynamic> data1 = {};
     if (_project != null) {
       final qSnap1 = await dbReference
           .collection("appUsers")
           .where('appUserUid', isEqualTo: _project.appUserUid)
-          .getDocuments();
-      for (DocumentSnapshot ds in qSnap1.documents) {
-        data1 = ds.data;
+          .get();
+      for (DocumentSnapshot ds in qSnap1.docs) {
+        data1 = ds.data();
       }
       setState(() {
         _appUserDisplayNameController =
@@ -271,12 +271,12 @@ class EditProjectProgressScreenState extends State<EditProjectProgressScreen> {
               onChanged: (String newValue) async {
                 if (newValue != null) {
                   Map<String, dynamic> data1 = {};
-                  final qSnap1 = await Firestore.instance
+                  final qSnap1 = await FirebaseFirestore.instance
                       .collection('appUsers')
                       .where('appUserDisplayName', isEqualTo: newValue)
-                      .getDocuments();
-                  for (DocumentSnapshot ds in qSnap1.documents) {
-                    data1 = ds.data;
+                      .get();
+                  for (DocumentSnapshot ds in qSnap1.docs) {
+                    data1 = ds.data();
                   }
 
                   setState(() {

@@ -35,9 +35,9 @@ class AppAccessLevelProvider extends ChangeNotifier {
     final qSnap1 = await dbReference
         .collection("appUsers")
         .where('appUserUid', isEqualTo: _appUserUid)
-        .getDocuments();
-    for (DocumentSnapshot ds in qSnap1.documents) {
-      data1 = ds.data;
+        .get();
+    for (DocumentSnapshot ds in qSnap1.docs) {
+      data1 = ds.data();
     }
     // print('login role >> $_appUserUid ${data1['appRole']}');
     _appUserRole = data1['appUserRole'];
@@ -47,9 +47,9 @@ class AppAccessLevelProvider extends ChangeNotifier {
     // absensi setting
     final qSnap2 = await dbReference
         .collection("absensiSetting")
-        .document('Office')
+        .doc('Office')
         .get()
-        .then((DocumentSnapshot ds) => ds.data);
+        .then((DocumentSnapshot ds) => ds.data());
     _absensiSetting = AbsensiSettingModel.fromMap(qSnap2, '');
     notifyListeners();
   }

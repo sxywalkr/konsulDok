@@ -57,6 +57,7 @@ class UserHero3Widget extends StatelessWidget {
                               Text(
                                 'Role : ${document['appUserRole']}',
                                 style: Theme.of(context).textTheme.subtitle1,
+                                overflow: TextOverflow.ellipsis,
                               ),
                             ],
                           ),
@@ -69,9 +70,16 @@ class UserHero3Widget extends StatelessWidget {
                                 'Status',
                                 style: Theme.of(context).textTheme.subtitle1,
                               ),
-                              Text(
-                                '${document['appUserFlagActivity']}',
-                                style: Theme.of(context).textTheme.headline5,
+                              Container(
+                                // color: Colors.black12,
+                                width: 180,
+                                child: Text(
+                                  '${document['appUserFlagActivity']}',
+                                  overflow: TextOverflow.ellipsis,
+                                  maxLines: 2,
+                                  softWrap: false,
+                                  style: Theme.of(context).textTheme.headline5,
+                                ),
                               ),
                             ],
                           ),

@@ -126,7 +126,7 @@ class _AbsensiScreenState extends State<AbsensiScreen> {
                                 );
                               default:
                                 AppUserModel appUser = AppUserModel.fromMap(
-                                    snapshot.data.documents.first.data, 'null');
+                                    snapshot.data.docs.first.data(), 'null');
                                 return Column(
                                   children: [
                                     // Text('status' +
@@ -187,7 +187,7 @@ class _AbsensiScreenState extends State<AbsensiScreen> {
                               );
                             default:
                               AppUserModel appUser = AppUserModel.fromMap(
-                                  snapshot.data.documents.first.data, 'null');
+                                  snapshot.data.docs.first.data(), 'null');
                               return Column(
                                 children: [
                                   // Text('status' +
@@ -308,7 +308,7 @@ class _AbsensiScreenState extends State<AbsensiScreen> {
         Provider.of<AppAccessLevelProvider>(context, listen: false);
     final firestoreDatabase =
         Provider.of<FirestoreDatabase>(context, listen: false);
-    final dbReference = Firestore.instance;
+    final dbReference = FirebaseFirestore.instance;
 
     if (flagAbsen == 'Datang') {
       final currDate = documentIdFromCurrentDate();
@@ -330,8 +330,8 @@ class _AbsensiScreenState extends State<AbsensiScreen> {
 
       dbReference
           .collection('appUsers')
-          .document(appUserProvider.appxUserUid)
-          .updateData(
+          .doc(appUserProvider.appxUserUid)
+          .update(
         {
           'appUserFlagActivity':
               _absensiPlace == 'Site' ? 'Site, Waiting approval' : 'Bekerja',
@@ -344,20 +344,20 @@ class _AbsensiScreenState extends State<AbsensiScreen> {
           .collection("absensi")
           .where('absensiStatus', isEqualTo: 'Open')
           .where('appUserUid', isEqualTo: appUserProvider.appxUserUid)
-          .getDocuments();
-      for (DocumentSnapshot ds in qSnap1.documents) {
-        data1 = ds.data;
+          .get();
+      for (DocumentSnapshot ds in qSnap1.docs) {
+        data1 = ds.data();
       }
       // print(data1['absensiId']);
       final dtPulang = DateTime.now().toIso8601String();
-      dbReference.collection('absensi').document(data1['absensiId']).updateData(
+      dbReference.collection('absensi').doc(data1['absensiId']).update(
         {'absensiWaktuPulang': dtPulang, 'absensiStatus': 'Closed'},
       );
 
       dbReference
           .collection('appUsers')
-          .document(appUserProvider.appxUserUid)
-          .updateData(
+          .doc(appUserProvider.appxUserUid)
+          .update(
         {
           'appUserFlagActivity': 'Tidak Bekerja',
           'appUserTotalJamKerja': (int.parse(

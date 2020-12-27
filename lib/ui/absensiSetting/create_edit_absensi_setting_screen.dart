@@ -34,14 +34,14 @@ class _CreateEditAbsensiSettingScreenState
   bool _isInit = true;
 
   Future<AbsensiSettingModel> _getOffice() async {
-    final dbReference = Firestore.instance;
+    final dbReference = FirebaseFirestore.instance;
 
     // Map<String, dynamic> data1 = {};
     final qSnap1 = await dbReference
         .collection("absensiSetting")
-        .document('Office')
+        .doc('Office')
         .get()
-        .then((DocumentSnapshot ds) => ds.data);
+        .then((DocumentSnapshot ds) => ds.data());
     _absensiSetting = AbsensiSettingModel.fromMap(qSnap1, '');
     return _absensiSetting;
   }

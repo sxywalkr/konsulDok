@@ -133,14 +133,11 @@ class AbsensiUserScreen extends StatelessWidget {
   }
 
   Widget _setUserRole(BuildContext context, AppUserModel aa) {
-    final dbReference = Firestore.instance;
+    final dbReference = FirebaseFirestore.instance;
     return PopupMenuButton(
       onSelected: (UserRole selectedValue) async {
         if (selectedValue == UserRole.Approve) {
-          dbReference
-              .collection('appUsers')
-              .document(aa.appUserUid)
-              .updateData({
+          dbReference.collection('appUsers').doc(aa.appUserUid).update({
             'appUserFlagActivity': 'Bekerja',
           });
           Map<String, dynamic> data1 = {};
@@ -148,23 +145,17 @@ class AbsensiUserScreen extends StatelessWidget {
               .collection("absensi")
               .where('absensiStatus', isEqualTo: 'Open')
               .where('appUserUid', isEqualTo: aa.appUserUid)
-              .getDocuments();
-          for (DocumentSnapshot ds in qSnap1.documents) {
-            data1 = ds.data;
+              .get();
+          for (DocumentSnapshot ds in qSnap1.docs) {
+            data1 = ds.data();
           }
-          dbReference
-              .collection('absensi')
-              .document(data1['absensiId'])
-              .updateData(
+          dbReference.collection('absensi').doc(data1['absensiId']).update(
             {
               'absensiPlace': 'Site',
             },
           );
         } else if (selectedValue == UserRole.Reject) {
-          dbReference
-              .collection('appUsers')
-              .document(aa.appUserUid)
-              .updateData({
+          dbReference.collection('appUsers').doc(aa.appUserUid).update({
             'appUserFlagActivity': 'Tidak Bekerja',
           });
           Map<String, dynamic> data1 = {};
@@ -172,14 +163,11 @@ class AbsensiUserScreen extends StatelessWidget {
               .collection("absensi")
               .where('absensiStatus', isEqualTo: 'Open')
               .where('appUserUid', isEqualTo: aa.appUserUid)
-              .getDocuments();
-          for (DocumentSnapshot ds in qSnap1.documents) {
-            data1 = ds.data;
+              .get();
+          for (DocumentSnapshot ds in qSnap1.docs) {
+            data1 = ds.data();
           }
-          dbReference
-              .collection('absensi')
-              .document(data1['absensiId'])
-              .updateData(
+          dbReference.collection('absensi').doc(data1['absensiId']).update(
             {
               'absensiPlace': 'Site',
               'absensiStatus': 'Closed',

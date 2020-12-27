@@ -90,6 +90,15 @@ class AppDrawer extends StatelessWidget {
                     arguments: appUserUid);
               },
             ),
+            if (appUserRole == 'Admin' || appUserRole == 'Debug') Divider(),
+            if (appUserRole == 'Admin' || appUserRole == 'Debug')
+              ListTile(
+                leading: Icon(Icons.access_alarm),
+                title: Text('Dash Chat'),
+                onTap: () {
+                  Navigator.of(context).pushNamed(Routes.dash_chat);
+                },
+              ),
             Divider(),
             ListTile(
               leading: Icon(Icons.settings),

@@ -7,9 +7,12 @@ import 'package:konsuldok/providers/language_provider.dart';
 import 'package:konsuldok/providers/theme_provider.dart';
 import 'package:konsuldok/services/firestore_database.dart';
 import 'package:provider/provider.dart';
+// import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
       .then((_) async {
     runApp(
