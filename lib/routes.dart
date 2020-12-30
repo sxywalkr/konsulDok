@@ -24,6 +24,8 @@ import 'package:konsuldok/ui/absensiSetting/absensi_setting_screen.dart';
 import 'package:konsuldok/ui/absensiSetting/create_edit_absensi_setting_screen.dart';
 import 'package:konsuldok/ui/absensi/absensi_user_screen.dart';
 import 'package:konsuldok/ui/flutterChats/dash_chat.dart';
+import 'package:konsuldok/ui/flutterChats/main_chat.dart';
+import 'package:konsuldok/ui/flutterChats/chat2.dart';
 
 //uiXample
 import 'package:konsuldok/ui/uiXample/dropdown.dart';
@@ -61,6 +63,8 @@ class Routes {
   static const String create_edit_absensi_setting =
       '/create_edit_absensi_setting';
   static const String dash_chat = '/dash_chat';
+  static const String main_chat = '/main_chat';
+  static const String chat2 = '/chat2';
 
   static final routes = <String, WidgetBuilder>{
     splash: (BuildContext context) => SplashScreen(),
@@ -92,5 +96,7 @@ class Routes {
     create_edit_absensi_setting: (BuildContext context) =>
         CreateEditAbsensiSettingScreen(),
     dash_chat: (BuildContext context) => DashChatScreen(),
+    main_chat: (BuildContext context) => MainChatScreen(),
+    chat2: (BuildContext context) => Chat2Screen(),
   };
 }

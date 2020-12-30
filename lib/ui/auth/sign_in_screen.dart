@@ -4,6 +4,9 @@ import 'package:konsuldok/app_localizations.dart';
 import 'package:konsuldok/providers/auth_provider.dart';
 import 'package:konsuldok/routes.dart';
 import 'package:provider/provider.dart';
+import 'package:konsuldok/ui/flutterChats/helper_function.dart';
+import 'package:konsuldok/ui/flutterChats/service_database.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class SignInScreen extends StatefulWidget {
   @override
@@ -123,6 +126,24 @@ class _SignInScreenState extends State<SignInScreen> {
                                 await authProvider.signInWithEmailAndPassword(
                                     _emailController.text,
                                     _passwordController.text);
+
+                            if (status) {
+                              // newChat
+
+                              // flutterChats/main_chat
+                              QuerySnapshot userInfoSnapshot =
+                                  await DatabaseMethods()
+                                      .getUserInfo(_emailController.text);
+
+                              HelperFunctions.saveUserLoggedInSharedPreference(
+                                  true);
+                              HelperFunctions.saveUserNameSharedPreference(
+                                  userInfoSnapshot.docs[0]
+                                      .data()['appUserDisplayName']);
+                              HelperFunctions.saveUserEmailSharedPreference(
+                                  userInfoSnapshot.docs[0]
+                                      .data()['appUserEmail']);
+                            }
 
                             if (!status) {
                               _scaffoldKey.currentState.showSnackBar(SnackBar(

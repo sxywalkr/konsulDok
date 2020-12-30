@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:konsuldok/routes.dart';
 import 'package:provider/provider.dart';
 import 'package:konsuldok/providers/app_access_level_provider.dart';
+import 'package:konsuldok/ui/newChat/home.dart';
 
 class AppDrawer extends StatelessWidget {
   @override
@@ -90,13 +91,46 @@ class AppDrawer extends StatelessWidget {
                     arguments: appUserUid);
               },
             ),
+            // if (appUserRole == 'Admin' || appUserRole == 'Debug') Divider(),
+            // if (appUserRole == 'Admin' || appUserRole == 'Debug')
+            //   ListTile(
+            //     leading: Icon(Icons.access_alarm),
+            //     title: Text('Dash Chat'),
+            //     onTap: () {
+            //       Navigator.of(context).pushNamed(Routes.dash_chat);
+            //     },
+            //   ),
+            // if (appUserRole == 'Admin' || appUserRole == 'Debug') Divider(),
+            // if (appUserRole == 'Admin' || appUserRole == 'Debug')
+            //   ListTile(
+            //     leading: Icon(Icons.access_alarm),
+            //     title: Text('Chat2'),
+            //     onTap: () {
+            //       Navigator.of(context).pushNamed(Routes.chat2);
+            //     },
+            //   ),
             if (appUserRole == 'Admin' || appUserRole == 'Debug') Divider(),
             if (appUserRole == 'Admin' || appUserRole == 'Debug')
               ListTile(
                 leading: Icon(Icons.access_alarm),
-                title: Text('Dash Chat'),
+                title: Text('Main Chat'),
                 onTap: () {
-                  Navigator.of(context).pushNamed(Routes.dash_chat);
+                  Navigator.of(context).pushNamed(Routes.main_chat);
+                },
+              ),
+            if (appUserRole == 'Admin' || appUserRole == 'Debug') Divider(),
+            if (appUserRole == 'Admin' || appUserRole == 'Debug')
+              ListTile(
+                leading: Icon(Icons.access_alarm),
+                title: Text('New Chat'),
+                onTap: () {
+                  // Navigator.of(context)
+                  //     .pushNamed(HomeScreen(currentUserId: appUserUid));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              HomeScreen(currentUserId: appUserUid)));
                 },
               ),
             Divider(),

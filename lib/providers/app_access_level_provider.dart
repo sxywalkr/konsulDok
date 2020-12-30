@@ -6,7 +6,7 @@ import 'package:konsuldok/models/absensi_setting_model.dart';
 import 'package:konsuldok/models/app_user_model.dart';
 
 class AppAccessLevelProvider extends ChangeNotifier {
-  final dbReference = Firestore.instance;
+  final dbReference = FirebaseFirestore.instance;
   final String _appUserUid;
   String _appUserRole;
   AppUserModel _appUser;
