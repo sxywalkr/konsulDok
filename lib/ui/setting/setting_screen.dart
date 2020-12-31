@@ -6,7 +6,7 @@ import 'package:konsuldok/providers/theme_provider.dart';
 import 'package:konsuldok/routes.dart';
 import 'package:konsuldok/ui/setting/setting_language_actions.dart';
 import 'package:provider/provider.dart';
-import 'package:konsuldok/ui/drawer/app_drawer.dart';
+import 'package:konsuldok/ui/appDrawer/app_drawer.dart';
 import 'package:konsuldok/providers/app_access_level_provider.dart';
 
 class SettingScreen extends StatelessWidget {

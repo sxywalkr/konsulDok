@@ -113,9 +113,18 @@ class AppDrawer extends StatelessWidget {
             if (appUserRole == 'Admin' || appUserRole == 'Debug')
               ListTile(
                 leading: Icon(Icons.access_alarm),
-                title: Text('Main Chat'),
+                title: Text('Login Doctor'),
                 onTap: () {
-                  Navigator.of(context).pushNamed(Routes.main_chat);
+                  Navigator.of(context).pushNamed(Routes.login_doctor_pro);
+                },
+              ),
+            if (appUserRole == 'Admin' || appUserRole == 'Debug') Divider(),
+            if (appUserRole == 'Admin' || appUserRole == 'Debug')
+              ListTile(
+                leading: Icon(Icons.access_alarm),
+                title: Text('Home Doctor'),
+                onTap: () {
+                  Navigator.of(context).pushNamed(Routes.home_doctor_pro);
                 },
               ),
             if (appUserRole == 'Admin' || appUserRole == 'Debug') Divider(),

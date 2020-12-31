@@ -4,7 +4,7 @@ import 'package:konsuldok/services/firestore_database.dart';
 import 'package:konsuldok/models/app_user_model.dart';
 import 'package:provider/provider.dart';
 import 'package:konsuldok/routes.dart';
-import 'package:konsuldok/ui/drawer/app_drawer.dart';
+import 'package:konsuldok/ui/appDrawer/app_drawer.dart';
 
 class UserProfileScreen extends StatefulWidget {
   @override
