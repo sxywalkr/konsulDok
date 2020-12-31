@@ -140,11 +140,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     _emailController.text,
                                     _passwordController.text);
 
-                            final dbReference = Firestore.instance;
+                            final dbReference = FirebaseFirestore.instance;
                             dbReference
                                 .collection('appUsers')
-                                .document(userModel.uid)
-                                .setData(
+                                .doc(userModel.uid)
+                                .set(
                               {
                                 'appUserUid': userModel.uid,
                                 'appUserEmail': _emailController.text,
@@ -157,6 +157,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 'appUserGender': '-',
                                 'appUserNoHape': '-',
                                 'appUserTotalJamKerja': '0',
+                                'appUserPhotoUrl':
+                                    'https://firebasestorage.googleapis.com/v0/b/konsuldok-49138.appspot.com/o/appAssets%2Fuser.jpg?alt=media&token=18e5538d-b319-4f49-bf10-44439b02d79b',
                               },
                             );
 

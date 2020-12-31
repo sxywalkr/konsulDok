@@ -14,7 +14,7 @@ import 'widget/loading.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-
+import 'package:konsuldok/routes.dart';
 // import 'main.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -68,9 +68,9 @@ class HomeScreenState extends State<HomeScreen> {
     firebaseMessaging.getToken().then((token) {
       print('token: $token');
       FirebaseFirestore.instance
-          .collection('users')
+          .collection('appUsers')
           .doc(currentUserId)
-          .update({'pushToken': token});
+          .update({'appUserFcmId': token});
     }).catchError((err) {
       Fluttertoast.showToast(msg: err.message.toString());
     });
@@ -96,9 +96,7 @@ class HomeScreenState extends State<HomeScreen> {
 
   void showNotification(message) async {
     var androidPlatformChannelSpecifics = new AndroidNotificationDetails(
-      Platform.isAndroid
-          ? 'com.dfa.flutterchatdemo'
-          : 'com.duytq.flutterchatdemo',
+      Platform.isAndroid ? 'com.sxywalkr.konsuldok' : 'com.sxywalkr.konsuldok',
       'Flutter chat demo',
       'your channel description',
       playSound: true,
@@ -190,6 +188,7 @@ class HomeScreenState extends State<HomeScreen> {
               SimpleDialogOption(
                 onPressed: () {
                   Navigator.pop(context, 1);
+                  // Navigator.of(context).pushNamed(Routes.home21);
                 },
                 child: Row(
                   children: <Widget>[
@@ -279,8 +278,9 @@ class HomeScreenState extends State<HomeScreen> {
             // List
             Container(
               child: StreamBuilder(
-                stream:
-                    FirebaseFirestore.instance.collection('users').snapshots(),
+                stream: FirebaseFirestore.instance
+                    .collection('appUsers')
+                    .snapshots(),
                 builder: (context, snapshot) {
                   if (!snapshot.hasData) {
                     return Center(
@@ -312,7 +312,7 @@ class HomeScreenState extends State<HomeScreen> {
   }
 
   Widget buildItem(BuildContext context, DocumentSnapshot document) {
-    if (document.data()['id'] == currentUserId) {
+    if (document.data()['appUserUid'] == currentUserId) {
       return Container();
     } else {
       return Container(
@@ -351,7 +351,7 @@ class HomeScreenState extends State<HomeScreen> {
                     children: <Widget>[
                       Container(
                         child: Text(
-                          'Nickname: ${document.data()['nickname']}',
+                          'Nickname: ${document.data()['appUserDisplayName']}',
                           style: TextStyle(color: primaryColor),
                         ),
                         alignment: Alignment.centerLeft,
@@ -373,6 +373,8 @@ class HomeScreenState extends State<HomeScreen> {
             ],
           ),
           onPressed: () {
+            // print('doc.id ${document.id}');
+            // print('doc.data ${document.data()['appUserUid']}');
             Navigator.push(
                 context,
                 MaterialPageRoute(

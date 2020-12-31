@@ -9,6 +9,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:konsuldok/providers/app_access_level_provider.dart';
+import 'package:provider/provider.dart';
 
 import 'const.dart';
 import 'widget/full_photo.dart';
@@ -118,8 +120,12 @@ class ChatScreenState extends State<ChatScreen> {
   }
 
   readLocal() async {
+    final appUserInfo =
+        Provider.of<AppAccessLevelProvider>(context, listen: false);
+
     prefs = await SharedPreferences.getInstance();
-    id = prefs.getString('id') ?? '';
+    // id = prefs.getString('id') ?? '';
+    id = appUserInfo.appxUserUid;
     if (id.hashCode <= peerId.hashCode) {
       groupChatId = '$id-$peerId';
     } else {
@@ -127,10 +133,10 @@ class ChatScreenState extends State<ChatScreen> {
     }
 
     FirebaseFirestore.instance
-        .collection('users')
+        .collection('appUsers')
         .doc(id)
         .update({'chattingWith': peerId});
-
+    // print('$id - $peerId = $groupChatId');
     setState(() {});
   }
 
@@ -306,30 +312,31 @@ class ChatScreenState extends State<ChatScreen> {
           children: <Widget>[
             Row(
               children: <Widget>[
-                isLastMessageLeft(index)
-                    ? Material(
-                        child: CachedNetworkImage(
-                          placeholder: (context, url) => Container(
-                            child: CircularProgressIndicator(
-                              strokeWidth: 1.0,
-                              valueColor:
-                                  AlwaysStoppedAnimation<Color>(themeColor),
-                            ),
-                            width: 35.0,
-                            height: 35.0,
-                            padding: EdgeInsets.all(10.0),
-                          ),
-                          imageUrl: peerAvatar,
-                          width: 35.0,
-                          height: 35.0,
-                          fit: BoxFit.cover,
-                        ),
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(18.0),
-                        ),
-                        clipBehavior: Clip.hardEdge,
-                      )
-                    : Container(width: 35.0),
+                // isLastMessageLeft(index)
+                //     ?
+                //     Material(
+                //         child: CachedNetworkImage(
+                //           placeholder: (context, url) => Container(
+                //             child: CircularProgressIndicator(
+                //               strokeWidth: 1.0,
+                //               valueColor:
+                //                   AlwaysStoppedAnimation<Color>(themeColor),
+                //             ),
+                //             width: 35.0,
+                //             height: 35.0,
+                //             padding: EdgeInsets.all(10.0),
+                //           ),
+                //           imageUrl: peerAvatar,
+                //           width: 35.0,
+                //           height: 35.0,
+                //           fit: BoxFit.cover,
+                //         ),
+                //         borderRadius: BorderRadius.all(
+                //           Radius.circular(18.0),
+                //         ),
+                //         clipBehavior: Clip.hardEdge,
+                //       )
+                //     : Container(width: 35.0),
                 document.data()['type'] == 0
                     ? Container(
                         child: Text(
@@ -462,7 +469,7 @@ class ChatScreenState extends State<ChatScreen> {
       });
     } else {
       FirebaseFirestore.instance
-          .collection('users')
+          .collection('appUsers')
           .doc(id)
           .update({'chattingWith': null});
       Navigator.pop(context);
