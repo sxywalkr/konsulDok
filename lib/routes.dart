@@ -29,6 +29,7 @@ import 'package:konsuldok/ui/flutterChats/chat2.dart';
 
 // pages
 import 'package:konsuldok/ui/pages/login_signup/login.dart';
+import 'package:konsuldok/ui/pages/splashScreen.dart';
 import 'package:konsuldok/ui/pages/home/home.dart';
 
 //uiXample
@@ -71,6 +72,7 @@ class Routes {
   static const String chat2 = '/chat2';
   // pages
   static const String login_doctor_pro = '/login_doctor_pro';
+  static const String splash_doctor_pro = '/splash_doctor_pro';
   static const String home_doctor_pro = '/home_doctor_pro';
 
   static final routes = <String, WidgetBuilder>{
@@ -107,6 +109,7 @@ class Routes {
     chat2: (BuildContext context) => Chat2Screen(),
     // doctor pro
     login_doctor_pro: (BuildContext context) => Login(),
+    splash_doctor_pro: (BuildContext context) => SplashDoctorProScreen(),
     home_doctor_pro: (BuildContext context) => Home(),
   };
 }

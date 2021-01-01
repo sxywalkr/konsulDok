@@ -26,105 +26,107 @@ class Home21Screen extends StatelessWidget {
         title: Text('konsuldok'),
       ),
       drawer: AppDrawer(),
-      body: Container(
-        // color: Colors.black26,
-        child: Column(
-          // mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Stack(
-              // alignment: Alignment.bottomCenter,
-              children: <Widget>[
-                UserHero3Widget(),
-              ],
-            ),
-
-            Padding(
-              padding: const EdgeInsets.only(top: 15, left: 10),
-              child: Text(
-                'My Project',
-                style: Theme.of(context).textTheme.headline5,
-              ),
-            ),
-            // Text((MediaQuery.of(context).size.height -
-            //         MediaQuery.of(context).padding.top -
-            //         MediaQuery.of(context).padding.bottom -
-            //         kToolbarHeight)
-            //     .toString()),
-
-            Container(
-              // color: Colors.black12,
-              margin: EdgeInsets.all(12),
-              height: MediaQuery.of(context).size.height -
-                  MediaQuery.of(context).padding.top -
-                  MediaQuery.of(context).padding.bottom -
-                  kToolbarHeight -
-                  (((MediaQuery.of(context).size.height / 3) * 2)) -
-                  50,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
-                    spreadRadius: 1,
-                    blurRadius: 7,
-                    offset: Offset(0, 3),
-                  )
+      body: SingleChildScrollView(
+        child: Container(
+          // color: Colors.black26,
+          child: Column(
+            // mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Stack(
+                // alignment: Alignment.bottomCenter,
+                children: <Widget>[
+                  UserHero3Widget(),
                 ],
-                borderRadius: BorderRadius.circular(15.0),
               ),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ProjectWidgetScreen(),
-              ),
-            ),
 
-            Padding(
-              padding: const EdgeInsets.only(top: 15, left: 10),
-              child: Text(
-                'My Feed',
-                style: Theme.of(context).textTheme.headline5,
+              Padding(
+                padding: const EdgeInsets.only(top: 15, left: 10),
+                child: Text(
+                  'My Project',
+                  style: Theme.of(context).textTheme.headline5,
+                ),
               ),
-            ),
-            Container(
-              // color: Colors.black12,
-              margin: EdgeInsets.all(12),
-              height: MediaQuery.of(context).size.height -
-                  MediaQuery.of(context).padding.top -
-                  MediaQuery.of(context).padding.bottom -
-                  kToolbarHeight -
-                  (((MediaQuery.of(context).size.height / 3) * 1.3)),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
-                    spreadRadius: 1,
-                    blurRadius: 7,
-                    offset: Offset(0, 3),
-                  )
-                ],
-                borderRadius: BorderRadius.circular(15.0),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ProjectFeedWidgetScreen(),
-              ),
-            ),
+              // Text((MediaQuery.of(context).size.height -
+              //         MediaQuery.of(context).padding.top -
+              //         MediaQuery.of(context).padding.bottom -
+              //         kToolbarHeight)
+              //     .toString()),
 
-            // Row(
-            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //   children: [
-            //     Expanded(child: cardActivityIn(context)),
-            //     Expanded(child: cardActivityOut(context)),
-            //   ],
-            // ),
+              Container(
+                // color: Colors.black12,
+                margin: EdgeInsets.all(12),
+                height: MediaQuery.of(context).size.height -
+                    MediaQuery.of(context).padding.top -
+                    MediaQuery.of(context).padding.bottom -
+                    kToolbarHeight -
+                    (((MediaQuery.of(context).size.height / 3) * 2)) -
+                    50,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 1,
+                      blurRadius: 7,
+                      offset: Offset(0, 3),
+                    )
+                  ],
+                  borderRadius: BorderRadius.circular(15.0),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ProjectWidgetScreen(),
+                ),
+              ),
 
-            // cardActivity(context, 'Anda belum antri di poli',
-            //     'Klik untuk mendapatkan antrian', '', 'notif'),
-            // cardDetail('Bonus', 'Dapat Bonus Proyek', '500.000', 'in'),
-            // cardDetail('Beli Baju', 'Baju Kemeja Kantor', '250.000', 'out'),
-          ],
+              Padding(
+                padding: const EdgeInsets.only(top: 15, left: 10),
+                child: Text(
+                  'My Feed',
+                  style: Theme.of(context).textTheme.headline5,
+                ),
+              ),
+              Container(
+                // color: Colors.black12,
+                margin: EdgeInsets.all(12),
+                height: MediaQuery.of(context).size.height -
+                    MediaQuery.of(context).padding.top -
+                    MediaQuery.of(context).padding.bottom -
+                    kToolbarHeight -
+                    (((MediaQuery.of(context).size.height / 3) * 1.3)),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 1,
+                      blurRadius: 7,
+                      offset: Offset(0, 3),
+                    )
+                  ],
+                  borderRadius: BorderRadius.circular(15.0),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ProjectFeedWidgetScreen(),
+                ),
+              ),
+
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //   children: [
+              //     Expanded(child: cardActivityIn(context)),
+              //     Expanded(child: cardActivityOut(context)),
+              //   ],
+              // ),
+
+              // cardActivity(context, 'Anda belum antri di poli',
+              //     'Klik untuk mendapatkan antrian', '', 'notif'),
+              // cardDetail('Bonus', 'Dapat Bonus Proyek', '500.000', 'in'),
+              // cardDetail('Beli Baju', 'Baju Kemeja Kantor', '250.000', 'out'),
+            ],
+          ),
         ),
       ),
     );

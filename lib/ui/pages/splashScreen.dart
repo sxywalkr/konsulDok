@@ -4,12 +4,12 @@ import 'package:konsuldok/ui/pages/constant/constant.dart';
 import 'package:konsuldok/ui/pages/screens.dart';
 import 'package:flutter/material.dart';
 
-class SplashScreen extends StatefulWidget {
+class SplashDoctorProScreen extends StatefulWidget {
   @override
-  _SplashScreenState createState() => _SplashScreenState();
+  _SplashDoctorProScreenState createState() => _SplashDoctorProScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen>
+class _SplashDoctorProScreenState extends State<SplashDoctorProScreen>
     with SingleTickerProviderStateMixin {
   AnimationController _controller;
   Animation<Offset> _offsetAnimation;

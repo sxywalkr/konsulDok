@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 // import 'package:konsuldok/models/app_user_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:konsuldok/constants/app_sxy_constant.dart';
 
 class RegisterScreen extends StatefulWidget {
   @override
@@ -46,6 +47,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       body: Stack(
         children: <Widget>[
           // _buildBackground(),
+          _background(),
           Align(
             alignment: Alignment.center,
             child: _buildForm(context),
@@ -76,28 +78,45 @@ class _RegisterScreenState extends State<RegisterScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Padding(
-                    padding: const EdgeInsets.all(16.0),
+                    padding: const EdgeInsets.only(top: 16),
+                    child: Center(
+                      child: Text('Register', style: loginBigTextStyle
+                          // Theme.of(context).textTheme.headline4,
+
+                          ),
+                    )),
+                Padding(
+                    padding: const EdgeInsets.only(bottom: 30),
                     child: Center(
                       child: Text(
-                        'konsuldok',
-                        style: Theme.of(context).textTheme.headline4,
+                        'Buat Akun',
+                        style: whiteSmallLoginTextStyle,
                       ),
                     )),
                 TextFormField(
                   controller: _emailController,
-                  style: Theme.of(context).textTheme.body1,
+                  style: Theme.of(context).textTheme.headline6,
                   validator: (value) => value.isEmpty
                       ? AppLocalizations.of(context)
                           .translate("loginTxtErrorEmail")
                       : null,
                   decoration: InputDecoration(
-                      prefixIcon: Icon(
-                        Icons.email,
-                        color: Theme.of(context).iconTheme.color,
-                      ),
-                      labelText: AppLocalizations.of(context)
-                          .translate("loginTxtEmail"),
-                      border: OutlineInputBorder()),
+                    filled: true,
+                    fillColor: Colors.green[100].withOpacity(0.3),
+                    prefixIcon: Icon(
+                      Icons.email,
+                      color: Theme.of(context).iconTheme.color,
+                    ),
+                    labelText: 'Email',
+                    border: OutlineInputBorder(
+                        borderSide: const BorderSide(
+                            color: Colors.transparent, width: 2.0),
+                        borderRadius: BorderRadius.all(Radius.circular(30.0))),
+                    focusedBorder: OutlineInputBorder(
+                        borderSide:
+                            const BorderSide(color: Colors.white, width: 2.0),
+                        borderRadius: BorderRadius.all(Radius.circular(30.0))),
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 16),
@@ -105,71 +124,89 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     obscureText: true,
                     maxLength: 12,
                     controller: _passwordController,
-                    style: Theme.of(context).textTheme.body1,
+                    style: Theme.of(context).textTheme.headline6,
                     validator: (value) => value.length < 6
                         ? AppLocalizations.of(context)
                             .translate("loginTxtErrorPassword")
                         : null,
                     decoration: InputDecoration(
-                        prefixIcon: Icon(
-                          Icons.lock,
-                          color: Theme.of(context).iconTheme.color,
-                        ),
-                        labelText: AppLocalizations.of(context)
-                            .translate("loginTxtPassword"),
-                        border: OutlineInputBorder()),
+                      filled: true,
+                      fillColor: Colors.green[100].withOpacity(0.3),
+                      prefixIcon: Icon(
+                        Icons.email,
+                        color: Theme.of(context).iconTheme.color,
+                      ),
+                      labelText: 'Password',
+                      border: OutlineInputBorder(
+                          borderSide: const BorderSide(
+                              color: Colors.transparent, width: 2.0),
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(30.0))),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide:
+                              const BorderSide(color: Colors.white, width: 2.0),
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(30.0))),
+                    ),
                   ),
                 ),
                 authProvider.status == Status.Registering
                     ? Center(
                         child: CircularProgressIndicator(),
                       )
-                    : RaisedButton(
-                        child: Text(
-                          AppLocalizations.of(context)
-                              .translate("loginBtnSignUp"),
-                          style: Theme.of(context).textTheme.button,
-                        ),
-                        onPressed: () async {
-                          if (_formKey.currentState.validate()) {
-                            FocusScope.of(context)
-                                .unfocus(); //to hide the keyboard - if any
+                    : SizedBox(
+                        height: 50,
+                        child: RaisedButton(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30.0),
+                            ),
+                            child: Text(
+                              AppLocalizations.of(context)
+                                  .translate("loginBtnSignUp"),
+                              style: Theme.of(context).textTheme.button,
+                            ),
+                            onPressed: () async {
+                              if (_formKey.currentState.validate()) {
+                                FocusScope.of(context)
+                                    .unfocus(); //to hide the keyboard - if any
 
-                            UserModel userModel =
-                                await authProvider.registerWithEmailAndPassword(
-                                    _emailController.text,
-                                    _passwordController.text);
+                                UserModel userModel = await authProvider
+                                    .registerWithEmailAndPassword(
+                                        _emailController.text,
+                                        _passwordController.text);
 
-                            final dbReference = FirebaseFirestore.instance;
-                            dbReference
-                                .collection('appUsers')
-                                .doc(userModel.uid)
-                                .set(
-                              {
-                                'appUserUid': userModel.uid,
-                                'appUserEmail': _emailController.text,
-                                'appUserDisplayName': _emailController.text,
-                                'appUserRole': 'User',
-                                'appUserFcmId': _fcmToken,
-                                'appUserFlagActivity':
-                                    'User Baru, menunggu approval',
-                                'appUserAlamat': '-',
-                                'appUserGender': '-',
-                                'appUserNoHape': '-',
-                                'appUserTotalJamKerja': '0',
-                                'appUserPhotoUrl':
-                                    'https://firebasestorage.googleapis.com/v0/b/konsuldok-49138.appspot.com/o/appAssets%2Fuser.jpg?alt=media&token=18e5538d-b319-4f49-bf10-44439b02d79b',
-                              },
-                            );
+                                final dbReference = FirebaseFirestore.instance;
+                                dbReference
+                                    .collection('appUsers')
+                                    .doc(userModel.uid)
+                                    .set(
+                                  {
+                                    'appUserUid': userModel.uid,
+                                    'appUserEmail': _emailController.text,
+                                    'appUserDisplayName': _emailController.text,
+                                    'appUserRole': 'User',
+                                    'appUserFcmId': _fcmToken,
+                                    'appUserFlagActivity':
+                                        'User Baru, menunggu approval',
+                                    'appUserAlamat': '-',
+                                    'appUserGender': '-',
+                                    'appUserNoHape': '-',
+                                    'appUserTotalJamKerja': '0',
+                                    'appUserPhotoUrl':
+                                        'https://firebasestorage.googleapis.com/v0/b/konsuldok-49138.appspot.com/o/appAssets%2Fuser.jpg?alt=media&token=18e5538d-b319-4f49-bf10-44439b02d79b',
+                                  },
+                                );
 
-                            if (userModel == null) {
-                              _scaffoldKey.currentState.showSnackBar(SnackBar(
-                                content: Text(AppLocalizations.of(context)
-                                    .translate("loginTxtErrorSignIn")),
-                              ));
-                            }
-                          }
-                        }),
+                                if (userModel == null) {
+                                  _scaffoldKey.currentState
+                                      .showSnackBar(SnackBar(
+                                    content: Text(AppLocalizations.of(context)
+                                        .translate("loginTxtErrorSignIn")),
+                                  ));
+                                }
+                              }
+                            }),
+                      ),
                 authProvider.status == Status.Registering
                     ? Center(
                         child: null,
@@ -179,7 +216,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         child: Center(
                             child: Text(
                           'Sudah punya akun?',
-                          style: Theme.of(context).textTheme.button,
+                          style: whiteSmallLoginTextStyle,
                         )),
                       ),
                 authProvider.status == Status.Registering
@@ -210,6 +247,44 @@ class _RegisterScreenState extends State<RegisterScreen> {
   //     ),
   //   );
   // }
+
+  Widget _background() {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+    return Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+            image: AssetImage('assets/images/doctor_bg.jpg'),
+            fit: BoxFit.cover),
+      ),
+      child: Stack(
+        children: [
+          Positioned(
+            top: 0.0,
+            left: 0.0,
+            child: Container(
+              width: width,
+              height: height,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  stops: [0.1, 0.3, 0.5, 0.7, 0.9],
+                  colors: [
+                    Colors.black.withOpacity(0.4),
+                    Colors.black.withOpacity(0.55),
+                    Colors.black.withOpacity(0.7),
+                    Colors.black.withOpacity(0.8),
+                    Colors.black.withOpacity(1.0),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 }
 
 class SignInCustomClipper extends CustomClipper<Path> {

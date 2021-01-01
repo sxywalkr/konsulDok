@@ -113,9 +113,9 @@ class AppDrawer extends StatelessWidget {
             if (appUserRole == 'Admin' || appUserRole == 'Debug')
               ListTile(
                 leading: Icon(Icons.access_alarm),
-                title: Text('Login Doctor'),
+                title: Text('Splash Doctor'),
                 onTap: () {
-                  Navigator.of(context).pushNamed(Routes.login_doctor_pro);
+                  Navigator.of(context).pushNamed(Routes.splash_doctor_pro);
                 },
               ),
             if (appUserRole == 'Admin' || appUserRole == 'Debug') Divider(),
